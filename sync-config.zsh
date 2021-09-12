@@ -18,6 +18,9 @@ case $config in
     echo "Updating all configs"
     files=(".zshrc" ".tmux.conf" ".vimrc")
     ;;
+  *)
+    echo "Invalid selection, exiting..."
+    exit 1
 esac
 
 echo "Pulling remote repository"
@@ -32,3 +35,4 @@ do
 done
 
 echo "Sync complete"
+exit 0

@@ -18,6 +18,9 @@ case $config in
     echo "Updating all configs"
     files=(".zshrc" ".tmux.conf" ".vimrc")
     ;;
+  *)
+    echo "Invalid selection, exiting..."
+    exit 1
 esac
 
 echo "Copying files..."
@@ -30,3 +33,6 @@ echo "Commiting to repository and pushing to remote"
 git add . 
 git commit -m "update files"
 git push origin master --quiet
+
+echo "Update complete"
+exit 0
