@@ -4,8 +4,6 @@ ZSH_THEME="af-magic"
 plugins=(vi-mode zsh-dircolors-solarized)
 source $ZSH/oh-my-zsh.sh
 
-source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
-
 # Vi mode
 ## This reduces the delay between when you can start typing after switching vi
 ## modes
@@ -53,7 +51,8 @@ VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
 
 # Aliases
-# alias ls='gls --color=auto'
-# alias ll='ls -al'
+alias ls='ls --color=auto'
+alias ll='ls -al'
 
+source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
