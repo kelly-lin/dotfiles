@@ -54,5 +54,8 @@ VI_MODE_SET_CURSOR=true
 alias ls='ls --color=auto'
 alias ll='ls -al'
 
+# Source devrc files
+source ~/.zsh/devrc/.nvmrc
+
 source ~/.zsh/zsh-dircolors-solarized/zsh-dircolors-solarized.zsh
 source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
