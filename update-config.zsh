@@ -28,6 +28,6 @@ done
 
 echo "Commiting to repository and pushing to remote"
 cd terminal-configs
-git add .
+git add . 
 git commit -m "update files"
-git push origin master
+git push origin master --quiet
