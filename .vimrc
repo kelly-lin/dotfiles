@@ -41,6 +41,9 @@ augroup END
 " General config
 syntax on
 
+" Key remaps
+nnoremap gm m
+
 " Set tab sizes
 set expandtab
 set tabstop=2
@@ -58,8 +61,10 @@ set number relativenumber
 
 set backspace=indent,eol,start
 
-colorscheme molokai 
+colorscheme atom-dark
+let g:airline_theme='minimalist'
 highlight Comment ctermfg=green
+highlight ColorColumn ctermbg=235
 
 " Force the cursor onto a new line after 80 characters
 set textwidth=80
