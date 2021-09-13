@@ -12,6 +12,10 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
+Plugin 'mbbill/undotree'
+Plugin 'tpope/vim-surround'
+Plugin 'svermeulen/vim-easyclip'
+Plugin 'tpope/vim-repeat'
 
 " All plugins must be declared before the statements below
 call vundle#end()            " required
@@ -22,6 +26,9 @@ filetype plugin indent on    " required
 nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 " To have NERDTree always open on startup
 let g:nerdtree_tabs_open_on_console_startup = 0
+
+" Undotree
+nnoremap <F5> :UndotreeToggle<CR>
 
 " Scrooloose/Syntastic 
 let g:syntastic_error_symbol = '✘'
@@ -66,4 +73,3 @@ autocmd FileType gitcommit set textwidth=72
 " In Git commit messages, also colour the 51st column (for titles)
 autocmd FileType gitcommit set colorcolumn+=51
 autocmd FileType gitcommit set colorcolumn=73
-
