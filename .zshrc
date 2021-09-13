@@ -17,7 +17,7 @@ function git_branch_name()
 setopt prompt_subst
 
 # Config for prompt. PS1 synonym.
-prompt='%F{39}%~%f %F{243}$(git_branch_name)%f %F{10}>%f '
+prompt='%F{39}%~%f %F{243}$(git_branch_name)%f %F{82}>%f '
 
 # Path to oh-my-zsh
 export ZSH="/Users/kelly.lin/.oh-my-zsh"
