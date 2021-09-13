@@ -17,7 +17,7 @@ function git_branch_name()
 setopt prompt_subst
 
 # Config for prompt. PS1 synonym.
-prompt='%F{39}%~%f %F{238}$(git_branch_name)%f %F{10}>%f '
+prompt='%F{39}%~%f %F{243}$(git_branch_name)%f %F{10}>%f '
 
 # Path to oh-my-zsh
 export ZSH="/Users/kelly.lin/.oh-my-zsh"
@@ -103,3 +103,4 @@ export CLICOLOR=1
 
 # Syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
