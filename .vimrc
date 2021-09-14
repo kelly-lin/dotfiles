@@ -30,31 +30,40 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 " Undotree
 nnoremap <F5> :UndotreeToggle<CR>
 
-" Scrooloose/Syntastic 
+" scrooloose/syntastic 
 let g:syntastic_error_symbol = '✘'
 let g:syntastic_warning_symbol = "▲"
-augroup mySyntastic
+augroup mysyntastic
   au!
-  au FileType tex let b:syntastic_mode = "passive"
-augroup END
+  au filetype tex let b:syntastic_mode = "passive"
+augroup end
 
-" General config
+" general config
 syntax on
 
-" Key remaps
+" key remaps
 nnoremap gm m
 
-" Change the cursor style for normal/insert mode
-let &t_SI = "\e[6 q"
-let &t_EI = "\e[2 q"
+"Cursor settings:
+"  1 -> blinking block
+"  2 -> solid block
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
 " reset the cursor on start (for older versions of vim, usually not required)
-augroup myCmds
+augroup mycmds
   au!
-  autocmd VimEnter * silent !echo -ne "\e[2 q"
-augroup END
+  autocmd vimenter * silent !echo -ne "\e[2 q"
+augroup end
 
-" Set tab sizes
+highlight Visual cterm=bold ctermbg=239
+
+" set tab sizes
 set expandtab
 set tabstop=2
 set softtabstop=2
