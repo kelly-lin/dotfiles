@@ -2,22 +2,15 @@
 ZSH_DISABLE_COMPFIX="true"
 
 # Set prompt
-function git_branch_name()
-{
-  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
-  if [[ $branch == "" ]];
-  then
-    :
-  else
-    echo ' '$branch
-  fi
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
 }
 
 # Enable substitution in the prompt.
 setopt prompt_subst
 
 # Config for prompt. PS1 synonym.
-prompt='%F{39}%~%f%F{243}$(git_branch_name)%f%F{82} >%f '
+prompt='%F{39}%~%f%F{243}$(parse_git_branch)%f%F{82} >%f '
 
 # Path to oh-my-zsh
 export ZSH="/Users/kelly.lin/.oh-my-zsh"
@@ -100,6 +93,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add colors to Terminal
 export CLICOLOR=1
+export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 # Syntax highlighting
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
