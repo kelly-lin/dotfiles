@@ -1,3 +1,6 @@
+# Set default editor to vim
+export EDITOR=vim
+
 # This is to ignore insecure directories.
 ZSH_DISABLE_COMPFIX="true"
 
@@ -51,9 +54,10 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
-# Edit line in vim with ctrl-e:
-autoload edit-command-line; zle -N edit-command-line
-bindkey '^e' edit-command-line
+# Edit line in vim by pressing 'v' in command mode
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
 
 # Load plugins
 plugins=(git vi-mode)
