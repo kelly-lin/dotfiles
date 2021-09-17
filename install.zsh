@@ -1,22 +1,26 @@
 #!/bin/zsh
+install_vim="./scripts/install-vim-config.zsh"
+install_tmux="./scripts/install-tmux-config.zsh"
+install_zsh="./scripts/install-zsh-config.zsh"
+
 echo "Please enter the number for the config to sync (1 - zsh, 2 - tmux, 3 - vim, 4 - all)"
 read config
 case $config in
   1)
     echo "Updating zsh config..."
-    files=(".zshrc")
+    installs=($install_zsh)
     ;;
   2)
     echo "Updating tmux config..."
-    files=(".tmux.conf")
+    installs=($install_tmux)
     ;;
   3)
     echo "Updating vim config..."
-    files=(".vimrc")
+    installs=($install_vim)
     ;;
   4)
     echo "Updating all configs"
-    files=(".zshrc" ".tmux.conf" ".vimrc")
+    installs=($install_vim $install_zsh $install_tmux)
     ;;
   *)
     echo "Invalid selection, exiting..."
@@ -29,10 +33,10 @@ git checkout master
 git pull origin master
 
 echo "Copying files..."
-for filename in "${files[@]}"
+for install in "$installs[@]"
 do
-  cp ./$filename ~/$filename 
+  source install
 done
 
-echo "Sync complete"
+echo "Install complete"
 exit 0
