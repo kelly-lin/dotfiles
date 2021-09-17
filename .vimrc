@@ -97,3 +97,4 @@ autocmd FileType gitcommit set textwidth=72
 " In Git commit messages, also colour the 51st column (for titles)
 autocmd FileType gitcommit set colorcolumn+=51
 autocmd FileType gitcommit set colorcolumn=73
+
