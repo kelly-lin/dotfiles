@@ -1,7 +1,9 @@
 #!/usr/zsh
 
 # copy directories
-cp -r ./zsh/plugins ~/.zsh/plugins
+echo Copying zsh directories
+cp -r ./zsh/plugins ~/.zsh/plugins 
 
 # copy files
-cp ./.zshrc ~/.zshrc
+echo Copying .zshrc
+cp ./.zshrc ~/.zshrc 

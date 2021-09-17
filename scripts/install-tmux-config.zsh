@@ -1,3 +1,4 @@
 #!/bin/zsh
 
-cp ./.tmux.conf ~/.tmux.conf
+echo "Copying tmux config"
+cp ./.tmux.conf ~/.tmux.conf 
