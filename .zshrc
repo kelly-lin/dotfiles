@@ -3,6 +3,28 @@ export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
 ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
 
+# Add a new line after every command except the one after the terminal
+# initializes
+precmd() {
+    precmd() {
+        echo
+    }
+}
+
+# Set colors for less pager
+function man() {
+	env \
+    LESS_TERMCAP_md=$(tput bold; tput setaf 4) \
+    LESS_TERMCAP_me=$(tput sgr0) \
+    LESS_TERMCAP_mb=$(tput blink) \
+    LESS_TERMCAP_us=$(tput setaf 2) \
+    LESS_TERMCAP_ue=$(tput sgr0) \
+    LESS_TERMCAP_so=$(tput smso) \
+    LESS_TERMCAP_se=$(tput rmso) \
+		PAGER="${commands[less]:-$PAGER}" \
+		man "$@"
+}
+
 # Prompt
 ## Get git branch
 parse_git_branch() {
@@ -111,6 +133,8 @@ source ~/.zsh/plugins/git.plugin.zsh
 source ~/.zsh/plugins/vi-mode.plugin.zsh
 
 # Zinit plugins
+zplugin load MichaelAquilina/zsh-you-should-use 
+# zplugin load ael-code/zsh-colored-man-pages
 zplugin load zsh-users/zsh-syntax-highlighting # must be loaded last in plugins
 
 # Plugin settings
@@ -119,3 +143,5 @@ zplugin load zsh-users/zsh-syntax-highlighting # must be loaded last in plugins
 ### insert/command mode
 VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
 VI_MODE_SET_CURSOR=true
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
