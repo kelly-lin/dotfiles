@@ -16,6 +16,8 @@ Plugin 'mbbill/undotree'
 Plugin 'tpope/vim-surround'
 Plugin 'svermeulen/vim-easyclip'
 Plugin 'tpope/vim-repeat'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'peitalin/vim-jsx-typescript'
 
 " All plugins must be declared before the statements below
 call vundle#end()            " required
@@ -38,10 +40,10 @@ augroup mysyntastic
   au filetype tex let b:syntastic_mode = "passive"
 augroup end
 
-" general config
+" General config
 syntax on
 
-" key remaps
+" Key remaps
 nnoremap gm m
 
 "Cursor settings:
@@ -55,7 +57,7 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
-" reset the cursor on start (for older versions of vim, usually not required)
+" Reset the cursor on start (for older versions of vim, usually not required)
 augroup mycmds
   au!
   autocmd vimenter * silent !echo -ne "\e[2 q"
@@ -63,7 +65,7 @@ augroup end
 
 highlight Visual cterm=bold ctermbg=239
 
-" set tab sizes
+" Set tab sizes
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -84,6 +86,7 @@ colorscheme atom-dark
 let g:airline_theme='minimalist'
 highlight Comment ctermfg=green
 highlight ColorColumn ctermbg=235
+highlight Visual ctermfg=Black ctermbg=Grey
 
 " Force the cursor onto a new line after 80 characters
 set textwidth=80
@@ -98,3 +101,7 @@ autocmd FileType gitcommit set textwidth=72
 autocmd FileType gitcommit set colorcolumn+=51
 autocmd FileType gitcommit set colorcolumn=73
 
+" Save backup, undo and swap files in folders in the home directory
+set backupdir=.backup/,~/.backup/,/tmp//
+set directory=.swp/,~/.swp/,/tmp//
+set undodir=.undo/,~/.undo/,/tmp//"
