@@ -1,0 +1,50 @@
+[global/wm]
+include-file = ~/.config/polybar/modules/spotify.ini
+include-file = ~/.config/polybar/modules/date.ini
+include-file = ~/.config/polybar/modules/i3.ini
+include-file = ~/.config/polybar/modules/cpu.ini
+include-file = ~/.config/polybar/modules/filesystem.ini
+include-file = ~/.config/polybar/modules/memory.ini
+include-file = ~/.config/polybar/modules/volume.ini
+include-file = ~/.config/polybar/modules/sep.ini
+include-file = ~/.config/polybar/modules/title.ini
+
+[bar/mybar]
+enable-ipc = true
+
+width = 100%
+height = 34
+padding = 2
+module-margin = 0.5
+
+font-0 = JetBrainsMono Nerd Font Mono:size=13;3
+
+; One Dark colors
+background = #1e2127
+foreground = #e6efff
+sep = #F8F8F2
+
+white = #FFFFFF
+black = #000000
+red = #FF5555
+pink = #FF79C6
+purple = #CAA9FA
+blue = #42A5F5
+cyan = #4DD0E1
+teal = #00B19F
+green = #50FA7B
+lime = #B9C244
+yellow = #F4F99D
+amber = #FBC02D
+orange = #FF6E67
+brown = #AC8476
+indigo = #6C77BB
+gray = #9E9E9E
+blue-gray = #6D8895
+
+; Modules
+; spotify-prev spotify-next 
+modules-left = title sep spotify 
+modules-center = i3
+modules-right = cpu sep memory sep filesystem sep volume sep date 
+

@@ -4,7 +4,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -13,11 +12,16 @@ Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'scrooloose/syntastic'
 Plugin 'kien/ctrlp.vim'
 Plugin 'mbbill/undotree'
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
+Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
-Plugin 'svermeulen/vim-easyclip'
 Plugin 'tpope/vim-repeat'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'peitalin/vim-jsx-typescript'
+Plugin 'tpope/vim-commentary'
+Plugin 'svermeulen/vim-easyclip'
+Plugin 'pechorin/any-jump.vim'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'joshdick/onedark.vim'
 
 " All plugins must be declared before the statements below
 call vundle#end()            " required
@@ -40,10 +44,10 @@ augroup mysyntastic
   au filetype tex let b:syntastic_mode = "passive"
 augroup end
 
-" General config
+" general config
 syntax on
 
-" Key remaps
+" key remaps
 nnoremap gm m
 
 "Cursor settings:
@@ -57,15 +61,15 @@ let &t_SI.="\e[5 q" "SI = INSERT mode
 let &t_SR.="\e[4 q" "SR = REPLACE mode
 let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
 
-" Reset the cursor on start (for older versions of vim, usually not required)
+" reset the cursor on start (for older versions of vim, usually not required)
 augroup mycmds
   au!
   autocmd vimenter * silent !echo -ne "\e[2 q"
 augroup end
 
-highlight Visual cterm=bold ctermbg=239
+highlight Visual ctermfg=Black ctermbg=Grey
 
-" Set tab sizes
+" set tab sizes
 set expandtab
 set tabstop=2
 set softtabstop=2
@@ -82,11 +86,10 @@ set number relativenumber
 
 set backspace=indent,eol,start
 
-colorscheme atom-dark
-let g:airline_theme='minimalist'
+let g:airline_theme='onedark'
+" colorscheme onedark
 highlight Comment ctermfg=green
 highlight ColorColumn ctermbg=235
-highlight Visual ctermfg=Black ctermbg=Grey
 
 " Force the cursor onto a new line after 80 characters
 set textwidth=80
