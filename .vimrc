@@ -140,6 +140,7 @@
   set backupdir=.backup/,~/.backup/,/tmp//
   set directory=.swp/,~/.swp/,/tmp//
   set undodir=.undo/,~/.undo/,/tmp//"
+  set undofile
 
 " Mandatory configs for yats
   let g:yats_host_keyword = 1
