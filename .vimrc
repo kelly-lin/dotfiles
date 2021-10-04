@@ -40,14 +40,14 @@
 " NERDTree
   " open/close NERDTree Tabs with \t
   nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-  " To have NERDTree always open on startup
-  let g:nerdtree_tabs_open_on_console_startup = 0
-  let g:NERDTreeIgnore = ['^node_modules$']
+
+  " Start NERDTree when Vim starts with a directory argument.
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
   " Open the existing NERDTree on each new tab.
   autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-  " Start NERDTree. If a file is specified, move the cursor to its window.
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Undotree
   nnoremap <F5> :UndotreeToggle<CR>
@@ -114,6 +114,7 @@
   set backspace=indent,eol,start
 
 " Theme
+  let g:onedark_termcolors=256
   let g:airline_theme='onedark'
   highlight Comment ctermfg=green
   highlight ColorColumn ctermbg=235
@@ -304,3 +305,11 @@
 
 " Override coc colors
   hi FgCocErrorFloatBgCocFloating ctermfg=15
+
+" Prettier settings
+  let g:prettier#autoformat_require_pragma = 0
+
+" Clear the gutter to use theme color
+  hi clear GitGutterChange
+  hi clear SignColumn
+  hi clear GitGutterAdd
