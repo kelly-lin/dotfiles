@@ -34,11 +34,14 @@
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-    Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+    " vim-devicons must be the last plugin loaded
+    Plug 'ryanoasis/vim-devicons'
   call plug#end()
 
 " NERDTree
+  let g:NERDTreeIgnore = ['^node_modules$']
   " open/close NERDTree Tabs with \t
+  let g:NERDTreeWinSize=31
   nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
   " Start NERDTree when Vim starts with a directory argument.
@@ -118,6 +121,7 @@
   let g:airline_theme='onedark'
   highlight Comment ctermfg=green
   highlight ColorColumn ctermbg=235
+  colorscheme onedark
 
 " Character constraints
   " Force the cursor onto a new line after 80 characters
@@ -304,13 +308,35 @@
   nnoremap <silent><nowait> <space>j  :<c-u>cocnext<cr>
   " do default action for previous item.
 
-" Override coc colors
+  let g:coc_global_extensions = [
+        \'coc-markdownlint',
+        \'coc-yank',
+        \'coc-tsserver',
+        \'coc-svg',
+        \'coc-spell-checker',
+        \'coc-snippets',
+        \'coc-sh',
+        \'coc-stylelint',
+        \'coc-prettier',
+        \'coc-ltex',
+        \'coc-html-css-support',
+        \'coc-eslint',
+        \'coc-highlight',
+        \'coc-vetur',
+        \'coc-go',
+        \'coc-python',
+        \'coc-explorer',
+        \'coc-flutter',
+        \'coc-json',
+        \'coc-git'
+        \]
+
   hi FgCocErrorFloatBgCocFloating ctermfg=15
 
 " Prettier settings
   let g:prettier#autoformat_require_pragma = 0
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
 
 " Clear the gutter to use theme color
   hi clear GitGutterChange
-  hi clear SignColumn
-  hi clear GitGutterAdd
