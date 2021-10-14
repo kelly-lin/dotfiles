@@ -1,42 +1,114 @@
-" Install vim-plug if not found
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  endif
-
-" Run PlugInstall if there are missing plugins
-  autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-    \| PlugInstall --sync | source $MYVIMRC
-  \| endif
-
 " Plugins
-  call plug#begin('~/.vim/bundle')
-    Plug 'rafamadriz/friendly-snippets'
-    Plug 'HerringtonDarkholme/yats.vim'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'jistr/vim-nerdtree-tabs'
-    Plug 'joshdick/onedark.vim'
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'junegunn/fzf.vim'
-    Plug 'kien/ctrlp.vim'
-    Plug 'mbbill/undotree'
-    Plug 'scrooloose/nerdtree'
-    Plug 'scrooloose/syntastic'
-    Plug 'sheerun/vim-polyglot'
-    Plug 'svermeulen/vim-easyclip'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-surround'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-    " vim-devicons must be the last plugin loaded
-    Plug 'ryanoasis/vim-devicons'
-  call plug#end()
+  " Install vim-plug if not found
+    if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    endif
+
+  " Run PlugInstall if there are missing plugins
+    autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+      \| PlugInstall --sync | source $MYVIMRC
+    \| endif
+
+  " Plugins
+    call plug#begin('~/.vim/bundle')
+      Plug 'HerringtonDarkholme/yats.vim'
+      Plug 'airblade/vim-gitgutter'
+      Plug 'christoomey/vim-tmux-navigator'
+      Plug 'jistr/vim-nerdtree-tabs'
+      Plug 'joshdick/onedark.vim'
+      Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+      Plug 'junegunn/fzf.vim'
+      Plug 'kien/ctrlp.vim'
+      Plug 'mbbill/undotree'
+      Plug 'neoclide/coc.nvim', {'branch': 'release'}
+      Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+      Plug 'rafamadriz/friendly-snippets'
+      Plug 'xolox/vim-easytags'
+      Plug 'xolox/vim-misc'
+      Plug 'scrooloose/nerdtree'
+      Plug 'scrooloose/syntastic'
+      Plug 'sheerun/vim-polyglot'
+      Plug 'svermeulen/vim-easyclip'
+      Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+      Plug 'tpope/vim-commentary'
+      Plug 'tpope/vim-fugitive'
+      Plug 'tpope/vim-repeat'
+      Plug 'tpope/vim-surround'
+      Plug 'vim-airline/vim-airline'
+      Plug 'vim-airline/vim-airline-themes'
+      Plug 'alvan/vim-closetag'
+    call plug#end()
+
+" Vim settings
+  set expandtab
+  set tabstop=2
+  set softtabstop=2
+  set shiftwidth=2
+  set expandtab
+  set ai
+  set incsearch
+  set showcmd
+  set number
+  set hlsearch
+  set ruler
+  set number relativenumber
+  syntax on
+  set backspace=indent,eol,start
+
+  set wildignore+=**/node_modules/*
+  set wildignore+=**/android/*
+  set wildignore+=**/ios/*
+  set wildignore+=**/.git/*
+
+" Theme
+  let g:onedark_termcolors=256
+  let g:airline_theme='onedark'
+  highlight ColorColumn ctermbg=235
+  colorscheme onedark
+
+" Character constraints
+  " Force the cursor onto a new line after 80 characters
+  set textwidth=80
+  set colorcolumn=80
+  " Colour the 81st (or 73rd) column so that we don’t type over our limit
+  set colorcolumn=+1
+
+  " Limit git commit messages to 72 characters
+  " autocmd FileType gitcommit set textwidth=72 "might not need this at all?
+
+  " Limit git commit title to 51 characters
+  autocmd FileType gitcommit set colorcolumn+=51
+  autocmd FileType gitcommit set colorcolumn=73
+
+" Set the clipbord to be able to copy text into the system clipbord
+  set clipboard=unnamedplus
+
+" Save backup, undo and swap files in folders in the home directory
+  set backupdir=.backup/,~/.backup/,/tmp//
+  set directory=.swp/,~/.swp/,/tmp//
+  set undodir=.undo/,~/.undo/,/tmp//"
+  set undofile
+
+ " Set the leader key
+ nnoremap <SPACE> <Nop>
+ let mapleader = " "
+
+" Custom keybindings
+  " Normal mode
+    " Edit vimrc
+    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+    " Source vimrc
+    nnoremap <leader>sv :source $MYVIMRC<cr>
+    " Force close
+    nnoremap <leader>fq :q!<cr>
+
+  " Insert a line and stay on the current line
+    nnoremap <leader>O O<esc>S<esc>j
+    nnoremap <leader>o o<esc>S<esc>k
+
+  " Insert mode
+    inoremap <C-c> <esc>
 
 " NERDTree
   let g:NERDTreeIgnore = ['^node_modules$']
@@ -63,9 +135,6 @@
     au filetype tex let b:syntastic_mode = "passive"
   augroup end
 
-" General config
-  syntax on
-
 " Key remaps
   nnoremap gm m
 
@@ -88,8 +157,8 @@
   augroup end
 
 " Override the terminal colors so that it is more readable
-  highlight Visual ctermfg=Black ctermbg=Grey
-  "
+  " highlight Visual ctermfg=Black ctermbg=Grey
+
 " Enable autocompletion:
 	set wildmode=longest,list,full
 
@@ -97,54 +166,6 @@
 	autocmd BufWritePre * %s/\s\+$//e
 	autocmd BufWritePre * %s/\n\+\%$//e
 	autocmd BufWritePre *.[ch] %s/\%$/\r/e
-
-" Vim settings
-  set expandtab
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
-  set expandtab
-
-  set ai
-
-  set incsearch
-  set showcmd
-  set number
-  set hlsearch
-  set ruler
-  set number relativenumber
-
-  set backspace=indent,eol,start
-
-" Theme
-  let g:onedark_termcolors=256
-  let g:airline_theme='onedark'
-  highlight Comment ctermfg=green
-  highlight ColorColumn ctermbg=235
-  colorscheme onedark
-
-" Character constraints
-  " Force the cursor onto a new line after 80 characters
-  set textwidth=80
-  set colorcolumn=80
-  " Colour the 81st (or 73rd) column so that we don’t type over our limit
-  set colorcolumn=+1
-
-  " Limit git commit messages to 72 characters
-  " autocmd FileType gitcommit set textwidth=72 "might not need this at all?
-
-  " Limit git commit title to 51 characters
-  autocmd FileType gitcommit set colorcolumn+=51
-  autocmd FileType gitcommit set colorcolumn=73
-
-" Set the clipbord to be able to copy text into the system clipbord
-  set clipboard=unnamedplus
-
-" Save backup, undo and swap files in folders in the home directory
-  set backupdir=.backup/,~/.backup/,/tmp//
-  set directory=.swp/,~/.swp/,/tmp//
-  set undodir=.undo/,~/.undo/,/tmp//"
-  set undofile
 
 " Mandatory configs for yats
   let g:yats_host_keyword = 1
@@ -295,25 +316,25 @@
 
   " mappings for coclist
   " show all diagnostics.
-  nnoremap <silent><nowait> <space>a  :<c-u>coclist diagnostics<cr>
+  " nnoremap <silent><nowait> <space>a  :<c-u>coclist diagnostics<cr>
   " manage extensions.
-  nnoremap <silent><nowait> <space>e  :<c-u>coclist extensions<cr>
+  " nnoremap <silent><nowait> <space>ex  :<c-u>coclist extensions<cr>
   " show commands.
-  nnoremap <silent><nowait> <space>c  :<c-u>coclist commands<cr>
+  " nnoremap <silent><nowait> <space>c  :<c-u>coclist commands<cr>
   " find symbol of current document.
-  nnoremap <silent><nowait> <space>o  :<c-u>coclist outline<cr>
+  " nnoremap <silent><nowait> <space>o  :<c-u>coclist outline<cr>
   " search workspace symbols.
-  nnoremap <silent><nowait> <space>s  :<c-u>coclist -i symbols<cr>
+  " nnoremap <silent><nowait> <space>l  :<c-u>coclist -i symbols<cr>
   " do default action for next item.
-  nnoremap <silent><nowait> <space>j  :<c-u>cocnext<cr>
+  " nnoremap <silent><nowait> <space>j  :<c-u>cocnext<cr>
   " do default action for previous item.
 
+  " declare coc extensions
   let g:coc_global_extensions = [
         \'coc-markdownlint',
         \'coc-yank',
         \'coc-tsserver',
         \'coc-svg',
-        \'coc-spell-checker',
         \'coc-snippets',
         \'coc-sh',
         \'coc-stylelint',
@@ -331,12 +352,43 @@
         \'coc-git'
         \]
 
-  hi FgCocErrorFloatBgCocFloating ctermfg=15
-
 " Prettier settings
+  " run prettier on save
   let g:prettier#autoformat_require_pragma = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+" vim-closetag settings
+  " filenames like *.xml, *.html, *.xhtml, ...
+  " These are the file extensions where this plugin is enabled.
+  let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 
+  " filenames like *.xml, *.xhtml, ...
+  " This will make the list of non-closing tags self-closing in the specified files.
+  let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
 
-" Clear the gutter to use theme color
-  hi clear GitGutterChange
+  " filetypes like xml, html, xhtml, ...
+  " These are the file types where this plugin is enabled.
+  let g:closetag_filetypes = 'html,xhtml,phtml'
+
+  " filetypes like xml, xhtml, ...
+  " This will make the list of non-closing tags self-closing in the specified files.
+  let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx'
+
+  " integer value [0|1]
+  " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+  let g:closetag_emptyTags_caseSensitive = 1
+
+  " dict
+  " Disables auto-close if not in a "valid" region (based on filetype)
+  let g:closetag_regions = {
+      \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+      \ 'javascript.jsx': 'jsxRegion',
+      \ 'typescriptreact': 'jsxRegion,tsxRegion',
+      \ 'javascriptreact': 'jsxRegion',
+      \ }
+
+  " Shortcut for closing tags, default is '>'
+
+  let g:closetag_shortcut = '>'
+
+  " Add > at current position without closing the current tag, default is ''
+  let g:closetag_close_shortcut = '<leader>>'
