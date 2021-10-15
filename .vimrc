@@ -14,18 +14,20 @@
     call plug#begin('~/.vim/bundle')
       Plug 'HerringtonDarkholme/yats.vim'
       Plug 'airblade/vim-gitgutter'
+      Plug 'alvan/vim-closetag'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'jistr/vim-nerdtree-tabs'
       Plug 'joshdick/onedark.vim'
       Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
       Plug 'junegunn/fzf.vim'
       Plug 'kien/ctrlp.vim'
+      " Plug 'leafgarland/typescript-vim'
       Plug 'mbbill/undotree'
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
+      " Plug 'peitalin/vim-jsx-typescript'
+      Plug 'preservim/tagbar'
       Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
       Plug 'rafamadriz/friendly-snippets'
-      Plug 'xolox/vim-easytags'
-      Plug 'xolox/vim-misc'
       Plug 'scrooloose/nerdtree'
       Plug 'scrooloose/syntastic'
       Plug 'sheerun/vim-polyglot'
@@ -37,7 +39,8 @@
       Plug 'tpope/vim-surround'
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
-      Plug 'alvan/vim-closetag'
+      " Plug 'xolox/vim-easytags'
+      Plug 'xolox/vim-misc'
     call plug#end()
 
 " Vim settings
@@ -112,14 +115,9 @@
 
 " NERDTree
   let g:NERDTreeIgnore = ['^node_modules$']
-  " open/close NERDTree Tabs with \t
   let g:NERDTreeWinSize=31
+  " Toggle NERDTree keybinding
   nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-
-  " Start NERDTree when Vim starts with a directory argument.
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
   " Open the existing NERDTree on each new tab.
   autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
@@ -136,6 +134,8 @@
   augroup end
 
 " Key remaps
+  " Since m is mapped to the move command, the set marker binding needs to be
+  " remaped to another key
   nnoremap gm m
 
 " Change the cursor for different modes
@@ -339,7 +339,6 @@
         \'coc-sh',
         \'coc-stylelint',
         \'coc-prettier',
-        \'coc-ltex',
         \'coc-html-css-support',
         \'coc-eslint',
         \'coc-highlight',
