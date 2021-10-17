@@ -14,20 +14,18 @@
     call plug#begin('~/.vim/bundle')
       Plug 'HerringtonDarkholme/yats.vim'
       Plug 'airblade/vim-gitgutter'
-      Plug 'alvan/vim-closetag'
       Plug 'christoomey/vim-tmux-navigator'
       Plug 'jistr/vim-nerdtree-tabs'
       Plug 'joshdick/onedark.vim'
       Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
       Plug 'junegunn/fzf.vim'
       Plug 'kien/ctrlp.vim'
-      " Plug 'leafgarland/typescript-vim'
       Plug 'mbbill/undotree'
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
-      " Plug 'peitalin/vim-jsx-typescript'
-      Plug 'preservim/tagbar'
       Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
       Plug 'rafamadriz/friendly-snippets'
+      Plug 'xolox/vim-easytags'
+      Plug 'xolox/vim-misc'
       Plug 'scrooloose/nerdtree'
       Plug 'scrooloose/syntastic'
       Plug 'sheerun/vim-polyglot'
@@ -39,8 +37,7 @@
       Plug 'tpope/vim-surround'
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
-      " Plug 'xolox/vim-easytags'
-      Plug 'xolox/vim-misc'
+      Plug 'alvan/vim-closetag'
     call plug#end()
 
 " Vim settings
@@ -115,9 +112,14 @@
 
 " NERDTree
   let g:NERDTreeIgnore = ['^node_modules$']
+  " open/close NERDTree Tabs with \t
   let g:NERDTreeWinSize=31
-  " Toggle NERDTree keybinding
   nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+
+  " Start NERDTree when Vim starts with a directory argument.
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
   " Open the existing NERDTree on each new tab.
   autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
@@ -134,8 +136,6 @@
   augroup end
 
 " Key remaps
-  " Since m is mapped to the move command, the set marker binding needs to be
-  " remaped to another key
   nnoremap gm m
 
 " Change the cursor for different modes
@@ -196,14 +196,15 @@
   " Don't pass messages to |ins-completion-menu|.
   set shortmess+=c
 
+  set signcolumn=yes
   " Always show the signcolumn, otherwise it would shift the text each time
   " diagnostics appear/become resolved.
-  if has("nvim-0.5.0") || has("patch-8.1.1564")
-    " Recently vim can merge signcolumn and number column into one
-    set signcolumn=number
-  else
-    set signcolumn=yes
-  endif
+  " if has("nvim-0.5.0") || has("patch-8.1.1564")
+  "   " Recently vim can merge signcolumn and number column into one
+  "   set signcolumn=number
+  " else
+  "   set signcolumn=yes
+  " endif
 
   " Use tab for trigger completion with characters ahead and navigate.
   " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -339,6 +340,7 @@
         \'coc-sh',
         \'coc-stylelint',
         \'coc-prettier',
+        \'coc-ltex',
         \'coc-html-css-support',
         \'coc-eslint',
         \'coc-highlight',
