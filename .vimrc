@@ -103,12 +103,14 @@
     " Force close
     nnoremap <leader>fq :q!<cr>
 
-  " Insert a line and stay on the current line
-    nnoremap <leader>O O<esc>S<esc>j
-    nnoremap <leader>o o<esc>S<esc>k
-
   " Insert mode
     inoremap <C-c> <esc>
+
+  " Trigger silver searcher for fzf
+    nnoremap <silent> <leader>ss :Ag<CR>
+
+  " Git commands from fugitive
+    nnoremap <silent> <leader>gb :Git blame<CR>
 
 " NERDTree
   let g:NERDTreeIgnore = ['^node_modules$']
@@ -357,6 +359,7 @@
   " run prettier on save
   let g:prettier#autoformat_require_pragma = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
 " vim-closetag settings
   " filenames like *.xml, *.html, *.xhtml, ...
   " These are the file extensions where this plugin is enabled.
