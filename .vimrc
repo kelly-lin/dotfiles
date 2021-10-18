@@ -12,6 +12,8 @@
 
   " Plugins
     call plug#begin('~/.vim/bundle')
+      Plug 'francoiscabrol/ranger.vim'
+      Plug 'rbgrouleff/bclose.vim' " This is a dependency for neovim for ranger
       Plug 'HerringtonDarkholme/yats.vim'
       Plug 'airblade/vim-gitgutter'
       Plug 'christoomey/vim-tmux-navigator'
@@ -41,6 +43,7 @@
     call plug#end()
 
 " Vim settings
+  set cursorline
   set expandtab
   set tabstop=2
   set softtabstop=2
@@ -100,28 +103,34 @@
     nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     " Source vimrc
     nnoremap <leader>sv :source $MYVIMRC<cr>
-    " Force close
-    nnoremap <leader>fq :q!<cr>
+
+    " Tab commands
+    nnoremap th :tabfirst<CR>
+    nnoremap tj :tabnext<CR>
+    nnoremap tk :tabprev<CR>
+    nnoremap tl :tablast<CR>
+    nnoremap tt :tabedit<Space>
+    nnoremap tn :tabnext<Space>
+    nnoremap tm :tabm<Space>
+    nnoremap td :tabclose<CR>
+    " Trigger silver searcher for fzf
+    nnoremap <silent> <leader>ss :Ag<CR>
+
+    " Git commands from fugitive
+    nnoremap <silent> <leader>gb :Git blame<CR>
 
   " Insert mode
     inoremap <C-c> <esc>
 
-  " Trigger silver searcher for fzf
-    nnoremap <silent> <leader>ss :Ag<CR>
-
-  " Git commands from fugitive
-    nnoremap <silent> <leader>gb :Git blame<CR>
+  " Visual mode
+    " Search for highlighted text
+    vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " NERDTree
   let g:NERDTreeIgnore = ['^node_modules$']
   " open/close NERDTree Tabs with \t
   let g:NERDTreeWinSize=31
   nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-
-  " Start NERDTree when Vim starts with a directory argument.
-  autocmd StdinReadPre * let s:std_in=1
-  autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
-    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
   " Open the existing NERDTree on each new tab.
   autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
@@ -319,7 +328,7 @@
 
   " mappings for coclist
   " show all diagnostics.
-  " nnoremap <silent><nowait> <space>a  :<c-u>coclist diagnostics<cr>
+  nnoremap <silent><nowait> <leader>d :CocList diagnostics<cr>
   " manage extensions.
   " nnoremap <silent><nowait> <space>ex  :<c-u>coclist extensions<cr>
   " show commands.
