@@ -151,6 +151,9 @@
   augroup end
 
 " Airline
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
   let g:airline_symbols.colnr = '  c:'
 
 " Change the cursor for different modes
