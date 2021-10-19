@@ -142,7 +142,7 @@ ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
 
   zinit ice depth=1
   zinit light jeffreytse/zsh-vi-mode
-  zinit ice wait'!0'
+  zinit ice wait'!0' lucid
   zinit snippet OMZ::plugins/git/git.plugin.zsh
   zinit ice wait lucid atload'_zsh_autosuggest_start'
   zinit light zsh-users/zsh-autosuggestions
