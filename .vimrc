@@ -57,13 +57,28 @@
   set hlsearch
   set ruler
   set number relativenumber
-  syntax on
   set backspace=indent,eol,start
 
   set wildignore+=**/node_modules/*
   set wildignore+=**/android/*
   set wildignore+=**/ios/*
   set wildignore+=**/.git/*
+
+  syntax on
+
+  " Set the clipbord to be able to copy text into the system clipbord
+  set clipboard=unnamed
+
+  " Save backup, undo and swap files in folders in the home directory
+  set backupdir=.backup/,~/.vim/.backup/,/tmp//
+  set directory=.swp/,~/.vim/.swp/,/tmp//
+  set undodir=.undo/,~/.vim/.undo/,/tmp//"
+  set undofile
+
+  " Set the leader key
+  nnoremap <SPACE> <Nop>
+  let mapleader = " "
+
 
 " Theme
   let g:onedark_termcolors=256
@@ -85,19 +100,6 @@
   autocmd FileType gitcommit set colorcolumn+=51
   autocmd FileType gitcommit set colorcolumn=73
 
-" Set the clipbord to be able to copy text into the system clipbord
-  " set clipboard=unnamedplus
-
-" Save backup, undo and swap files in folders in the home directory
-  set backupdir=.backup/,~/.vim/.backup/,/tmp//
-  set directory=.swp/,~/.vim/.swp/,/tmp//
-  set undodir=.undo/,~/.vim/.undo/,/tmp//"
-  set undofile
-
- " Set the leader key
- nnoremap <SPACE> <Nop>
- let mapleader = " "
-
 " Custom keybindings
   " Normal mode
     " Edit vimrc
@@ -116,6 +118,8 @@
     nnoremap td :tabclose<CR>
     " Trigger silver searcher for fzf
     nnoremap <leader>ss :Ag<Space>
+    " Need to remap set marker binding
+    nnoremap gm m
 
     " Git commands from fugitive
     nnoremap <silent> <leader>gb :Git blame<CR>
@@ -146,8 +150,8 @@
     au filetype tex let b:syntastic_mode = "passive"
   augroup end
 
-" Key remaps
-  nnoremap gm m
+" Airline
+  let g:airline_symbols.colnr = ' c:'
 
 " Change the cursor for different modes
   " Cursor settings:
