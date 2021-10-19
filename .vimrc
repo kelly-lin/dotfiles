@@ -151,7 +151,7 @@
   augroup end
 
 " Airline
-  let g:airline_symbols.colnr = ' c:'
+  let g:airline_symbols.colnr = '  c:'
 
 " Change the cursor for different modes
   " Cursor settings:
