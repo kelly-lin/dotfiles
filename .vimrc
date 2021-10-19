@@ -40,6 +40,7 @@
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
       Plug 'alvan/vim-closetag'
+      Plug 'mkitt/tabline.vim'
     call plug#end()
 
 " Vim settings
@@ -85,12 +86,12 @@
   autocmd FileType gitcommit set colorcolumn=73
 
 " Set the clipbord to be able to copy text into the system clipbord
-  set clipboard=unnamedplus
+  " set clipboard=unnamedplus
 
 " Save backup, undo and swap files in folders in the home directory
-  set backupdir=.backup/,~/.backup/,/tmp//
-  set directory=.swp/,~/.swp/,/tmp//
-  set undodir=.undo/,~/.undo/,/tmp//"
+  set backupdir=.backup/,~/.vim/.backup/,/tmp//
+  set directory=.swp/,~/.vim/.swp/,/tmp//
+  set undodir=.undo/,~/.vim/.undo/,/tmp//"
   set undofile
 
  " Set the leader key
@@ -114,7 +115,7 @@
     nnoremap tm :tabm<Space>
     nnoremap td :tabclose<CR>
     " Trigger silver searcher for fzf
-    nnoremap <silent> <leader>ss :Ag<CR>
+    nnoremap <leader>ss :Ag<Space>
 
     " Git commands from fugitive
     nnoremap <silent> <leader>gb :Git blame<CR>
@@ -128,7 +129,6 @@
 
 " NERDTree
   let g:NERDTreeIgnore = ['^node_modules$']
-  " open/close NERDTree Tabs with \t
   let g:NERDTreeWinSize=31
   nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
@@ -361,7 +361,8 @@
         \'coc-explorer',
         \'coc-flutter',
         \'coc-json',
-        \'coc-git'
+        \'coc-git',
+        \'coc-solargraph',
         \]
 
 " Prettier settings
