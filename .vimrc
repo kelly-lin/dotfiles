@@ -102,6 +102,10 @@
 
 " Custom keybindings
   " Normal mode
+    " Exit buffer without saving
+    nnoremap <leader>fq :q!<cr>
+    nnoremap <leader>fs :w<cr>
+
     " Edit vimrc
     nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     " Source vimrc
@@ -116,6 +120,7 @@
     nnoremap tn :tabnext<Space>
     nnoremap tm :tabm<Space>
     nnoremap td :tabclose<CR>
+
     " Trigger silver searcher for fzf
     nnoremap <leader>ss :Ag<Space>
     " Need to remap set marker binding
@@ -123,6 +128,10 @@
 
     " Git commands from fugitive
     nnoremap <silent> <leader>gb :Git blame<CR>
+    nnoremap <silent> <leader>gd :Gvdiffsplit<CR>
+    nnoremap <silent> <leader>gs :Git<CR><C-w>J
+    nnoremap <silent> <leader>gf :GF?<CR>
+    nnoremap <silent> <leader>gc :Git commit<CR><C-w>J
 
   " Insert mode
     inoremap <C-c> <esc>
@@ -182,8 +191,8 @@
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save
 	autocmd BufWritePre * %s/\s\+$//e
-	autocmd BufWritePre * %s/\n\+\%$//e
-	autocmd BufWritePre *.[ch] %s/\%$/\r/e
+	" autocmd BufWritePre * %s/\n\+\%$//e
+	" autocmd BufWritePre *.[ch] %s/\%$/\r/e
 
 " Mandatory configs for yats
   let g:yats_host_keyword = 1
@@ -281,8 +290,8 @@
   nmap <leader>rn <Plug>(coc-rename)
 
   " Formatting selected code.
-  xmap <leader>f  <Plug>(coc-format-selected)
-  nmap <leader>f  <Plug>(coc-format-selected)
+  " xmap <leader>f  <Plug>(coc-format-selected)
+  " nmap <leader>f  <Plug>(coc-format-selected)
 
   augroup mygroup
     autocmd!
