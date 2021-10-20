@@ -103,7 +103,7 @@
 " Custom keybindings
   " Normal mode
     " Exit buffer without saving
-    nnoremap <leader>fq :q!<cr>
+    nnoremap <silent><leader>fq :q!<cr>
     nnoremap <leader>fs :w<cr>
 
     " Edit vimrc
@@ -123,6 +123,7 @@
 
     " Trigger silver searcher for fzf
     nnoremap <leader>ss :Ag<Space>
+
     " Need to remap set marker binding
     nnoremap gm m
 
