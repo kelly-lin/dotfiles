@@ -41,6 +41,7 @@
       Plug 'vim-airline/vim-airline-themes'
       Plug 'alvan/vim-closetag'
       Plug 'mkitt/tabline.vim'
+      Plug 'morhetz/gruvbox'
     call plug#end()
 
 " Vim settings
@@ -84,7 +85,7 @@
   let g:onedark_termcolors=256
   let g:airline_theme='onedark'
   highlight ColorColumn ctermbg=235
-  colorscheme onedark
+  colorscheme gruvbox
 
 " Character constraints
   " Force the cursor onto a new line after 80 characters
