@@ -77,7 +77,6 @@ ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
     alias ls='ls -G'
   elif ; then
     alias ls='ls --color=auto'
-    alias ls='ls -G'
   fi
 
   alias ll='ls -alh'
