@@ -43,8 +43,6 @@ gray = #9E9E9E
 blue-gray = #6D8895
 
 ; Modules
-; spotify-prev spotify-next 
-modules-left = title sep spotify 
+modules-left = spotify
 modules-center = i3
-modules-right = cpu sep memory sep filesystem sep volume sep date 
-
+modules-right = cpu sep memory sep volume sep date

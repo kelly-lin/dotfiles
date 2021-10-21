@@ -40,6 +40,8 @@
       Plug 'vim-airline/vim-airline'
       Plug 'vim-airline/vim-airline-themes'
       Plug 'alvan/vim-closetag'
+      Plug 'mkitt/tabline.vim'
+      Plug 'morhetz/gruvbox'
     call plug#end()
 
 " Vim settings
@@ -53,10 +55,10 @@
   set incsearch
   set showcmd
   set number
-  set hlsearch
+  set nohlsearch
   set ruler
   set number relativenumber
-  syntax on
+  set hidden
   set backspace=indent,eol,start
 
   set wildignore+=**/node_modules/*
@@ -64,11 +66,27 @@
   set wildignore+=**/ios/*
   set wildignore+=**/.git/*
 
+  syntax on
+
+  " Set the clipbord to be able to copy text into the system clipbord
+  set clipboard=unnamed
+
+  " Save backup, undo and swap files in folders in the home directory
+  set noswapfile
+  set nobackup
+  set undodir=.undo/,~/.vim/.undo/,/tmp//"
+  set undofile
+
+  " Set the leader key
+  nnoremap <SPACE> <Nop>
+  let mapleader = " "
+
+
 " Theme
   let g:onedark_termcolors=256
-  let g:airline_theme='onedark'
+  let g:airline_theme='gruvbox'
   highlight ColorColumn ctermbg=235
-  colorscheme onedark
+  colorscheme gruvbox
 
 " Character constraints
   " Force the cursor onto a new line after 80 characters
@@ -84,21 +102,12 @@
   autocmd FileType gitcommit set colorcolumn+=51
   autocmd FileType gitcommit set colorcolumn=73
 
-" Set the clipbord to be able to copy text into the system clipbord
-  set clipboard=unnamedplus
-
-" Save backup, undo and swap files in folders in the home directory
-  set backupdir=.backup/,~/.backup/,/tmp//
-  set directory=.swp/,~/.swp/,/tmp//
-  set undodir=.undo/,~/.undo/,/tmp//"
-  set undofile
-
- " Set the leader key
- nnoremap <SPACE> <Nop>
- let mapleader = " "
-
 " Custom keybindings
   " Normal mode
+    " Exit buffer without saving
+    nnoremap <silent><leader>fq :q!<cr>
+    nnoremap <leader>fs :w<cr>
+
     " Edit vimrc
     nnoremap <leader>ev :vsplit $MYVIMRC<cr>
     " Source vimrc
@@ -113,11 +122,19 @@
     nnoremap tn :tabnext<Space>
     nnoremap tm :tabm<Space>
     nnoremap td :tabclose<CR>
+
     " Trigger silver searcher for fzf
-    nnoremap <silent> <leader>ss :Ag<CR>
+    nnoremap <leader>ss :Ag<Space>
+
+    " Need to remap set marker binding
+    nnoremap gm m
 
     " Git commands from fugitive
     nnoremap <silent> <leader>gb :Git blame<CR>
+    nnoremap <silent> <leader>gd :Gvdiffsplit<CR>
+    nnoremap <silent> <leader>gs :Git<CR><C-w>J
+    nnoremap <silent> <leader>gf :GF?<CR>
+    nnoremap <silent> <leader>gc :Git commit<CR><C-w>J
 
   " Insert mode
     inoremap <C-c> <esc>
@@ -128,7 +145,6 @@
 
 " NERDTree
   let g:NERDTreeIgnore = ['^node_modules$']
-  " open/close NERDTree Tabs with \t
   let g:NERDTreeWinSize=31
   nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
 
@@ -146,8 +162,11 @@
     au filetype tex let b:syntastic_mode = "passive"
   augroup end
 
-" Key remaps
-  nnoremap gm m
+" Airline
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_symbols.colnr = '  c:'
 
 " Change the cursor for different modes
   " Cursor settings:
@@ -175,8 +194,8 @@
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save
 	autocmd BufWritePre * %s/\s\+$//e
-	autocmd BufWritePre * %s/\n\+\%$//e
-	autocmd BufWritePre *.[ch] %s/\%$/\r/e
+	" autocmd BufWritePre * %s/\n\+\%$//e
+	" autocmd BufWritePre *.[ch] %s/\%$/\r/e
 
 " Mandatory configs for yats
   let g:yats_host_keyword = 1
@@ -274,8 +293,8 @@
   nmap <leader>rn <Plug>(coc-rename)
 
   " Formatting selected code.
-  xmap <leader>f  <Plug>(coc-format-selected)
-  nmap <leader>f  <Plug>(coc-format-selected)
+  " xmap <leader>f  <Plug>(coc-format-selected)
+  " nmap <leader>f  <Plug>(coc-format-selected)
 
   augroup mygroup
     autocmd!
@@ -361,7 +380,8 @@
         \'coc-explorer',
         \'coc-flutter',
         \'coc-json',
-        \'coc-git'
+        \'coc-git',
+        \'coc-solargraph',
         \]
 
 " Prettier settings

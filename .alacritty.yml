@@ -3,19 +3,44 @@ font:
   normal:
     family: JetBrainsMono Nerd Font Mono
 
+# Colors (Gruvbox Material Dark Medium)
+# colors:
+#   primary:
+#     background: '0x282828'
+#     foreground: '0xdfbf8e'
 
-# Colors (One Dark)
+#   normal:
+#     black:   '0x665c54'
+#     red:     '0xea6962'
+#     green:   '0xa9b665'
+#     yellow:  '0xe78a4e'
+#     blue:    '0x7daea3'
+#     magenta: '0xd3869b'
+#     cyan:    '0x89b482'
+#     white:   '0xdfbf8e'
+
+#   bright:
+#     black:   '0x928374'
+#     red:     '0xea6962'
+#     green:   '0xa9b665'
+#     yellow:  '0xe3a84e'
+#     blue:    '0x7daea3'
+#     magenta: '0xd3869b'
+#     cyan:    '0x89b482'
+#     white:   '0xdfbf8e'
+
+# Colors (One Dark - custom)
 colors:
   # Default colors
   primary:
-    background: '#282c34'
+    background: '0x282828'
     foreground: '#abb2bf'
 
   # Normal colors
   normal:
     # NOTE: Use '#131613' for the `black` color if you'd like to see
     # black text on the background.
-    black:   '#282c34'
+    black:   '#131613'
     red:     '#e06c75'
     green:   '#98c379'
     yellow:  '#d19a66'
