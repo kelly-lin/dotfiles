@@ -91,7 +91,6 @@ ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
 
   alias vim='nvim'
   alias vi='nvim'
-
   alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 # Enable colors for ls, less and man
