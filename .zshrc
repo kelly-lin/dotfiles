@@ -1,23 +1,47 @@
-export EDITOR=/usr/bin/nvim
-export VISUAL=/usr/bin/nvim
+# zsh options and env variables
+  export EDITOR=/usr/bin/nvim
+  export VISUAL=/usr/bin/nvim
 
-unsetopt CASE_GLOB
+  unsetopt BEEP
+  setopt prompt_subst
+  unsetopt CASE_GLOB
 
-ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
+# Set prompt
+  prompt_cmd='%F{39}%~%f%F{243}$(parse_git_branch)%f%F{196} <%f '
+  prompt_ins='%F{39}%~%f%F{243}$(parse_git_branch)%f%F{82} >%f '
+  prompt=$prompt_ins
+  ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
+
+  # Change zle cursor style when in the different vim modes
+  set_prompt() {
+    case $KEYMAP in
+      vicmd)
+        prompt=$prompt_cmd
+        echo -ne '\e[2 q'
+        ;;
+      viins|main)
+        prompt=$prompt_ins
+        echo -ne '\e[6 q'
+        ;;
+    esac
+    zle reset-prompt
+  }
+
+  zle-keymap-select () {
+    set_prompt
+  }
+  zle -N zle-keymap-select
+
+  zle-line-init() {
+    set_prompt
+  }
+  zle -N zle-line-init
 
 # Prompt
   ## Get git branch
   parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ \1/'
   }
-
-  ## Enable substitution in the prompt.
-  setopt prompt_subst
-
-  ## Set prompt
-  prompt_norm='%F{39}%~%f%F{243}$(parse_git_branch)%f%F{196} <%f '
-  prompt_ins='%F{39}%~%f%F{243}$(parse_git_branch)%f%F{82} >%f '
-  prompt=$prompt_norm
 
 # Terminal colors
   export CLICOLOR=1
@@ -77,7 +101,6 @@ ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
     alias ls='ls -G'
   elif ; then
     alias ls='ls --color=auto'
-    alias ls='ls -G'
   fi
 
   alias ll='ls -alh'
@@ -144,27 +167,11 @@ ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
     zsh-users/zsh-syntax-highlighting \
     lukechilds/zsh-nvm
 
-  zinit ice depth=1
-  zinit light jeffreytse/zsh-vi-mode
   zinit ice wait'!0' lucid
   zinit snippet OMZ::plugins/git/git.plugin.zsh
   zinit ice wait lucid atload'_zsh_autosuggest_start'
   zinit light zsh-users/zsh-autosuggestions
   zinit light zsh-users/zsh-syntax-highlighting # must be loaded last in plugins
-
-# Plugin settings
-  ## zsh-vi-mode
-  ## The plugin will auto execute this `zvm_after_select_vi_mode` function
-  function zvm_after_select_vi_mode() {
-    case $ZVM_MODE in
-      $ZVM_MODE_NORMAL)
-        prompt=$prompt_norm
-        ;;
-      $ZVM_MODE_INSERT)
-        prompt=$prompt_ins
-        ;;
-    esac
-  }
 
 # Execute custom system env scripts
   if [[ -f $HOME/.config/local-env.zsh ]]; then
