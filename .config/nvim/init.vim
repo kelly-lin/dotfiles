@@ -8,36 +8,26 @@
 
   " Plugins
     call plug#begin('~/.vim/plugged')
-      Plug 'francoiscabrol/ranger.vim'
       Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-      Plug 'rbgrouleff/bclose.vim' " This is a dependency for neovim for ranger
-      " Plug 'HerringtonDarkholme/yats.vim'
       Plug 'airblade/vim-gitgutter'
       Plug 'christoomey/vim-tmux-navigator'
-      Plug 'jistr/vim-nerdtree-tabs'
-      Plug 'joshdick/onedark.vim'
       Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
       Plug 'junegunn/fzf.vim'
-      Plug 'kien/ctrlp.vim'
       Plug 'mbbill/undotree'
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
       Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
       Plug 'rafamadriz/friendly-snippets'
-      Plug 'xolox/vim-easytags'
-      Plug 'xolox/vim-misc'
-      Plug 'scrooloose/nerdtree'
-      Plug 'scrooloose/syntastic'
-      Plug 'sheerun/vim-polyglot'
       Plug 'svermeulen/vim-easyclip'
-      Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+      Plug 'tpope/vim-unimpaired'
       Plug 'tpope/vim-commentary'
       Plug 'tpope/vim-fugitive'
       Plug 'tpope/vim-repeat'
       Plug 'tpope/vim-surround'
-      Plug 'vim-airline/vim-airline'
-      Plug 'vim-airline/vim-airline-themes'
-      Plug 'alvan/vim-closetag'
+      Plug 'nvim-lualine/lualine.nvim'
       Plug 'mkitt/tabline.vim'
+
+      " Themes
+      Plug 'navarasu/onedark.nvim'
       Plug 'morhetz/gruvbox'
     call plug#end()
 
@@ -57,6 +47,7 @@
   set ruler
   set number relativenumber
   set backspace=indent,eol,start
+  set nowrap
 
   set wildignore+=**/node_modules/*
   set wildignore+=**/android/*
@@ -80,9 +71,8 @@
 
 " Theme
   let g:onedark_termcolors=256
-  let g:airline_theme='gruvbox'
-  highlight ColorColumn ctermbg=235
-  colorscheme gruvbox
+  let g:onedark_style = 'darker'
+  colorscheme onedark
 
 " Character constraints
   " Force the cursor onto a new line after 80 characters
@@ -102,12 +92,22 @@
   " Normal mode
     " Exit buffer without saving
     nnoremap <silent><leader>fq :q!<cr>
-    nnoremap <leader>fs :w<cr>
+    nnoremap <leader>fw<cr> :w<cr>
+    nnoremap <leader>fwq :wq<cr>
+
+    " Open fzf files
+    nnoremap <silent><C-p> :Files<cr>
+
+    " Undotree
+    nnoremap <silent><leader>z :UndotreeToggle<CR>
+
+    " Open coc explorer
+    nnoremap <silent><leader>t :CocCommand explorer<cr>
 
     " Edit vimrc
-    nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+    nnoremap <silent><leader>ev :vsplit $MYVIMRC<cr>
     " Source vimrc
-    nnoremap <leader>sv :source $MYVIMRC<cr>
+    nnoremap <silent><leader>sv :source $MYVIMRC<cr>
 
     " Tab commands
     nnoremap th :tabfirst<CR>
@@ -142,80 +142,33 @@
 " Treesitter config
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
   },
+  indent = {
+    enable = true,
+  },
+  incremental_selection = {
+    enable = true,
+  },
+  textobjects = {
+    enable = true,
+  },
 }
 EOF
 
-" lua require'nvim-treesitter.configs'.setup { indent = { enable = true }, highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
+" Lualine
+lua <<EOF
+require('lualine').setup {
+  options = {
+    theme = 'onedark'
+  }
+}
+EOF
 
-" additional_vim_regex_highlighting = false,
-
-" NERDTree
-  let g:NERDTreeIgnore = ['^node_modules$']
-  let g:NERDTreeWinSize=31
-  nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
-
-  " Open the existing NERDTree on each new tab.
-  autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-
-" Undotree
-  nnoremap <F5> :UndotreeToggle<CR>
-
-" scrooloose/syntastic
-  let g:syntastic_error_symbol = '✘'
-  let g:syntastic_warning_symbol = "▲"
-  augroup mysyntastic
-    au!
-    au filetype tex let b:syntastic_mode = "passive"
-  augroup end
-
-" Airline
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-  let g:airline_symbols.colnr = '  c:'
-
-" Change the cursor for different modes
-  " Cursor settings:
-  "  1 -> blinking block
-  "  2 -> solid block
-  "  3 -> blinking underscore
-  "  4 -> solid underscore
-  "  5 -> blinking vertical bar
-  "  6 -> solid vertical bar
-  let &t_SI.="\e[5 q" "SI = INSERT mode
-  let &t_SR.="\e[4 q" "SR = REPLACE mode
-  let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
-
-" Reset the cursor on start (for older versions of vim, usually not required)
-  augroup mycmds
-    au!
-    autocmd vimenter * silent !echo -ne "\e[2 q"
-  augroup end
-
-" Override the terminal colors so that it is more readable
-  " highlight Visual ctermfg=Black ctermbg=Grey
-
-" Enable autocompletion:
-	set wildmode=longest,list,full
-
-" Automatically deletes all trailing whitespace and newlines at end of file on save
-	autocmd BufWritePre * %s/\s\+$//e
-	" autocmd BufWritePre * %s/\n\+\%$//e
-	" autocmd BufWritePre *.[ch] %s/\%$/\r/e
-
-" " Mandatory configs for yats
-"   let g:yats_host_keyword = 1
-"   set re=0
-
-" Tagbar
-  nmap <F8> :TagbarToggle<CR>
-
-" coc config
-  " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
+" Change the cursor for different modes Cursor settings: 1 -> blinking block 2 -> solid block 3 -> blinking underscore 4 -> solid underscore 5 -> blinking vertical bar 6 -> solid vertical bar let &t_SI.="\e[5 q" "SI = INSERT mode let &t_SR.="\e[4 q" "SR = REPLACE mode let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE) Reset the cursor on start (for older versions of vim, usually not required) augroup mycmds au!  autocmd vimenter * silent !echo -ne "\e[2 q" augroup end Override the terminal colors so that it is more readable highlight Visual ctermfg=Black ctermbg=Grey Enable autocompletion: set wildmode=longest,list,full Automatically deletes all trailing whitespace and newlines at end of file on save autocmd BufWritePre * %s/\s\+$//e autocmd BufWritePre * %s/\n\+\%$//e autocmd BufWritePre *.[ch] %s/\%$/\r/e coc config Set internal encoding of vim, not needed on neovim, since coc.nvim using some
   " unicode characters in the file autoload/float.vim
   set encoding=utf-8
 
@@ -392,46 +345,10 @@ EOF
         \'coc-json',
         \'coc-git',
         \'coc-solargraph',
+        \'coc-emmet',
         \]
 
 " Prettier settings
   " run prettier on save
   let g:prettier#autoformat_require_pragma = 0
   autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-" vim-closetag settings
-  " filenames like *.xml, *.html, *.xhtml, ...
-  " These are the file extensions where this plugin is enabled.
-  let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-
-  " filenames like *.xml, *.xhtml, ...
-  " This will make the list of non-closing tags self-closing in the specified files.
-  let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
-
-  " filetypes like xml, html, xhtml, ...
-  " These are the file types where this plugin is enabled.
-  let g:closetag_filetypes = 'html,xhtml,phtml'
-
-  " filetypes like xml, xhtml, ...
-  " This will make the list of non-closing tags self-closing in the specified files.
-  let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx'
-
-  " integer value [0|1]
-  " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
-  let g:closetag_emptyTags_caseSensitive = 1
-
-  " dict
-  " Disables auto-close if not in a "valid" region (based on filetype)
-  let g:closetag_regions = {
-      \ 'typescript.tsx': 'jsxRegion,tsxRegion',
-      \ 'javascript.jsx': 'jsxRegion',
-      \ 'typescriptreact': 'jsxRegion,tsxRegion',
-      \ 'javascriptreact': 'jsxRegion',
-      \ }
-
-  " Shortcut for closing tags, default is '>'
-
-  let g:closetag_shortcut = '>'
-
-  " Add > at current position without closing the current tag, default is ''
-  let g:closetag_close_shortcut = '<leader>>'
