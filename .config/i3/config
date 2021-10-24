@@ -224,12 +224,8 @@ exec_always --no-startup-id ~/.config/startup.sh
 
 # Startup applications
 exec_always --no-startup-id $HOME/.cargo/bin/i3wsr
-exec --no-startup-id alacritty
+exec --no-startup-id alacritty -e tmux
 exec_always --no-startup-id picom -b
-exec --no-startup-id i3-msg 'workspace 1; exec alacritty'
-exec --no-startup-id i3-msg 'workspace 2:Web; exec google-chrome'
-exec --no-startup-id i3-msg 'workspace 3:Music; exec spotify'
-exec --no-startup-id i3-msg 'workspace 4:Email; exec thunderbird'
 
 # Launch application bindings
 bindsym $mod+w exec --no-startup-id google-chrome

@@ -116,6 +116,22 @@
   alias vi='nvim'
   alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
+  ch_repo() {
+    dir=$(ls ~/Repos/ | grep -v 'personal' | fzf | sed 's/.*/Repos\/&/')
+    if [[ -n $dir ]]; then
+      cd $HOME/$dir
+    fi
+  }
+  alias prepos='ls ~/Repos/personal | fzf | xargs -r $EDITOR'
+  alias repos=ch_repo
+
+  alias etmux='$EDITOR ~/.tmux.conf'
+
+  alias evim='$EDITOR ~/.config/nvim/init.vim'
+
+  alias ezsh='$EDITOR ~/.zshrc'
+  alias szsh='source ~/.zshrc'
+
 # Enable colors for ls, less and man
   export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink
   export LESS_TERMCAP_md=$'\E[1;36m'     # begin bold
@@ -181,3 +197,5 @@
   if [[ -f $HOME/.config/startup.sh ]]; then
     source ~/.config/startup.sh
   fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
