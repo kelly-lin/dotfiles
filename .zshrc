@@ -1,6 +1,6 @@
 # zsh options and env variables
-  export EDITOR=/usr/bin/nvim
-  export VISUAL=/usr/bin/nvim
+  export EDITOR=nvim
+  export VISUAL=nvim
 
   unsetopt BEEP
   setopt prompt_subst
