@@ -201,7 +201,7 @@ exec --no-startup-id nitrogen --restore
 exec xrandr --dpi 144
 
 # Set key bindings for system power management
-set $Locker i3lock && sleep 1
+set $Locker i3lock && sleep 3
 
 set $mode_system System (e) logout, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
@@ -225,17 +225,19 @@ exec_always --no-startup-id ~/.config/startup.sh
 # Startup applications
 exec_always --no-startup-id $HOME/.cargo/bin/i3wsr
 exec --no-startup-id alacritty
-exec --no-startup-id picom -b
+exec_always --no-startup-id picom -b
+exec --no-startup-id i3-msg 'workspace 1; exec alacritty'
+exec --no-startup-id i3-msg 'workspace 2:Web; exec google-chrome'
+exec --no-startup-id i3-msg 'workspace 3:Music; exec spotify'
+exec --no-startup-id i3-msg 'workspace 4:Email; exec thunderbird'
 
 # Launch application bindings
-bindsym $mod+c exec --no-startup-id code
 bindsym $mod+w exec --no-startup-id google-chrome
-bindsym $mod+Shift+Return exec alacritty -e ranger
 
 # Media control bindings
-bindsym $mod+F9 exec playerctl play-pause
-bindsym $mod+F10 exec playerctl previous
-bindsym $mod+F11 exec playerctl next
+bindsym $mod+F9 exec playerctl -p spotify play-pause
+bindsym $mod+F10 exec playerctl -p spotify previous
+bindsym $mod+F11 exec playerctl -p spotify next
 
 # colors
 set $bg     #2c2c2e

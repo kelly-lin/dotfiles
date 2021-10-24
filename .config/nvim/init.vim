@@ -70,7 +70,6 @@
   let mapleader = " "
 
 " Theme
-  let g:onedark_termcolors=256
   let g:onedark_style = 'darker'
   colorscheme onedark
 
@@ -90,13 +89,8 @@
 
 " Custom keybindings
   " Normal mode
-    " Exit buffer without saving
-    nnoremap <silent><leader>fq :q!<cr>
-    nnoremap <leader>fw<cr> :w<cr>
-    nnoremap <leader>fwq :wq<cr>
-
     " Open fzf files
-    nnoremap <silent><C-p> :Files<cr>
+    nnoremap <silent><C-p> :GFiles<cr>
 
     " Undotree
     nnoremap <silent><leader>z :UndotreeToggle<CR>
@@ -107,7 +101,7 @@
     " Edit vimrc
     nnoremap <silent><leader>ev :vsplit $MYVIMRC<cr>
     " Source vimrc
-    nnoremap <silent><leader>sv :source $MYVIMRC<cr>
+    nnoremap <leader>sv :source $MYVIMRC<cr>
 
     " Tab commands
     nnoremap th :tabfirst<CR>
@@ -139,7 +133,11 @@
     " Search for highlighted text
     vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-" Treesitter config
+" EasyClip
+let g:EasyClipAutoFormat=1
+let g:EasyClipUseSubstituteDefaults=1
+
+" Treesitter 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
@@ -254,10 +252,6 @@ EOF
 
   " Symbol renaming.
   nmap <leader>rn <Plug>(coc-rename)
-
-  " Formatting selected code.
-  " xmap <leader>f  <Plug>(coc-format-selected)
-  " nmap <leader>f  <Plug>(coc-format-selected)
 
   augroup mygroup
     autocmd!
