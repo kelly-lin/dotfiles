@@ -118,6 +118,7 @@
 
   ch_repo() {
     dir=$(ls ~/Repos/ | grep -v 'personal' | fzf | sed 's/.*/Repos\/&/')
+
     if [[ -n $dir ]]; then
       cd $HOME/$dir
     fi
@@ -131,6 +132,8 @@
 
   alias ezsh='$EDITOR ~/.zshrc'
   alias szsh='source ~/.zshrc'
+
+  alias cb='git checkout $(git branch | fzf)'
 
 # Enable colors for ls, less and man
   export LESS_TERMCAP_mb=$'\E[1;31m'     # begin blink

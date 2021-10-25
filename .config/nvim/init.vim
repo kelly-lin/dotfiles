@@ -15,7 +15,7 @@
       Plug 'junegunn/fzf.vim'
       Plug 'mbbill/undotree'
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
-      Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+      " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
       Plug 'rafamadriz/friendly-snippets'
       Plug 'svermeulen/vim-easyclip'
       Plug 'tpope/vim-unimpaired'
@@ -30,6 +30,8 @@
       Plug 'navarasu/onedark.nvim'
       Plug 'morhetz/gruvbox'
     call plug#end()
+
+  lua require'nvim-treesitter.install'.compilers = { "gcc" }
 
 " Vim settings
   set cursorline
@@ -140,7 +142,6 @@ let g:EasyClipUseSubstituteDefaults=1
 " Treesitter 
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained",
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -310,7 +311,7 @@ EOF
   " show commands.
   " nnoremap <silent><nowait> <space>c  :<c-u>coclist commands<cr>
   " find symbol of current document.
-  " nnoremap <silent><nowait> <space>o  :<c-u>coclist outline<cr>
+  nnoremap <silent><nowait> <leader>o  :<c-u>CocList outline<cr>
   " search workspace symbols.
   " nnoremap <silent><nowait> <space>l  :<c-u>coclist -i symbols<cr>
   " do default action for next item.
@@ -318,15 +319,14 @@ EOF
   " do default action for previous item.
 
   " declare coc extensions
+  " \'coc-snippets',
   let g:coc_global_extensions = [
         \'coc-markdownlint',
         \'coc-yank',
         \'coc-tsserver',
         \'coc-svg',
-        \'coc-snippets',
         \'coc-sh',
         \'coc-stylelint',
-        \'coc-prettier',
         \'coc-ltex',
         \'coc-html-css-support',
         \'coc-eslint',
@@ -340,9 +340,10 @@ EOF
         \'coc-git',
         \'coc-solargraph',
         \'coc-emmet',
-        \]
+        \'coc-prettier',
+      \]
 
 " Prettier settings
   " run prettier on save
-  let g:prettier#autoformat_require_pragma = 0
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+  " let g:prettier#autoformat_require_pragma = 0
+  " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
