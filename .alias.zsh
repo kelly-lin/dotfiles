@@ -1,4 +1,3 @@
-# Aliases
 if [[ `uname` == "Darwin" ]]; then
   alias ls='ls -G'
 elif ; then
