@@ -91,14 +91,20 @@
 
 " Custom keybindings
   " Normal mode
+    " Quit without saving using QQ
+    nnoremap QQ ZQ
+
     " Open fzf files
     nnoremap <silent><C-p> :GFiles<cr>
+
+    " Copy the current filepath to the unnamed register
+    nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
 
     " Undotree
     nnoremap <silent><leader>z :UndotreeToggle<CR>
 
     " Open coc explorer
-    nnoremap <silent><leader>t :CocCommand explorer<cr>
+    nnoremap <silent><leader>` :CocCommand explorer<cr>
 
     " Edit vimrc
     nnoremap <silent><leader>ev :vsplit $MYVIMRC<cr>
@@ -321,27 +327,28 @@ EOF
   " declare coc extensions
   " \'coc-snippets',
   let g:coc_global_extensions = [
-        \'coc-markdownlint',
-        \'coc-yank',
-        \'coc-tsserver',
-        \'coc-svg',
-        \'coc-sh',
-        \'coc-stylelint',
-        \'coc-ltex',
-        \'coc-html-css-support',
-        \'coc-eslint',
-        \'coc-highlight',
-        \'coc-vetur',
-        \'coc-go',
-        \'coc-python',
-        \'coc-explorer',
-        \'coc-flutter',
-        \'coc-json',
-        \'coc-git',
-        \'coc-solargraph',
-        \'coc-emmet',
-        \'coc-prettier',
-      \]
+    \'coc-markdownlint',
+    \'coc-yank',
+    \'coc-tsserver',
+    \'coc-svg',
+    \'coc-sh',
+    \'coc-stylelint',
+    \'coc-ltex',
+    \'coc-html-css-support',
+    \'coc-eslint',
+    \'coc-highlight',
+    \'coc-vetur',
+    \'coc-go',
+    \'coc-python',
+    \'coc-explorer',
+    \'coc-flutter',
+    \'coc-json',
+    \'coc-git',
+    \'coc-solargraph',
+    \'coc-emmet',
+    \'coc-prettier',
+    \'coc-pairs'
+  \]
 
 " Prettier settings
   " run prettier on save
