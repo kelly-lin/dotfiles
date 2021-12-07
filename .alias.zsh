@@ -44,3 +44,5 @@ ch_prepo() {
 }
 alias prepos=ch_prepo
 
+alias try:this='echo helloworld'
+

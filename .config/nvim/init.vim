@@ -8,6 +8,7 @@
 
   " Plugins
     call plug#begin('~/.vim/plugged')
+      Plug 'alvan/vim-closetag'
       Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
       Plug 'airblade/vim-gitgutter'
       Plug 'christoomey/vim-tmux-navigator'
@@ -15,7 +16,7 @@
       Plug 'junegunn/fzf.vim'
       Plug 'mbbill/undotree'
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
-      " Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+      Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
       Plug 'rafamadriz/friendly-snippets'
       Plug 'svermeulen/vim-easyclip'
       Plug 'tpope/vim-unimpaired'
@@ -31,6 +32,14 @@
       Plug 'morhetz/gruvbox'
     call plug#end()
 
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              
+  },
+}
+EOF
   lua require'nvim-treesitter.install'.compilers = { "gcc" }
 
 " Vim settings
@@ -70,6 +79,10 @@
   " Set the leader key
   nnoremap <SPACE> <Nop>
   let mapleader = " "
+
+  " Store relative line number jumps in the jumplist.
+  nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+  nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
 " Theme
   let g:onedark_style = 'darker'
@@ -135,11 +148,25 @@
     nnoremap <silent> <leader>gc :below Git commit<CR>
 
   " Insert mode
-    inoremap <C-c> <esc>
+    inoremap jk <Esc>
 
   " Visual mode
     " Search for highlighted text
     vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+" Git Gutter"
+  " This fixes a bug where the symbols would not set the colors properly
+  set updatetime=250
+  let g:gitgutter_max_signs = 500
+  " No mapping
+  let g:gitgutter_map_keys = 0
+  " Colors
+  let g:gitgutter_override_sign_column_highlight = 0
+  highlight clear SignColumn
+  highlight GitGutterAdd ctermfg=2
+  highlight GitGutterChange ctermfg=3
+  highlight GitGutterDelete ctermfg=1
+  highlight GitGutterChangeDelete ctermfg=4
 
 " EasyClip
 let g:EasyClipAutoFormat=1
