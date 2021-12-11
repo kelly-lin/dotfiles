@@ -32,16 +32,6 @@
       Plug 'morhetz/gruvbox'
     call plug#end()
 
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              
-  },
-}
-EOF
-  lua require'nvim-treesitter.install'.compilers = { "gcc" }
-
 " Vim settings
   set cursorline
   set expandtab
@@ -169,8 +159,8 @@ EOF
   highlight GitGutterChangeDelete ctermfg=4
 
 " EasyClip
-let g:EasyClipAutoFormat=1
-let g:EasyClipUseSubstituteDefaults=1
+  let g:EasyClipAutoFormat=1
+  let g:EasyClipUseSubstituteDefaults=1
 
 " Treesitter 
 lua <<EOF
@@ -352,7 +342,6 @@ EOF
   " do default action for previous item.
 
   " declare coc extensions
-  " \'coc-snippets',
   let g:coc_global_extensions = [
     \'coc-markdownlint',
     \'coc-yank',
@@ -377,7 +366,3 @@ EOF
     \'coc-pairs'
   \]
 
-" Prettier settings
-  " run prettier on save
-  " let g:prettier#autoformat_require_pragma = 0
-  " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
