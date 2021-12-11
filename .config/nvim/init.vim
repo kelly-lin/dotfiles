@@ -30,6 +30,7 @@
       " Themes
       Plug 'navarasu/onedark.nvim'
       Plug 'morhetz/gruvbox'
+      Plug 'voldikss/vim-floaterm'
     call plug#end()
 
 " Vim settings
@@ -78,15 +79,12 @@
   let g:onedark_style = 'darker'
   colorscheme onedark
 
-" Character constraints
+" Character limits
   " Force the cursor onto a new line after 80 characters
   set textwidth=80
   set colorcolumn=80
   " Colour the 81st (or 73rd) column so that we don’t type over our limit
   set colorcolumn=+1
-
-  " Limit git commit messages to 72 characters
-  " autocmd FileType gitcommit set textwidth=72 "might not need this at all?
 
   " Limit git commit title to 51 characters
   autocmd FileType gitcommit set colorcolumn+=51
@@ -102,9 +100,13 @@
 
     " Copy the current filepath to the unnamed register
     nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
+    " Toogle Floaterm
+    nnoremap <silent>`` :FloatermToggle<cr>
+    tnoremap <silent>`` <C-\><C-n>:FloatermToggle<cr>
 
     " Undotree
-    nnoremap <silent><leader>z :UndotreeToggle<CR>
+    let g:undotree_SetFocusWhenToggle = 1
+    nnoremap <silent><leader>z :UndotreeToggle<cr>
 
     " Open coc explorer
     nnoremap <silent><leader>` :CocCommand explorer<cr>
@@ -124,10 +126,10 @@
     nnoremap tm :tabm<Space>
     nnoremap td :tabclose<CR>
 
-    " Trigger silver searcher for fzf
+    " Trigger silver searcher
     nnoremap <leader>ss :Ag<Space>
 
-    " Need to remap set marker binding
+    " Need to remap set marker binding as a workaround for vim-unimpaired
     nnoremap gm m
 
     " Git commands from fugitive
@@ -363,6 +365,6 @@ EOF
     \'coc-solargraph',
     \'coc-emmet',
     \'coc-prettier',
+    \'coc-vetur',
     \'coc-pairs'
   \]
-

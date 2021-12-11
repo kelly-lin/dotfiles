@@ -230,6 +230,7 @@ exec_always --no-startup-id picom -b
 
 # Launch application bindings
 bindsym $mod+w exec --no-startup-id google-chrome
+bindsym $mod+m exec --no-startup-id spotify
 
 # Media control bindings
 bindsym $mod+F9 exec playerctl -p spotify play-pause

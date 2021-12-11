@@ -81,6 +81,9 @@
   _comp_options+=(globdots) # Include hidden files
   zstyle ':completion:*'  matcher-list 'm:{a-z}={A-Z}' # This makes autocomplete case insensitive
 
+# Set paths for applications
+  PATH=$PATH:$HOME/Applications/nvim/bin
+
 # Vim
   export KEYTIMEOUT=1 # Reduces the delay between when you can start typing after switching vi modes
 
@@ -118,7 +121,7 @@
 
   ## Ruby
   ### Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-  export PATH="$PATH:$HOME/.rvm/bin"
+  export PATH=$PATH:$HOME/.rvm/bin
 
 # Zinit
   ## Start of Zinit's installer chunk

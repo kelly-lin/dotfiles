@@ -19,6 +19,8 @@ alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir
 
 alias etmux='$EDITOR ~/.tmux.conf'
 
+alias ei3='$EDITOR ~/.config/i3/config'
+
 alias evim='$EDITOR ~/.config/nvim/init.vim'
 
 alias ezsh='$EDITOR ~/.zshrc'
@@ -33,7 +35,7 @@ ch_repo() {
     cd $HOME/$dir
   fi
 }
-alias repos=ch_repo
+alias crep=ch_repo
 
 ch_prepo() {
   dir=$(ls ~/Repos/personal | fzf | sed 's/.*/Repos\/personal\/&/')
@@ -42,7 +44,7 @@ ch_prepo() {
     cd $HOME/$dir
   fi
 }
-alias prepos=ch_prepo
+alias cprep=ch_prepo
 
 alias try:this='echo helloworld'
 
