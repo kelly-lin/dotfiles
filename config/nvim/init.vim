@@ -25,13 +25,20 @@
       Plug 'tpope/vim-repeat'
       Plug 'tpope/vim-surround'
       Plug 'nvim-lualine/lualine.nvim'
-      Plug 'mkitt/tabline.vim'
+      Plug 'vim-test/vim-test'
 
       " Themes
       Plug 'navarasu/onedark.nvim'
       Plug 'morhetz/gruvbox'
       Plug 'voldikss/vim-floaterm'
     call plug#end()
+
+" Vim test
+  nmap <silent> <leader>t :TestNearest<CR>
+  nmap <silent> <leader>T :TestFile<CR>
+  nmap <silent> <leader>a :TestSuite<CR>
+  nmap <silent> <leader>l :TestLast<CR>
+  nmap <silent> <leader>g :TestVisit<CR>
 
 " Vim settings
   set cursorline
@@ -58,8 +65,13 @@
 
   syntax on
 
-  " Set the clipbord to be able to copy text into the system clipbord
-  set clipboard=unnamed
+  " Set the clipboard to be able to copy text into the system clipbord
+  if has('macunix')
+    set clipboard=unnamed
+  endif
+  if has('unix')
+    set clipboard=unnamedplus
+  endif
 
   " Save backup, undo and swap files in folders in the home directory
   set nobackup
@@ -74,6 +86,12 @@
   " Store relative line number jumps in the jumplist.
   nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
   nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+
+  " Select characters in current line, excluding leading and trailing whitespace
+  nnoremap <leader>V ^v$h
+
+  " Go to defintion in new vertical split
+  nmap <leader>gdw <C-w>v<Plug>(coc-definition)
 
 " Theme
   let g:onedark_style = 'darker'
@@ -92,11 +110,9 @@
 
 " Custom keybindings
   " Normal mode
-    " Quit without saving using QQ
-    nnoremap QQ ZQ
-
-    " Open fzf files
+    " fzf
     nnoremap <silent><C-p> :GFiles<cr>
+    nnoremap <leader>b :Buffers<cr>
 
     " Copy the current filepath to the unnamed register
     nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
@@ -323,11 +339,6 @@ EOF
   nmap <silent> <c-s> <plug>(coc-range-select)
   xmap <silent> <c-s> <plug>(coc-range-select)
 
-  " add (neo)vim's native statusline support.
-  " note: please see `:h coc-status` for integrations with external plugins that
-  " provide custom statusline: lightline.vim, vim-airline.
-  set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
   " mappings for coclist
   " show all diagnostics.
   nnoremap <silent><nowait> <leader>d :CocList diagnostics<cr>
@@ -342,6 +353,10 @@ EOF
   " do default action for next item.
   " nnoremap <silent><nowait> <space>j  :<c-u>cocnext<cr>
   " do default action for previous item.
+
+  " Prettier
+  command! -nargs=0 Prettier :CocCommand prettier.formatFile
+  let g:prettier#autoformat_require_pragma = 0
 
   " declare coc extensions
   let g:coc_global_extensions = [
@@ -366,5 +381,7 @@ EOF
     \'coc-emmet',
     \'coc-prettier',
     \'coc-vetur',
-    \'coc-pairs'
+    \'coc-pairs',
+    \'coc-vimlsp',
+    \'coc-sumneko-lua'
   \]
