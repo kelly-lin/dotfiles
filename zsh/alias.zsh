@@ -26,6 +26,9 @@ alias evim='$EDITOR ~/.config/nvim/init.vim'
 alias ezsh='$EDITOR ~/.zshrc'
 alias szsh='source ~/.zshrc'
 
+alias rp="cd ~/Repos"
+alias prp="cd ~/Repos/personal"
+
 alias cb='git checkout $(git branch | fzf)'
 
 ch_repo() {
@@ -35,7 +38,7 @@ ch_repo() {
     cd $HOME/$dir
   fi
 }
-alias crep=ch_repo
+alias crp=ch_repo
 
 ch_prepo() {
   dir=$(ls ~/Repos/personal | fzf | sed 's/.*/Repos\/personal\/&/')
@@ -44,7 +47,5 @@ ch_prepo() {
     cd $HOME/$dir
   fi
 }
-alias cprep=ch_prepo
-
-alias try:this='echo helloworld'
+alias cprp=ch_prepo
 
