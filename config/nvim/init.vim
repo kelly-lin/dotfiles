@@ -151,9 +151,11 @@
     " Git commands from fugitive
     nnoremap <silent> <leader>gb :Git blame<CR>
     nnoremap <silent> <leader>gd :Gvdiffsplit<CR>
-    nnoremap <silent> <leader>gs :below Git<CR>
+    nnoremap <silent> <leader>gs :Git<CR>
     nnoremap <silent> <leader>gf :GF?<CR>
-    nnoremap <silent> <leader>gc :below Git commit<CR>
+    nnoremap <silent> <leader>gc :Git commit<CR>
+    nnoremap <silent> <leader>gh :0Gclog<CR>
+    nnoremap <silent> <leader>ge :Gedit<CR>
 
   " Insert mode
     inoremap jk <Esc>
