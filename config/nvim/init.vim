@@ -94,7 +94,7 @@
   nmap <leader>gdw <C-w>v<Plug>(coc-definition)
 
 " Theme
-  let g:onedark_style = 'darker'
+  lua require('onedark').setup {style = 'darker'}
   colorscheme onedark
 
 " Character limits
@@ -111,8 +111,12 @@
 " Custom keybindings
   " Normal mode
     " fzf
-    nnoremap <silent><C-p> :GFiles<cr>
-    nnoremap <leader>b :Buffers<cr>
+    nnoremap <silent>ff :GFiles<cr>
+    nnoremap <leader>fb :Buffers<cr>
+    nnoremap <leader>fbc :BCommits<cr>
+    nnoremap <leader>fm :Marks<cr>
+    nnoremap <leader>fc :Commits<cr>
+    nnoremap <leader>fp :Maps<cr>
 
     " Copy the current filepath to the unnamed register
     nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
@@ -156,6 +160,8 @@
     nnoremap <silent> <leader>gc :Git commit<CR>
     nnoremap <silent> <leader>gh :0Gclog<CR>
     nnoremap <silent> <leader>ge :Gedit<CR>
+    nnoremap <silent> <leader>gdh :diffget //2
+    nnoremap <silent> <leader>gdl :diffget //3
 
   " Insert mode
     inoremap jk <Esc>
@@ -164,9 +170,9 @@
     " Search for highlighted text
     vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
-" Git Gutter"
+" Git Gutter
   " This fixes a bug where the symbols would not set the colors properly
-  set updatetime=250
+  set updatetime=100
   let g:gitgutter_max_signs = 500
   " No mapping
   let g:gitgutter_map_keys = 0
@@ -183,32 +189,10 @@
   let g:EasyClipUseSubstituteDefaults=1
 
 " Treesitter 
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
-  indent = {
-    enable = true,
-  },
-  incremental_selection = {
-    enable = true,
-  },
-  textobjects = {
-    enable = true,
-  },
-}
-EOF
+  lua require('config.tree-sitter')
 
 " Lualine
-lua <<EOF
-require('lualine').setup {
-  options = {
-    theme = 'onedark'
-  }
-}
-EOF
+  lua require('config.lualine')
 
 " Change the cursor for different modes Cursor settings: 1 -> blinking block 2 -> solid block 3 -> blinking underscore 4 -> solid underscore 5 -> blinking vertical bar 6 -> solid vertical bar let &t_SI.="\e[5 q" "SI = INSERT mode let &t_SR.="\e[4 q" "SR = REPLACE mode let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE) Reset the cursor on start (for older versions of vim, usually not required) augroup mycmds au!  autocmd vimenter * silent !echo -ne "\e[2 q" augroup end Override the terminal colors so that it is more readable highlight Visual ctermfg=Black ctermbg=Grey Enable autocompletion: set wildmode=longest,list,full Automatically deletes all trailing whitespace and newlines at end of file on save autocmd BufWritePre * %s/\s\+$//e autocmd BufWritePre * %s/\n\+\%$//e autocmd BufWritePre *.[ch] %s/\%$/\r/e coc config Set internal encoding of vim, not needed on neovim, since coc.nvim using some
   " unicode characters in the file autoload/float.vim
