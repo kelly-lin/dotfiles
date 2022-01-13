@@ -12,28 +12,29 @@
   \| endif
 
   call plug#begin('~/.vim/plugged')
-    Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
-    Plug 'airblade/vim-gitgutter'
-    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'alvan/vim-closetag'
+    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+    " Plug 'airblade/vim-gitgutter'
+    " Plug 'christoomey/vim-tmux-navigator'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
-    Plug 'mbbill/undotree'
-    Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+    " Plug 'junegunn/fzf.vim'
+    " Plug 'mbbill/undotree'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-    Plug 'rafamadriz/friendly-snippets'
-    Plug 'svermeulen/vim-easyclip'
-    Plug 'tpope/vim-unimpaired'
-    Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-surround'
-    Plug 'nvim-lualine/lualine.nvim'
-    Plug 'vim-test/vim-test'
+    " Plug 'rafamadriz/friendly-snippets'
+    " Plug 'svermeulen/vim-easyclip'
+    " Plug 'tpope/vim-unimpaired'
+    " Plug 'tpope/vim-commentary'
+    " Plug 'tpope/vim-fugitive'
+    " Plug 'tpope/vim-repeat'
+    " Plug 'tpope/vim-surround'
+    " Plug 'nvim-lualine/lualine.nvim'
+    " Plug 'vim-test/vim-test'
 
     " Themes
-    Plug 'navarasu/onedark.nvim'
-    Plug 'morhetz/gruvbox'
-    Plug 'voldikss/vim-floaterm'
+    " Plug 'navarasu/onedark.nvim'
+    " Plug 'morhetz/gruvbox'
+    " Plug 'voldikss/vim-floaterm'
   call plug#end()
 
 " Vim test
@@ -44,22 +45,22 @@
   nmap <silent> <leader>g :TestVisit<CR>
 
 " Vim settings
-  set cursorline
-  set expandtab
-  set tabstop=2
-  set softtabstop=2
-  set shiftwidth=2
-  set expandtab
-  set ai
-  set incsearch
-  set showcmd
-  set number
-  set nohlsearch
-  set hidden
-  set ruler
-  set number relativenumber
+  " set cursorline
+  " set expandtab
+  " set tabstop=2
+  " set softtabstop=2
+  " set shiftwidth=2
+  " set expandtab
+  " set ai
+  " set incsearch
+  " set showcmd
+  " set number
+  " set nohlsearch
+  " set hidden
+  " set ruler
+  " set number relativenumber
   set backspace=indent,eol,start
-  set nowrap
+  " set nowrap
 
   set wildignore+=**/node_modules/*
   set wildignore+=**/android/*
@@ -77,18 +78,18 @@
   endif
 
   " Save backup, undo and swap files in folders in the home directory
-  set nobackup
-  set noswapfile
-  set undodir=.undo/,~/.vim/.undo/,/tmp//"
-  set undofile
+  " set nobackup
+  " set noswapfile
+  " set undodir=.undo/,~/.vim/.undo/,/tmp//"
+  " set undofile
 
   " Set the leader key
-  nnoremap <SPACE> <Nop>
-  let mapleader = " "
+  " nnoremap <SPACE> <Nop>
+  " let mapleader = " "
 
   " Store relative line number jumps in the jumplist.
-  nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
-  nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
+  " nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k'
+  " nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 
   " Select characters in current line, excluding leading and trailing whitespace
   nnoremap <leader>V ^v$h
@@ -97,13 +98,13 @@
   nmap <leader>gdw <C-w>v<Plug>(coc-definition)
 
 " Theme
-  lua require('onedark').setup { style = 'darker' }
-  lua require('onedark').load()
+  " lua require('onedark').setup { style = 'darker' }
+  " lua require('onedark').load()
 
 " Character limits
   " Force the cursor onto a new line after 80 characters
-  set textwidth=80
-  set colorcolumn=80
+  " set textwidth=80
+  " set colorcolumn=80
   " Colour the 81st (or 73rd) column so that we don’t type over our limit
   set colorcolumn=+1
 
@@ -114,30 +115,30 @@
 " Custom keybindings
   " Normal mode
     " fzf
-    nnoremap <silent><leader>ff :GFiles<cr>
-    nnoremap <silent><leader>fb :Buffers<cr>
-    nnoremap <silent><leader>flb :BCommits<cr>
-    nnoremap <silent><leader>fm :Marks<cr>
-    nnoremap <silent><leader>flp :Commits<cr>
-    nnoremap <silent><leader>fp :Maps<cr>
+    " nnoremap <silent>ff :GFiles<cr>
+    " nnoremap <leader>fb :Buffers<cr>
+    " nnoremap <leader>fbc :BCommits<cr>
+    " nnoremap <leader>fm :Marks<cr>
+    " nnoremap <leader>fc :Commits<cr>
+    " nnoremap <leader>fp :Maps<cr>
 
     " Copy the current filepath to the unnamed register
     nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
     " Toogle Floaterm
-    nnoremap <silent>`` :FloatermToggle<cr>
-    tnoremap <silent>`` <C-\><C-n>:FloatermToggle<cr>
+    " nnoremap <silent>`` :FloatermToggle<cr>
+    " tnoremap <silent>`` <C-\><C-n>:FloatermToggle<cr>
 
     " Undotree
-    let g:undotree_SetFocusWhenToggle = 1
-    nnoremap <silent><leader>z :UndotreeToggle<cr>
+    " let g:undotree_SetFocusWhenToggle = 1
+    " nnoremap <silent><leader>z :UndotreeToggle<cr>
 
     " Open coc explorer
-    nnoremap <silent><leader>` :CocCommand explorer<cr>
+    " nnoremap <silent><leader>` :CocCommand explorer<cr>
 
     " Edit vimrc
-    nnoremap <silent><leader>ev :vsplit $MYVIMRC<cr>
+    " nnoremap <silent><leader>ev :vsplit $MYVIMRC<cr>
     " Source vimrc
-    nnoremap <leader>sv :source $MYVIMRC<cr>
+    " nnoremap <leader>sv :source $MYVIMRC<cr>
 
     " Tab commands
     nnoremap th :tabfirst<CR>
@@ -156,15 +157,15 @@
     nnoremap gm m
 
     " Git commands from fugitive
-    nnoremap <silent> <leader>gb :Git blame<CR>
-    nnoremap <silent> <leader>gd :Gvdiffsplit<CR>
-    nnoremap <silent> <leader>gs :Git<CR>
-    nnoremap <silent> <leader>gf :GF?<CR>
-    nnoremap <silent> <leader>gc :Git commit<CR>
-    nnoremap <silent> <leader>gh :0Gclog<CR>
-    nnoremap <silent> <leader>ge :Gedit<CR>
-    nnoremap <silent> <leader>gdh :diffget //2
-    nnoremap <silent> <leader>gdl :diffget //3
+    " nnoremap <silent> <leader>gb :Git blame<CR>
+    " nnoremap <silent> <leader>gd :Gvdiffsplit<CR>
+    " nnoremap <silent> <leader>gs :Git<CR>
+    " nnoremap <silent> <leader>gf :GF?<CR>
+    " nnoremap <silent> <leader>gc :Git commit<CR>
+    " nnoremap <silent> <leader>gh :0Gclog<CR>
+    " nnoremap <silent> <leader>ge :Gedit<CR>
+    " nnoremap <silent> <leader>gdh :diffget //2
+    " nnoremap <silent> <leader>gdl :diffget //3
 
   " Insert mode
     inoremap jk <Esc>
@@ -188,8 +189,8 @@
   highlight GitGutterChangeDelete ctermfg=4
 
 " EasyClip
-  let g:EasyClipAutoFormat = 1
-  let g:EasyClipUseSubstituteDefaults = 1
+  " let g:EasyClipAutoFormat=1
+  " let g:EasyClipUseSubstituteDefaults=1
 
 " Treesitter 
 lua << EOF
@@ -211,16 +212,17 @@ lua << EOF
 EOF
 
 " Lualine
-  lua require('lualine').setup { options = { theme = 'onedark' } }
+  " lua require('lualine').setup { options = { theme = 'onedark' } }
 
+" Change the cursor for different modes Cursor settings: 1 -> blinking block 2 -> solid block 3 -> blinking underscore 4 -> solid underscore 5 -> blinking vertical bar 6 -> solid vertical bar let &t_SI.="\e[5 q" "SI = INSERT mode let &t_SR.="\e[4 q" "SR = REPLACE mode let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE) Reset the cursor on start (for older versions of vim, usually not required) augroup mycmds au!  autocmd vimenter * silent !echo -ne "\e[2 q" augroup end Override the terminal colors so that it is more readable highlight Visual ctermfg=Black ctermbg=Grey Enable autocompletion: set wildmode=longest,list,full Automatically deletes all trailing whitespace and newlines at end of file on save autocmd BufWritePre * %s/\s\+$//e autocmd BufWritePre * %s/\n\+\%$//e autocmd BufWritePre *.[ch] %s/\%$/\r/e coc config Set internal encoding of vim, not needed on neovim, since coc.nvim using some
   " unicode characters in the file autoload/float.vim
-  set encoding=utf-8
+  " set encoding=utf-8
 
   " TextEdit might fail if hidden is not set.
   set hidden
 
   " Some servers have issues with backup files, see #649.
-  set nobackup
+  " set nobackup
   set nowritebackup
 
   " Give more space for displaying messages.
@@ -233,7 +235,7 @@ EOF
   " Don't pass messages to |ins-completion-menu|.
   set shortmess+=c
 
-  set signcolumn=yes
+  " set signcolumn=yes
   " Always show the signcolumn, otherwise it would shift the text each time
   " diagnostics appear/become resolved.
   " if has("nvim-0.5.0") || has("patch-8.1.1564")
