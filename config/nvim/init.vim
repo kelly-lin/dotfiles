@@ -36,6 +36,8 @@
     Plug 'voldikss/vim-floaterm'
   call plug#end()
 
+  lua require('plugins')
+
 " Vim test
   nmap <silent> <leader>t :TestNearest<CR>
   nmap <silent> <leader>T :TestFile<CR>
@@ -95,10 +97,6 @@
 
   " Go to defintion in new vertical split
   nmap <leader>gdw <C-w>v<Plug>(coc-definition)
-
-" Theme
-  lua require('onedark').setup { style = 'darker' }
-  lua require('onedark').load()
 
 " Character limits
   " Force the cursor onto a new line after 80 characters
@@ -190,28 +188,6 @@
 " EasyClip
   let g:EasyClipAutoFormat = 1
   let g:EasyClipUseSubstituteDefaults = 1
-
-" Treesitter 
-lua << EOF
-  require('nvim-treesitter.configs').setup {
-    highlight = {
-      enable = true,
-      additional_vim_regex_highlighting = false,
-    },
-    indent = {
-      enable = true,
-    },
-    incremental_selection = {
-      enable = true,
-    },
-    textobjects = {
-      enable = true,
-    },
-  }
-EOF
-
-" Lualine
-  lua require('lualine').setup { options = { theme = 'onedark' } }
 
   " unicode characters in the file autoload/float.vim
   set encoding=utf-8
