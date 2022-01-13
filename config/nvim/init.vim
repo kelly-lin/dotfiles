@@ -8,11 +8,10 @@
 
   autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \|   PlugInstall --sync | source $MYVIMRC
+  \|   PlugInstall --sync | q
   \| endif
 
   call plug#begin('~/.vim/plugged')
-    Plug 'alvan/vim-closetag'
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
     Plug 'airblade/vim-gitgutter'
     Plug 'christoomey/vim-tmux-navigator'
@@ -115,7 +114,7 @@
 " Custom keybindings
   " Normal mode
     " fzf
-    nnoremap <silent>ff :GFiles<cr>
+    nnoremap <silent><leader>ff :GFiles<cr>
     nnoremap <leader>fb :Buffers<cr>
     nnoremap <leader>fbc :BCommits<cr>
     nnoremap <leader>fm :Marks<cr>
@@ -371,22 +370,17 @@ EOF
     \'coc-tsserver',
     \'coc-svg',
     \'coc-sh',
-    \'coc-stylelint',
-    \'coc-ltex',
     \'coc-html-css-support',
     \'coc-eslint',
     \'coc-highlight',
-    \'coc-vetur',
-    \'coc-go',
     \'coc-python',
     \'coc-explorer',
-    \'coc-flutter',
     \'coc-json',
     \'coc-git',
     \'coc-solargraph',
     \'coc-emmet',
     \'coc-prettier',
-    \'coc-vetur',
     \'coc-pairs',
+    \'coc-spell-checker',
     \'coc-vimlsp',
   \]
