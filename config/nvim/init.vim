@@ -1,37 +1,44 @@
 " Plugins
   " Install vim-plug if not found
-    let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-    if empty(glob(data_dir . '/autoload/plug.vim'))
-      silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-    endif
+  let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+  if empty(glob(data_dir . '/autoload/plug.vim'))
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
 
-  " Plugins
-    call plug#begin('~/.vim/plugged')
-      Plug 'alvan/vim-closetag'
-      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-      Plug 'airblade/vim-gitgutter'
-      Plug 'christoomey/vim-tmux-navigator'
-      Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-      Plug 'junegunn/fzf.vim'
-      Plug 'mbbill/undotree'
-      Plug 'neoclide/coc.nvim', {'branch': 'release'}
-      Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-      Plug 'rafamadriz/friendly-snippets'
-      Plug 'svermeulen/vim-easyclip'
-      Plug 'tpope/vim-unimpaired'
-      Plug 'tpope/vim-commentary'
-      Plug 'tpope/vim-fugitive'
-      Plug 'tpope/vim-repeat'
-      Plug 'tpope/vim-surround'
-      Plug 'nvim-lualine/lualine.nvim'
-      Plug 'vim-test/vim-test'
+  autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | source $MYVIMRC
+  \| endif
 
-      " Themes
-      Plug 'navarasu/onedark.nvim'
-      Plug 'morhetz/gruvbox'
-      Plug 'voldikss/vim-floaterm'
-    call plug#end()
+  call plug#begin('~/.vim/plugged')
+    Plug 'alvan/vim-closetag'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+    Plug 'airblade/vim-gitgutter'
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'mbbill/undotree'
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+    Plug 'rafamadriz/friendly-snippets'
+    Plug 'svermeulen/vim-easyclip'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-surround'
+    Plug 'nvim-lualine/lualine.nvim'
+    Plug 'vim-test/vim-test'
+
+    Plug 'kyazdani42/nvim-web-devicons' " for file icons
+    Plug 'kyazdani42/nvim-tree.lua'
+
+    " Themes
+    Plug 'navarasu/onedark.nvim'
+    Plug 'morhetz/gruvbox'
+    Plug 'voldikss/vim-floaterm'
+  call plug#end()
 
 " Vim test
   nmap <silent> <leader>t :TestNearest<CR>
@@ -94,8 +101,8 @@
   nmap <leader>gdw <C-w>v<Plug>(coc-definition)
 
 " Theme
-  lua require('onedark').setup {style = 'darker'}
-  colorscheme onedark
+  lua require('onedark').setup { style = 'darker' }
+  lua require('onedark').load()
 
 " Character limits
   " Force the cursor onto a new line after 80 characters
@@ -189,10 +196,26 @@
   let g:EasyClipUseSubstituteDefaults=1
 
 " Treesitter 
-  lua require('config.tree-sitter')
+lua << EOF
+  require('nvim-treesitter.configs').setup {
+    highlight = {
+      enable = true,
+      additional_vim_regex_highlighting = false,
+    },
+    indent = {
+      enable = true,
+    },
+    incremental_selection = {
+      enable = true,
+    },
+    textobjects = {
+      enable = true,
+    },
+  }
+EOF
 
 " Lualine
-  lua require('config.lualine')
+  lua require('lualine').setup { options = { theme = 'onedark' } }
 
 " Change the cursor for different modes Cursor settings: 1 -> blinking block 2 -> solid block 3 -> blinking underscore 4 -> solid underscore 5 -> blinking vertical bar 6 -> solid vertical bar let &t_SI.="\e[5 q" "SI = INSERT mode let &t_SR.="\e[4 q" "SR = REPLACE mode let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE) Reset the cursor on start (for older versions of vim, usually not required) augroup mycmds au!  autocmd vimenter * silent !echo -ne "\e[2 q" augroup end Override the terminal colors so that it is more readable highlight Visual ctermfg=Black ctermbg=Grey Enable autocompletion: set wildmode=longest,list,full Automatically deletes all trailing whitespace and newlines at end of file on save autocmd BufWritePre * %s/\s\+$//e autocmd BufWritePre * %s/\n\+\%$//e autocmd BufWritePre *.[ch] %s/\%$/\r/e coc config Set internal encoding of vim, not needed on neovim, since coc.nvim using some
   " unicode characters in the file autoload/float.vim
@@ -369,5 +392,4 @@
     \'coc-vetur',
     \'coc-pairs',
     \'coc-vimlsp',
-    \'coc-sumneko-lua'
   \]
