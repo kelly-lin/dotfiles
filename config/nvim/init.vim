@@ -31,9 +31,6 @@
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'vim-test/vim-test'
 
-    Plug 'kyazdani42/nvim-web-devicons' " for file icons
-    Plug 'kyazdani42/nvim-tree.lua'
-
     " Themes
     Plug 'navarasu/onedark.nvim'
     Plug 'morhetz/gruvbox'
