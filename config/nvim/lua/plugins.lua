@@ -3,7 +3,7 @@ require('kl.completion')
 require('kl.lsp')
 require('kl.tree-sitter')
 
-require("harpoon").setup({
+require('harpoon').setup({
   -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
   save_on_toggle = false,
   -- saves the harpoon file upon every change. disabling is unrecommended.
@@ -13,9 +13,14 @@ require("harpoon").setup({
   -- closes any tmux windows harpoon that harpoon creates when you close Neovim.
   tmux_autoclose_windows = false,
   -- filetypes that you want to prevent from adding to the harpoon list menu.
-  excluded_filetypes = { "harpoon" }
+  excluded_filetypes = { 'harpoon' }
 })
 
-require("nvim-tree").setup {}
+require('nvim-tree').setup {
+  view = {
+    width = 40,
+    auto_resize = false,
+  },
+}
 
 require('nvim-autopairs').setup{}
