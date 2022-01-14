@@ -38,7 +38,9 @@ ch_repo() {
     cd $HOME/$dir
   fi
 }
+
 alias crp=ch_repo
+alias erp="ch_repo && $EDITOR"
 
 ch_prepo() {
   dir=$(ls ~/Repos/personal | fzf | sed 's/.*/Repos\/personal\/&/')
@@ -47,5 +49,8 @@ ch_prepo() {
     cd $HOME/$dir
   fi
 }
-alias cprp=ch_prepo
 
+alias cprp=ch_prepo
+alias eprp='ch_prepo && $EDITOR'
+
+alias ct='git tag | fzf | xargs git checkout'
