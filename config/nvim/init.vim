@@ -128,28 +128,28 @@
   nnoremap <silent> <leader>co :copen<CR>
 
 " harpoon
-  nnoremap <silent> <leader>ha :lua require("harpoon.mark").add_file()<CR> :echo 'Added harpoon mark'<CR>
+  nnoremap <silent> <leader>ha :lua require("harpoon.mark").add_file()<CR>:echo 'Added harpoon mark'<CR>
   nnoremap <silent> <leader>' :lua require("harpoon.ui").toggle_quick_menu()<CR> 
 
 " nvm-cmp
   set completeopt=menu,menuone,noselect
-  nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-  nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-  nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-  nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-  nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+  nnoremap <silent> gd :lua vim.lsp.buf.definition()<CR>
+  nnoremap <silent> gD :lua vim.lsp.buf.declaration()<CR>
+  nnoremap <silent> gr :lua vim.lsp.buf.references()<CR>
+  nnoremap <silent> gi :lua vim.lsp.buf.implementation()<CR>
+  nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
     
-  nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
-  nnoremap <silent> <leader>ac <cmd>lua vim.lsp.buf.code_action()<CR>
-  nnoremap <silent> <leader>o <cmd>lua vim.lsp.buf.document_symbol()<CR>
-  nnoremap <silent> <leader>e <cmd>lua vim.diagnostic.open_float()<CR>
+  nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
+  nnoremap <silent> <leader>ac :lua vim.lsp.buf.code_action()<CR>
+  nnoremap <silent> <leader>o :lua vim.lsp.buf.document_symbol()<CR>
+  nnoremap <silent> <leader>e :lua vim.diagnostic.open_float()<CR>
 
   " Go to defintion in new vertical split
-  nmap <leader>gdw <C-w>v<cmd>lua vim.lsp.buf.definition()<CR>
+  nmap <leader>gdw <C-w>v:lua vim.lsp.buf.definition()<CR>
 
-  nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-  nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+  nnoremap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+  nnoremap <silent> <C-n> :lua vim.lsp.diagnostic.goto_prev()<CR>
+  nnoremap <silent> <C-p> :lua vim.lsp.diagnostic.goto_next()<CR>
 
 " Vim test
   nmap <silent> <leader>t :TestNearest<CR>

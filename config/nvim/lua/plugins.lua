@@ -135,6 +135,8 @@ require('lspconfig')['vimls'].setup {
 require'lspconfig'.vimls.setup {}
 
 require('nvim-treesitter.configs').setup {
+  ensure_installed = "maintained",
+  sync_install = false,
   highlight = {
     enable = true,
     additional_vim_regex_highlighting = false,
@@ -150,9 +152,14 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-require('lualine').setup { options = { theme = 'onedark' } }
+require('lualine').setup {
+  options = {
+    theme = 'onedark',
+    disabled_filetypes = { 'NvimTree' }
+  }
+}
 
-require("harpoon").setup({ 
+require("harpoon").setup({
   -- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
   save_on_toggle = false,
 
