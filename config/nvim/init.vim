@@ -100,9 +100,6 @@
   set nobackup
   set nowritebackup
 
-  " Give more space for displaying messages.
-  set cmdheight=2
-
   " Force the cursor onto a new line after 80 characters
   set textwidth=80
   set colorcolumn=80
