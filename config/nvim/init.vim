@@ -18,6 +18,7 @@
     Plug 'kyazdani42/nvim-tree.lua'
 
     Plug 'neovim/nvim-lspconfig'
+    Plug 'williamboman/nvim-lsp-installer'
     Plug 'hrsh7th/cmp-nvim-lsp'
     Plug 'hrsh7th/cmp-buffer'
     Plug 'hrsh7th/cmp-path'
@@ -76,6 +77,7 @@
   set wildignore+=**/android/*
   set wildignore+=**/ios/*
   set wildignore+=**/.git/*
+  set signcolumn=yes
 
   syntax on
 
@@ -142,14 +144,14 @@
   nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
   nnoremap <silent> <leader>ac :lua vim.lsp.buf.code_action()<CR>
   nnoremap <silent> <leader>o :lua vim.lsp.buf.document_symbol()<CR>
-  nnoremap <silent> <leader>e :lua vim.diagnostic.open_float()<CR>
+  nnoremap <silent> <leader>d :lua vim.diagnostic.open_float()<CR>
 
   " Go to defintion in new vertical split
   nmap <leader>gdw <C-w>v:lua vim.lsp.buf.definition()<CR>
 
   nnoremap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
-  nnoremap <silent> <C-n> :lua vim.lsp.diagnostic.goto_prev()<CR>
-  nnoremap <silent> <C-p> :lua vim.lsp.diagnostic.goto_next()<CR>
+  nnoremap <silent> [d :lua vim.lsp.diagnostic.goto_prev()<CR>
+  nnoremap <silent> ]d :lua vim.lsp.diagnostic.goto_next()<CR>
 
 " Vim test
   nmap <silent> <leader>t :TestNearest<CR>
