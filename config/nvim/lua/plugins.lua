@@ -17,3 +17,5 @@ require("harpoon").setup({
 })
 
 require("nvim-tree").setup {}
+
+require('nvim-autopairs').setup{}

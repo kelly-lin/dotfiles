@@ -49,6 +49,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'nvim-lualine/lualine.nvim'
   Plug 'vim-test/vim-test'
+  Plug 'windwp/nvim-autopairs'
 
   " Themes
   Plug 'navarasu/onedark.nvim'
