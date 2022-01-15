@@ -13,6 +13,9 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| endif
 
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'glepnir/dashboard-nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'ThePrimeagen/harpoon'
 
@@ -29,8 +32,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'neovim/nvim-lspconfig'
 
   " TODO: install and setup ALE
-  Plug 'dense-analysis/ale'
-  " TODO: install and setup eslint
   " TODO: setup luasnip
   Plug 'L3MON4D3/LuaSnip'
   Plug 'saadparwaiz1/cmp_luasnip'
@@ -198,6 +199,7 @@ nnoremap <silent><leader>flb :BCommits<cr>
 nnoremap <silent><leader>fm :Marks<cr>
 nnoremap <silent><leader>flp :Commits<cr>
 nnoremap <silent><leader>fp :Maps<cr>
+nnoremap <leader><leader>ft :Ag<Space>
 
 " Copy the current filepath to the unnamed register
 nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
@@ -210,7 +212,6 @@ tnoremap <silent>`` <C-\><C-n>:FloatermToggle<cr>
 nnoremap <silent><leader>z :UndotreeToggle<cr>
 
 " Trigger silver searcher
-nnoremap <leader>ss :Ag<Space>
 
 " Need to remap set marker binding as a workaround for vim-unimpaired
 nnoremap gm m
@@ -229,6 +230,18 @@ nnoremap <silent> <leader>gdl :diffget //3<CR>
 " Search for highlighted text
 vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
+" Prettier
+nnoremap <silent> <leader>p :PrettierAsync<CR>
+
+" dashboard-nvim
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+
+" Telescope
+nnoremap <leader>tff <cmd>Telescope find_files<cr>
+nnoremap <leader>tfg <cmd>Telescope live_grep<cr>
+nnoremap <leader>tfb <cmd>Telescope buffers<cr>
+nnoremap <leader>tfh <cmd>Telescope help_tags<cr>
 
 " ==============================================================================
 " Plugin settings
@@ -240,3 +253,5 @@ let g:EasyClipUseSubstituteDefaults = 1
 " Undotree
 let g:undotree_SetFocusWhenToggle = 1
 
+" dashboard-nvim
+let g:dashboard_default_executive = 'fzf'

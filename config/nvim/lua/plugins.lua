@@ -24,3 +24,5 @@ require('nvim-tree').setup {
 }
 
 require('nvim-autopairs').setup{}
+
+require('telescope').load_extension('fzf')
