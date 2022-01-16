@@ -13,6 +13,8 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \| endif
 
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'machakann/vim-highlightedyank'
+
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'glepnir/dashboard-nvim'
@@ -64,6 +66,7 @@ call plug#end()
 
 lua require('plugins')
 
+autocmd BufWrite * echom "Foo"
 
 " ==============================================================================
 " Vim settings
@@ -196,10 +199,13 @@ nnoremap <leader>V ^v$h
 nnoremap <silent><leader>ff :GFiles<cr>
 nnoremap <silent><leader>fb :Buffers<cr>
 nnoremap <silent><leader>flb :BCommits<cr>
+nnoremap <silent><leader>fbl :BLines<cr>
+nnoremap <silent><leader>flr :Commits<cr>
+nnoremap <silent><leader>f: :History:<cr>
+nnoremap <silent><leader>f/ :History/<cr>
 nnoremap <silent><leader>fm :Marks<cr>
-nnoremap <silent><leader>flp :Commits<cr>
 nnoremap <silent><leader>fp :Maps<cr>
-nnoremap <leader><leader>ft :Ag<Space>
+nnoremap <leader>ft :Ag<Space>
 
 " Copy the current filepath to the unnamed register
 nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
@@ -242,6 +248,7 @@ nnoremap <leader>tff <cmd>Telescope find_files<cr>
 nnoremap <leader>tfg <cmd>Telescope live_grep<cr>
 nnoremap <leader>tfb <cmd>Telescope buffers<cr>
 nnoremap <leader>tfh <cmd>Telescope help_tags<cr>
+nnoremap <leader>tfs <cmd>Telescope lsp_document_symbols<cr>
 
 " ==============================================================================
 " Plugin settings
@@ -255,3 +262,15 @@ let g:undotree_SetFocusWhenToggle = 1
 
 " dashboard-nvim
 let g:dashboard_default_executive = 'fzf'
+
+" vim-highlightedyank
+let g:highlightedyank_highlight_duration = 500
+
+let g:dashboard_custom_header = [
+  \'    _   __            _    __ _          ',
+  \'   / | / /___   ____ | |  / /(_)____ ___ ',
+  \'  /  |/ // _ \ / __ \| | / // // __ `__ \',
+  \' / /|  //  __// /_/ /| |/ // // / / / / /',
+  \'/_/ |_/ \___/ \____/ |___//_//_/ /_/ /_/ ',
+  \]
+
