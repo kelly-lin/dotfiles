@@ -96,7 +96,6 @@ set signcolumn=yes
 
 syntax on
 
-set fileencoding=utf-8
 set encoding=utf-8
 set noshowmode
 
