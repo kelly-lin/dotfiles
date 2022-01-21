@@ -191,7 +191,6 @@ nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
   
 nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>ac :lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>o :lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>d :lua vim.diagnostic.open_float()<CR>
 
 " Go to defintion in new vertical split
@@ -287,6 +286,8 @@ nnoremap <silent> <leader>p :PrettierAsync<CR>
 " dashboard-nvim
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR>
+
+nnoremap <silent> <leader>o :SymbolsOutline<CR>
 
 " ==============================================================================
 " Plugin settings
