@@ -62,11 +62,10 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'navarasu/onedark.nvim'
   Plug 'morhetz/gruvbox'
   Plug 'voldikss/vim-floaterm'
+  Plug 'simrat39/symbols-outline.nvim'
 call plug#end()
 
 lua require('plugins')
-
-autocmd BufWrite * echom "Foo"
 
 " ==============================================================================
 " Vim settings
@@ -76,7 +75,7 @@ set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set expandtab
+set smartindent
 set autoindent
 set incsearch
 set showcmd
@@ -96,6 +95,10 @@ set wildignore+=**/.git/*
 set signcolumn=yes
 
 syntax on
+
+set fileencoding=utf-8
+set encoding=utf-8
+set noshowmode
 
 " Set the clipboard to be able to copy text into the system clipbord
 if has('macunix')
@@ -132,8 +135,12 @@ autocmd FileType gitcommit set colorcolumn+=51
 autocmd FileType gitcommit set colorcolumn=73
 
 " Set the leader key
-nnoremap <SPACE> <Nop>
-let mapleader = " "
+nnoremap <Space> <Nop>
+let mapleader = "\<Space>"
+
+set timeoutlen=500
+
+set background=dark 
 
 
 " ==============================================================================
@@ -142,11 +149,29 @@ let mapleader = " "
 " Exit insert mode with jk
 inoremap jk <Esc>
 
+nnoremap <C-s> :w<CR>
+
+cnoremap <expr> <C-j> ("\<C-n>")
+cnoremap <expr> <C-k> ("\<C-p>")
+
+inoremap <expr> <C-j> ("\<C-n>")
+inoremap <expr> <C-k> ("\<C-p>")
+
 " Edit vimrc
 nnoremap <silent><leader>ev :vsplit $MYVIMRC<cr>
 
 " Source vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+
+" Better indentation
+vnoremap \< <gv
+vnoremap \> >gv
+
+" Use alt + nav keys to resize windows
+nnoremap <M-j> :resize -5<CR>
+nnoremap <M-k> :resize +5<CR>
+nnoremap <M-h> :vertical resize -5<CR>
+nnoremap <M-l> :vertical resize +5<CR>
 
 " Quickfix lists
 nnoremap <silent> <leader>cc :cclose<CR>
@@ -166,13 +191,12 @@ nnoremap <silent> K :lua vim.lsp.buf.hover()<CR>
   
 nnoremap <silent> <leader>rn :lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>ac :lua vim.lsp.buf.code_action()<CR>
-nnoremap <silent> <leader>o :lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> <leader>d :lua vim.diagnostic.open_float()<CR>
 
 " Go to defintion in new vertical split
 nmap <leader>gdw <C-w>v:lua vim.lsp.buf.definition()<CR>
 
-nnoremap <silent> <C-k> :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> <C-i> :lua vim.lsp.buf.signature_help()<CR>
 nnoremap <silent> [d :lua vim.lsp.diagnostic.goto_prev()<CR>
 nnoremap <silent> ]d :lua vim.lsp.diagnostic.goto_next()<CR>
 
@@ -196,16 +220,36 @@ nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j'
 nnoremap <leader>V ^v$h
 
 " fzf
-nnoremap <silent><leader>ff :GFiles<cr>
-nnoremap <silent><leader>fb :Buffers<cr>
-nnoremap <silent><leader>flb :BCommits<cr>
-nnoremap <silent><leader>fbl :BLines<cr>
-nnoremap <silent><leader>flr :Commits<cr>
-nnoremap <silent><leader>f: :History:<cr>
-nnoremap <silent><leader>f/ :History/<cr>
-nnoremap <silent><leader>fm :Marks<cr>
-nnoremap <silent><leader>fp :Maps<cr>
-nnoremap <leader>ft :Ag<Space>
+" nnoremap <silent><leader>ff :GFiles<cr>
+" nnoremap <silent><leader>fbr :Buffers<cr>
+" nnoremap <silent><leader>flb :BCommits<cr>
+" nnoremap <silent><leader>fbl :BLines<cr>
+" nnoremap <silent><leader>flr :Commits<cr>
+" nnoremap <silent><leader>f: :History:<cr>
+" nnoremap <silent><leader>f/ :History/<cr>
+" nnoremap <silent><leader>fm :Marks<cr>
+" nnoremap <silent><leader>fp :Maps<cr>
+
+nnoremap <leader>ss :Ag<Space>
+
+" Telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>ft <cmd>Telescope live_grep<cr>
+nnoremap <leader>fbs <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fs <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <leader>fws <cmd>Telescope lsp_workspace_symbols<cr>
+nnoremap <leader>f: <cmd>Telescope command_history<cr>
+nnoremap <leader>fib <cmd>Telescope current_buffer_fuzzy_find<cr>
+
+nnoremap <leader>fbr <cmd>Telescope git_branches<cr>
+nnoremap <leader>fgs <cmd>Telescope git_status<cr>
+nnoremap <leader>fpc <cmd>Telescope git_commits<cr>
+nnoremap <leader>fbc <cmd>Telescope git_bcommits<cr>
+
+nnoremap <leader>fts <cmd>Telescope treesitter<cr>
+nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
+nnoremap <leader>fkm <cmd>Telescope keymaps<cr>
 
 " Copy the current filepath to the unnamed register
 nnoremap <leader>cfp :let @*=expand("%")<cr>:echo "current filepath copied to clipboard"<cr>
@@ -243,12 +287,7 @@ nnoremap <silent> <leader>p :PrettierAsync<CR>
 nmap <Leader>ss :<C-u>SessionSave<CR>
 nmap <Leader>sl :<C-u>SessionLoad<CR>
 
-" Telescope
-nnoremap <leader>tff <cmd>Telescope find_files<cr>
-nnoremap <leader>tfg <cmd>Telescope live_grep<cr>
-nnoremap <leader>tfb <cmd>Telescope buffers<cr>
-nnoremap <leader>tfh <cmd>Telescope help_tags<cr>
-nnoremap <leader>tfs <cmd>Telescope lsp_document_symbols<cr>
+nnoremap <silent> <leader>o :SymbolsOutline<CR>
 
 " ==============================================================================
 " Plugin settings
@@ -260,7 +299,7 @@ let g:EasyClipUseSubstituteDefaults = 1
 " Undotree
 let g:undotree_SetFocusWhenToggle = 1
 " dashboard-nvim
-let g:dashboard_default_executive = 'fzf'
+let g:dashboard_default_executive = 'telescope'
 
 " vim-highlightedyank
 let g:highlightedyank_highlight_duration = 500
@@ -273,3 +312,4 @@ let g:dashboard_custom_header = [
   \'/_/ |_/ \___/ \____/ |___//_//_/ /_/ /_/ ',
   \]
 
+let g:prettier#autoformat_config_present = 1
