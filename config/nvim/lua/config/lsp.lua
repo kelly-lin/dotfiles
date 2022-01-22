@@ -1,18 +1,20 @@
--- Setup lspconfig.
+local nvim_lsp = require('lspconfig')
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig')['tsserver'].setup {
-  capabilities = capabilities,
-}
-
-require('lspconfig')['sumneko_lua'].setup {
-  capabilities = capabilities,
-}
+local servers = { 'sumneko_lua', 'pyright', 'cmake', 'tsserver', 'html', 'jsonls', 'vimls', 'yamlls' }
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    }
+  }
+end
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
-require('lspconfig').sumneko_lua.setup {
+nvim_lsp.sumneko_lua.setup {
   settings = {
     Lua = {
       runtime = {
@@ -37,6 +39,14 @@ require('lspconfig').sumneko_lua.setup {
   },
 }
 
-require('lspconfig')['vimls'].setup {
-  capabilities = capabilities
+nvim_lsp.yamlls.setup {
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["../path/relative/to/file.yml"] = "/.github/workflows/*",
+        ["/path/from/root/of/project"] = "/.github/workflows/*",
+      },
+    },
+  }
 }
