@@ -68,8 +68,8 @@ opt.wrap = false
 opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
-opt.undodir = { '.undo/', '~/.vim/.undo/', '/tmp' }
 opt.undofile = true
+opt.undodir = { '~/.config/nvim/.undo/' }
 
 opt.textwidth = 80
 opt.colorcolumn = '80'
