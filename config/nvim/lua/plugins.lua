@@ -1,18 +1,19 @@
 local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local execute = vim.api.nvim_command
 local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
 
 -- Auto install packer.nvim if not exists
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local should_bootsrap = false
 if fn.empty(fn.glob(install_path)) > 0 then
-  execute('!git clone https://github.com/wbthomason/packer.nvim '..install_path)
+  should_bootsrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 end
-cmd [[packadd packer.nvim]]
+
+cmd 'packadd packer.nvim'
 cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
 return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim', opt = true }
-  use { 'sainnhe/gruvbox-material' }
+
   use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/popup.nvim'}, { 'nvim-lua/plenary.nvim' } }
@@ -20,11 +21,8 @@ return require('packer').startup(function(use)
   use { 'neovim/nvim-lspconfig' }
   use { 'nvim-lua/completion-nvim' }
 
-  use { 'tpope/vim-fugitive' }
-
   use { 'machakann/vim-highlightedyank' }
 
-  use { 'nvim-telescope/telescope.nvim' }
   use { 'glepnir/dashboard-nvim' }
   use { 'nvim-lua/plenary.nvim' }
   use { 'ThePrimeagen/harpoon' }
@@ -37,7 +35,6 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/cmp-path' }
   use { 'hrsh7th/cmp-cmdline' }
   use { 'hrsh7th/nvim-cmp' }
-  use { 'neovim/nvim-lspconfig' }
 
   use { 'L3MON4D3/LuaSnip' }
   use { 'saadparwaiz1/cmp_luasnip' }
@@ -45,7 +42,7 @@ return require('packer').startup(function(use)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use { 'airblade/vim-gitgutter' }
   use { 'christoomey/vim-tmux-navigator' }
-  use { 'junegunn/fzf', run = 'fzf#install()' }
+  use { 'junegunn/fzf' }
   use { 'junegunn/fzf.vim' }
   use { 'mbbill/undotree' }
   use { 'prettier/vim-prettier', run = 'yarn install --frozen-lockfile --production' }
@@ -59,8 +56,14 @@ return require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim' }
   use { 'vim-test/vim-test' }
   use { 'windwp/nvim-autopairs' }
+
   use { 'navarasu/onedark.nvim' }
   use { 'morhetz/gruvbox' }
+
   use { 'voldikss/vim-floaterm' }
   use { 'simrat39/symbols-outline.nvim' }
+
+  if should_bootsrap then
+    require('packer').sync()
+  end
 end)
