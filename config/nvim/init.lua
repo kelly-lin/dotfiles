@@ -146,6 +146,9 @@ map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { silent = true })
 map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', { silent = true })
 map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { silent = true })
 
+map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', { silent = true })
+map('n', '<leader>ca', ':lua vim.lsp.buf.code_action()<CR>', { silent = true })
+
 map('n', '<C-i>', ':lua vim.lsp.buf.signature_help()<CR>', { silent = true })
 map('n', '[d', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { silent = true })
 map('n', ']d', ':lua vim.lsp.diagnostic.goto_next()<CR>', { silent = true })
