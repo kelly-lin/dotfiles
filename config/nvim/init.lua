@@ -16,6 +16,7 @@ require('config.telescope')
 
 require('theme')
 
+--
 -- Globals
 g.EasyClipAutoFormat = 1
 g.EasyClipUseSubstituteDefaults = 1
@@ -69,7 +70,9 @@ opt.backup = false
 opt.writebackup = false
 opt.swapfile = false
 opt.undofile = true
-opt.undodir = { '~/.config/nvim/.undo/' }
+
+local undodir = vim.fn.stdpath('data')..'/.undo'
+opt.undodir = undodir
 
 opt.textwidth = 80
 opt.colorcolumn = '80'
