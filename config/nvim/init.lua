@@ -208,7 +208,7 @@ map('n', '<leader>o', ':SymbolsOutline<CR>')
 
 -- Floaterm
 map('n', '``', ':FloatermToggle<CR>')
-map('n', '``', [[<C-\><C-n>:FloatermToggle<cr>]])
+map('t', '``', [[<C-\><C-n>:FloatermToggle<cr>]])
 
 if (fn.has('macunix')) then
   opt.clipboard = 'unnamed'
