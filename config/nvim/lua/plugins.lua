@@ -63,6 +63,8 @@ return require('packer').startup(function(use)
   use { 'voldikss/vim-floaterm' }
   use { 'simrat39/symbols-outline.nvim' }
 
+  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+
   if should_bootsrap then
     require('packer').sync()
   end

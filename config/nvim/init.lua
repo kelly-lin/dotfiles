@@ -175,7 +175,7 @@ map('n', '<leader>fgs', '<cmd>Telescope git_status<CR>')
 map('n', '<leader>fpc', '<cmd>Telescope git_commits<CR>')
 map('n', '<leader>fbc', '<cmd>Telescope git_bcommits<CR>')
 
-map('n', '<leader>fts', '<cmd>Telescope treesitter<CR>')
+-- map('n', '<leader>fts', '<cmd>Telescope treesitter<CR>')
 map('n', '<leader>fr', '<cmd>Telescope lsp_references<CR>')
 map('n', '<leader>fkm', '<cmd>Telescope keymaps<CR>')
 
