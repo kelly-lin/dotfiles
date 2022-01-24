@@ -23,7 +23,6 @@ require('packer').startup(function(use)
   use { 'nvim-lua/completion-nvim' }
 
   use { 'machakann/vim-highlightedyank' }
-  use { 'dense-analysis/ale' }
 
   use { 'glepnir/dashboard-nvim' }
   use { 'nvim-lua/plenary.nvim' }
