@@ -139,29 +139,13 @@ map('n', '<leader>ha', [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]])
 -- nvim-cmp
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
 
-map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { silent = true })
-map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', { silent = true })
-map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { silent = true })
-map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', { silent = true })
-map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', { silent = true })
-
-map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', { silent = true })
-map('n', '<leader>ac', ':lua vim.lsp.buf.code_action()<CR>', { silent = true })
-
-map('n', '<C-i>', ':lua vim.lsp.buf.signature_help()<CR>', { silent = true })
-map('n', '<leader>er', ':lua vim.diagnostic.open_float()', { silent = true })
-map('n', '[d', ':lua vim.diagnostic.get_prev()<CR>', { silent = true })
-map('n', ']d', ':lua vim.diagnostic.get_next()<CR>', { silent = true })
-
 -- Go to defintion in new vertical split
 map('n', '<leader>gdw <C-w>v:lua', 'vim.lsp.buf.definition()<CR>', { silent = true })
 
 -- nvim-tree
-map('n', '<leader>`', ':NvimTreeToggle<CR>', { silent = true })
-map('n', '<leader>r', ':NvimTreeRefresh<CR>', { silent = true })
-map('n', '<leader>n', ':NvimTreeFindFile<CR>', { silent = true })
+map('n', '<leader>t', ':NvimTreeToggle<CR>', { silent = true })
 
-map('n', '<leader>ss', ':Ag<space>')
+map('n', '<leader>ag', ':Ag<space>')
 
 -- Telescope
 map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
