@@ -149,6 +149,7 @@ map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', { silent = true })
 map('n', '<leader>ac', ':lua vim.lsp.buf.code_action()<CR>', { silent = true })
 
 map('n', '<C-i>', ':lua vim.lsp.buf.signature_help()<CR>', { silent = true })
+map('n', '<leader>er', ':lua vim.diagnostic.open_float()', { silent = true })
 map('n', '[d', ':lua vim.diagnostic.get_prev()<CR>', { silent = true })
 map('n', ']d', ':lua vim.diagnostic.get_next()<CR>', { silent = true })
 
