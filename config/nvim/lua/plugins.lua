@@ -11,7 +11,7 @@ end
 cmd 'packadd packer.nvim'
 cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-return require('packer').startup(function(use)
+require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim', opt = true }
 
   use {
@@ -23,13 +23,13 @@ return require('packer').startup(function(use)
   use { 'nvim-lua/completion-nvim' }
 
   use { 'machakann/vim-highlightedyank' }
+  use { 'dense-analysis/ale' }
 
   use { 'glepnir/dashboard-nvim' }
   use { 'nvim-lua/plenary.nvim' }
   use { 'ThePrimeagen/harpoon' }
   use { 'kyazdani42/nvim-web-devicons' }
   use { 'kyazdani42/nvim-tree.lua' }
-  use { 'neovim/nvim-lspconfig' }
   use { 'williamboman/nvim-lsp-installer' }
   use { 'hrsh7th/cmp-nvim-lsp' }
   use { 'hrsh7th/cmp-buffer' }
@@ -70,3 +70,5 @@ return require('packer').startup(function(use)
     require('packer').sync()
   end
 end)
+
+cmd 'PackerInstall'
