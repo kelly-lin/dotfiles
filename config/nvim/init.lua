@@ -16,7 +16,6 @@ require('config.telescope')
 
 require('theme')
 
---
 -- Globals
 g.EasyClipAutoFormat = 1
 g.EasyClipUseSubstituteDefaults = 1
@@ -157,9 +156,9 @@ map('n', ']d', ':lua vim.diagnostic.get_next()<CR>', { silent = true })
 map('n', '<leader>gdw <C-w>v:lua', 'vim.lsp.buf.definition()<CR>', { silent = true })
 
 -- nvim-tree
-map('n', '<leader>`', ':NvimTreeToggle<CR>')
-map('n', '<leader>r', ':NvimTreeRefresh<CR>')
-map('n', '<leader>n', ':NvimTreeFindFile<CR>')
+map('n', '<leader>`', ':NvimTreeToggle<CR>', { silent = true })
+map('n', '<leader>r', ':NvimTreeRefresh<CR>', { silent = true })
+map('n', '<leader>n', ':NvimTreeFindFile<CR>', { silent = true })
 
 map('n', '<leader>ss', ':Ag<space>')
 
@@ -183,7 +182,7 @@ map('n', '<leader>fr', '<cmd>Telescope lsp_references<CR>')
 map('n', '<leader>fkm', '<cmd>Telescope keymaps<CR>')
 
 -- Undotree
-map('n', '<leader>z', ':UndotreeToggle<CR>')
+map('n', '<leader>z', ':UndotreeToggle<CR>', { silent = true })
 
 -- Git fugitive
 map('n', '<leader>gb', ':Git blame<CR>', { silent = true })
@@ -207,11 +206,11 @@ map('n', '<leader>ss', ':<C-u>SessionSave<CR>')
 map('n', '<leader>sl', ':<C-u>SessionLoad<CR>')
 
 -- Symbols outline
-map('n', '<leader>o', ':SymbolsOutline<CR>')
+map('n', '<leader>o', ':SymbolsOutline<CR>', { silent = true })
 
 -- Floaterm
-map('n', '``', ':FloatermToggle<CR>')
-map('t', '``', [[<C-\><C-n>:FloatermToggle<cr>]])
+map('n', '``', ':FloatermToggle<CR>', { silent = true })
+map('t', '``', [[<C-\><C-n>:FloatermToggle<cr>]], { silent = true })
 
 if (fn.has('macunix')) then
   opt.clipboard = 'unnamed'
