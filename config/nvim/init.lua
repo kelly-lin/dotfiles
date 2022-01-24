@@ -89,14 +89,7 @@ cmd 'autocmd FileType gitcommit set colorcolumn=73'
 -- Leader key
 g.mapleader = ' '
 
--- Functional wrapper for mapping custom keybindings
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local map = require('utils').map
 
 map('i', 'jk', '<ESC>') -- exit insert mode
 
@@ -115,6 +108,10 @@ map('n', '<leader>sv', ':source $MYVIMRC<CR>')
 
 -- Need to remap set marker binding as a workaround for vim-unimpaired
 map('n', 'gm', 'm')
+
+map('n', '<leader>E', '<cmd>lua vim.diagnostic.open_float()<CR>')
+map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
+map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
 map('n', '<C-s>', ':w<CR>')
 
