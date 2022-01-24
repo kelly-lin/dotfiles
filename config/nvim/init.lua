@@ -150,8 +150,8 @@ map('n', '<leader>rn', ':lua vim.lsp.buf.rename()<CR>', { silent = true })
 map('n', '<leader>ac', ':lua vim.lsp.buf.code_action()<CR>', { silent = true })
 
 map('n', '<C-i>', ':lua vim.lsp.buf.signature_help()<CR>', { silent = true })
-map('n', '[d', ':lua vim.lsp.diagnostic.goto_prev()<CR>', { silent = true })
-map('n', ']d', ':lua vim.lsp.diagnostic.goto_next()<CR>', { silent = true })
+map('n', '[d', ':lua vim.diagnostic.get_prev()<CR>', { silent = true })
+map('n', ']d', ':lua vim.diagnostic.get_next()<CR>', { silent = true })
 
 -- Go to defintion in new vertical split
 map('n', '<leader>gdw <C-w>v:lua', 'vim.lsp.buf.definition()<CR>', { silent = true })
