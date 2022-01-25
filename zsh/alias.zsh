@@ -31,6 +31,8 @@ alias prp="cd ~/Repos/personal"
 
 alias cb='git checkout $(git branch | fzf)'
 
+alias nvconfig='cd $HOME/.config/nvim'
+
 ch_repo() {
   dir=$(ls ~/Repos/ | grep -v 'personal' | fzf | sed 's/.*/Repos\/&/')
 
