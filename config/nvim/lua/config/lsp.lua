@@ -17,125 +17,55 @@ local function on_attach(_, bufnr)
   bmap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', { silent = true })
 end
 
-local lsp_servers_dir = vim.fn.stdpath('data') .. '/lsp_servers'
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, 'lua/?.lua')
+table.insert(runtime_path, 'lua/?/init.lua')
 
-local function makeOpts(server_name, common_opts)
-  local result = {}
-  local server_opts = {}
-
-  if server_name == 'html' then
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/html/node_modules/vscode-langservers-extracted/bin/vscode-html-language-server' },
-    }
-  end
-
-  if server_name == 'jsonls' then
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/jsonls/node_modules/vscode-langservers-extracted/bin/vscode-json-language-server' },
-    }
-  end
-
-  if server_name == 'kotlin_language_server' then
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/kotlin/server/bin/kotlin-language-server' },
-    }
-  end
-
-  if server_name == 'pyright' then
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/kotlin/server/bin/kotlin-language-server' },
-    }
-  end
-
-  if server_name == 'sumneko_lua' then
-    local runtime_path = vim.split(package.path, ';')
-    table.insert(runtime_path, 'lua/?.lua')
-    table.insert(runtime_path, 'lua/?/init.lua')
-
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/sumneko_lua/extension/server/bin/lua-language-server' },
-      settings = {
-        Lua = {
-          runtime = {
-            -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-            version = 'LuaJIT',
-            -- Setup your lua path
-            path = runtime_path,
-          },
-          diagnostics = {
-            -- Get the language server to recognize the `vim` global
-            globals = { 'vim' },
-          },
-          workspace = {
-            -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file('', true),
-          },
-          -- Do not send telemetry data containing a randomized but unique identifier
-          telemetry = {
-            enable = false,
-          },
-        },
-      },
-    }
-  end
-
-  if server_name == 'tsserver' then
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/tsserver/node_modules/typescript/bin/tsserver' },
-    }
-  end
-
-  if server_name == 'vimls' then
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/vim/node_modules/vim-language-server/bin/index.js' },
-    }
-  end
-
-  if server_name == 'yamlls' then
-    server_opts = {
-      cmd = { lsp_servers_dir .. '/yaml/node_modules/yaml-language-server/bin/yaml-language-server' },
-      settings = {
-        yaml = {
-          schemas = {
-            ['https://json.schemastore.org/github-workflow.json'] = '/.github/workflows/*',
-            ['../path/relative/to/file.yml'] = '/.github/workflows/*',
-            ['/path/from/root/of/project'] = '/.github/workflows/*',
-          },
-        },
-      },
-    }
-  end
-
-  result = vim.tbl_extend('force', common_opts, server_opts)
-
-  return result
-end
-
--- local nvim_lsp = require('lspconfig')
+local nvim_lsp = require('lspconfig')
+local servers = { 'sumneko_lua', 'pyright', 'cmake', 'tsserver', 'html', 'jsonls', 'vimls', 'yamlls' }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local lsp_installer_servers = require('nvim-lsp-installer.servers')
-local servers = { 'sumneko_lua', 'pyright', 'cmake', 'tsserver', 'html', 'jsonls', 'vimls', 'yamlls', 'kotlin_language_server' }
-local common_opts = {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
-for _, server_name in pairs(servers) do
-  local server_available, server = lsp_installer_servers.get_server(server_name)
-  if server_available then
-    server:on_ready(function ()
-      -- When this particular server is ready (i.e. when installation is finished or the server is already installed),
-      -- this function will be invoked. Make sure not to use the 'catch-all' lsp_installer.on_server_ready()
-      -- function to set up servers, to avoid doing setting up a server twice.
-      local opts = makeOpts(server_name, common_opts)
-      server:setup(opts)
-    end)
-
-    if not server:is_installed() then
-      server:install()
-    end
-  end
+for _, lsp in ipairs(servers) do
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = runtime_path,
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
+      },
+      yaml = {
+        schemas = {
+          ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+          ["../path/relative/to/file.yml"] = "/.github/workflows/*",
+          ["/path/from/root/of/project"] = "/.github/workflows/*",
+        },
+      },
+    },
+  }
 end
+
+-- Disable nvim lsp inline diagnostics
+-- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+--   vim.lsp.diagnostic.on_publish_diagnostics, {
+--     virtual_text = false
+--   }
+-- )
