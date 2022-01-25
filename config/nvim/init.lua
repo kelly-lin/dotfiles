@@ -14,6 +14,7 @@ require('config.nvim-tree')
 require('config.symbols-outline')
 require('config.telescope')
 require('config.lualine')
+require('config.luasnip')
 
 require('theme')
 

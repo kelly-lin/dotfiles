@@ -23,6 +23,9 @@ require('packer').startup(function(use)
   use { 'nvim-lua/completion-nvim' }
 
   use { 'machakann/vim-highlightedyank' }
+  use { 'L3MON4D3/LuaSnip' }
+  use { 'saadparwaiz1/cmp_luasnip' }
+  use { 'rafamadriz/friendly-snippets' }
 
   use { 'glepnir/dashboard-nvim' }
   use { 'nvim-lua/plenary.nvim' }
@@ -43,7 +46,6 @@ require('packer').startup(function(use)
   use { 'junegunn/fzf.vim' }
   use { 'mbbill/undotree' }
   use { 'prettier/vim-prettier', run = 'yarn install --frozen-lockfile --production' }
-  use { 'rafamadriz/friendly-snippets'  }
   use { 'svermeulen/vim-easyclip' }
   use { 'tpope/vim-unimpaired' }
   use { 'tpope/vim-commentary' }
