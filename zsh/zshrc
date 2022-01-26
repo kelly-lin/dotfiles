@@ -1,7 +1,9 @@
+  bindkey -s '^p' 'ranger\n'
 # zsh options and env variables
   export EDITOR=nvim
   export VISUAL=nvim
 
+  export PATH=$PATH:/usr/local/go/bin
   export PATH=$PATH:./node_modules/.bin
 
   unsetopt BEEP
