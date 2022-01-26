@@ -63,6 +63,7 @@ require('packer').startup(function(use)
   use { 'simrat39/symbols-outline.nvim' }
 
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
+  use { 'ggandor/lightspeed.nvim' }
 
   if should_bootsrap then
     require('packer').sync()

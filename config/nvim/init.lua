@@ -19,7 +19,7 @@ require('config.luasnip')
 require('theme')
 
 -- Globals
-g.EasyClipAutoFormat = 1
+g.EasyClipAutoFormat = 0
 g.EasyClipUseSubstituteDefaults = 1
 
 -- Undotree
