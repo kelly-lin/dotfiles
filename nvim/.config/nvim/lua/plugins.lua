@@ -28,9 +28,6 @@ require('packer').startup(function(use)
   use { 'nvim-lua/completion-nvim' }
   use { 'williamboman/nvim-lsp-installer' }
 
-  use { 'wellle/targets.vim' }
-  use { 'machakann/vim-highlightedyank' }
-
   -- Completion
   use { 'saadparwaiz1/cmp_luasnip' }
   use { 'L3MON4D3/LuaSnip' }
@@ -62,6 +59,8 @@ require('packer').startup(function(use)
   use { 'tpope/vim-fugitive' }
   use { 'tpope/vim-repeat' }
   use { 'tpope/vim-surround' }
+  use { 'wellle/targets.vim' } -- we have to source this AFTER surround, otherwise we wont be able to subsititute inside objects
+  use { 'machakann/vim-highlightedyank' }
   use { 'nvim-lualine/lualine.nvim' }
   use { 'windwp/nvim-autopairs' }
   use { 'vim-test/vim-test' }
