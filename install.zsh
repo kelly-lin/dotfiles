@@ -1,33 +1,42 @@
 #!/bin/zsh
 
-dir=${0:a:h}
+which stow &> /dev/null
+if [[ $? -ne 0 ]]; then
+  echo 'Stow is not installed, please install stow to continue'
+  exit 1
+fi
 
 echo "Installing alacritty config"
-ln -s -f $dir/alacritty/alacritty.yml ~/.alacritty.yml
+stow --target=$HOME alacritty
 
 echo "Installing tmux config"
-ln -s -f $dir/tmux/tmux.conf ~/.tmux.conf
+stow --target=$HOME tmux
 
 echo "Installing zsh config"
-ln -s -f $dir/zsh/zshrc ~/.zshrc
-
-mkdir -p ~/.zsh
-ln -s -f $dir/zsh/alias.zsh ~/.zsh/.alias.zsh
+stow --target=$HOME zsh
 
 echo "Installing dunst config"
-ln -s -f $dir/config/dunst ~/.config/dunst
+stow --target=$HOME dunst
 
 echo "Installing i3 config"
-ln -s -f $dir/config/i3 ~/.config/i3
+stow --target=$HOME i3
 
 echo "Installing nvim config"
-ln -s -f $dir/config/nvim ~/.config/nvim
+stow --target=$HOME nvim
 
 echo "Installing picom config"
-ln -s -f $dir/config/picom ~/.config/picom
+stow --target=$HOME picom
 
 echo "Installing polybar config"
-ln -s -f $dir/config/polybar ~/.config/polybar
+stow --target=$HOME polybar
+
+echo "Installing xfiles"
+stow --target=$HOME xfiles
+
+if [[ $OSTYPE == linux* ]]; then
+  echo "Installing logid"
+  stow --target='/etc/' logid
+fi
 
 echo "Install complete"
 exit 0
