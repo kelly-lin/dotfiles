@@ -20,7 +20,6 @@ require('theme')
 
 -- Globals
 g.EasyClipAutoFormat = 0
-g.EasyClipUseSubstituteDefaults = 1
 
 -- Undotree
 g.undotree_SetFocusWhenToggle = 1
@@ -133,7 +132,7 @@ map('n', '<leader>co', ':copen<CR>')
 
 -- Harpoon
 map('n', '<leader>ha', [[:lua require("harpoon.mark").add_file()<CR>:echo 'Added harpoon mark'<CR>]])
-map('n', '<leader>ha', [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]])
+map('n', [[<leader>']], [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]])
 
 -- nvim-cmp
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
@@ -178,6 +177,12 @@ map('n', '<leader>gh', ':0Gclog<CR>', { silent = true })
 map('n', '<leader>ge', ':Gedit<CR>', { silent = true })
 map('n', '<leader>gdh', ':diffget //2<CR>', { silent = true })
 map('n', '<leader>gdl', ':diffget //3<CR>', { silent = true })
+
+-- Easyclip: we are remapping to 'gs' from 's' because of a mapping clash with
+-- lightspeed
+map('n', 'gs', '<plug>SubstituteOverMotionMap', { silent = true, noremap = false })
+map('n', 'gss', '<plug>SubstituteLine', { noremap = false })
+map('x', 'gs', '<plug>XEasyClipPaste', { noremap = false })
 
 -- Search for highlighted text
 map('v', '//', [[y/V<C-R>=escape(@",'/')<CR><CR>]])
