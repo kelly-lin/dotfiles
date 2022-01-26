@@ -22,15 +22,11 @@ table.insert(runtime_path, 'lua/?.lua')
 table.insert(runtime_path, 'lua/?/init.lua')
 
 local nvim_lsp = require('lspconfig')
-local servers = { 'sumneko_lua', 'pyright', 'cmake', 'tsserver', 'html', 'jsonls', 'vimls', 'yamlls' }
+local servers = { 'sumneko_lua', 'pyright', 'tsserver', 'jsonls', 'vimls', 'yamlls' }
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-      debounce_text_changes = 150,
-    },
+  local settings = {}
+  if lsp == 'sumneko_lua' then
     settings = {
       Lua = {
         runtime = {
@@ -41,7 +37,7 @@ for _, lsp in ipairs(servers) do
         },
         diagnostics = {
           -- Get the language server to recognize the `vim` global
-          globals = {'vim'},
+          globals = { 'vim' },
         },
         workspace = {
           -- Make the server aware of Neovim runtime files
@@ -52,6 +48,11 @@ for _, lsp in ipairs(servers) do
           enable = false,
         },
       },
+    }
+  end
+
+  if lsp == 'yamlls' then
+    settings = {
       yaml = {
         schemas = {
           ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
@@ -59,7 +60,16 @@ for _, lsp in ipairs(servers) do
           ["/path/from/root/of/project"] = "/.github/workflows/*",
         },
       },
+    }
+  end
+
+  nvim_lsp[lsp].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
     },
+    settings = settings,
   }
 end
 
