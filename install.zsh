@@ -30,12 +30,12 @@ stow --target=$HOME picom
 echo "Installing polybar config"
 stow --target=$HOME polybar
 
-echo "Installing xfiles"
-stow --target=$HOME xfiles
-
 if [[ $OSTYPE == linux* ]]; then
   echo "Installing logid"
   stow --target='/etc/' logid
+
+  echo "Installing xfiles"
+  stow --target=$HOME xfiles
 fi
 
 echo "Install complete"
