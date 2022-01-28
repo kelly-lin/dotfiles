@@ -92,7 +92,7 @@ g.mapleader = ' '
 
 local nmap = require('utils').nmap
 local imap = require('utils').imap
-local xmap = require('utils').imap
+local xmap = require('utils').xmap
 local vmap = require('utils').vmap
 local tmap = require('utils').tmap
 
