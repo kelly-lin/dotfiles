@@ -11,7 +11,7 @@ end
 cmd 'packadd packer.nvim'
 cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
 
-require('packer').startup(function(use)
+return require('packer').startup(function(use)
   use { 'wbthomason/packer.nvim', opt = true }
 
   -- Fuzzy finder
@@ -64,10 +64,11 @@ require('packer').startup(function(use)
   use { 'nvim-lualine/lualine.nvim' }
   use { 'windwp/nvim-autopairs' }
   use { 'vim-test/vim-test' }
-  use { 'voldikss/vim-floaterm' }
   use { 'simrat39/symbols-outline.nvim' }
   use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
   use { 'ggandor/lightspeed.nvim' }
+  use { 'akinsho/toggleterm.nvim' }
+  use { 'sbdchd/neoformat' }
 
   -- Themes
   use { 'navarasu/onedark.nvim' }
@@ -76,6 +77,6 @@ require('packer').startup(function(use)
   if should_bootsrap then
     require('packer').sync()
   end
-end)
 
-cmd 'PackerInstall'
+  cmd 'PackerInstall'
+end)

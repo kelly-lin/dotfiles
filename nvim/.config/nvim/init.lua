@@ -15,6 +15,7 @@ require('config.symbols-outline')
 require('config.telescope')
 require('config.lualine')
 require('config.luasnip')
+require('config.toggleterm')
 
 require('theme')
 
@@ -105,6 +106,7 @@ cmd [[inoremap <expr> <C-k> ("\<C-p>")]]
 cmd [[cnoremap <expr> <C-j> ("\<C-n>")]]
 cmd [[cnoremap <expr> <C-k> ("\<C-p>")]]
 
+-- Store relative jumps in the jump list
 cmd [[nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k']]
 cmd [[nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j']]
 
@@ -120,6 +122,9 @@ nmap('[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
 nmap(']d', '<cmd>lua vim.diagnostic.goto_next()<CR>')
 
 nmap('<C-s>', ':w<CR>')
+
+nmap('<leader>FQ', ':qa!<CR>')
+vmap('<C-r>', ':s/\\%V')
 
 nmap('<M-j>', ':resize -5<CR>')
 nmap('<M-k>', ':resize +5<CR>')
@@ -202,10 +207,6 @@ nmap('<leader>sl', ':<C-u>SessionLoad<CR>')
 
 -- Symbols outline
 nmap('<leader>o', ':SymbolsOutline<CR>', { silent = true })
-
--- Floaterm
-nmap('``', ':FloatermToggle<CR>', { silent = true })
-tmap('``', [[<C-\><C-n>:FloatermToggle<cr>]], { silent = true })
 
 if (fn.has('macunix')) then
   opt.clipboard = 'unnamed'
