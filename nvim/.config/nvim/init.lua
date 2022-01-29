@@ -180,7 +180,7 @@ nmap("<leader>z", ":UndotreeToggle<CR>", { silent = true })
 
 -- Git fugitive
 nmap("<leader>gb", ":Git blame<CR>", { silent = true })
-nmap("<leader>gd", ":Gvdiffsplit<CR>", { silent = true })
+nmap("<leader>gd<CR>", ":Gvdiffsplit<CR>", { silent = true })
 nmap("<leader>gs", ":Git<CR>", { silent = true })
 nmap("<leader>gf", ":GF?<CR>", { silent = true })
 nmap("<leader>gc", ":Git commit<CR>", { silent = true })
