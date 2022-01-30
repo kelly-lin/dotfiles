@@ -179,15 +179,16 @@ nmap('<leader>fkm', '<cmd>Telescope keymaps<CR>')
 nmap('<leader>z', ':UndotreeToggle<CR>', { silent = true })
 
 -- Git fugitive
-nmap('<leader>gb', ':Git blame<CR>', { silent = true })
-nmap('<leader>gd', ':Gvdiffsplit<CR>', { silent = true })
-nmap('<leader>gs', ':Git<CR>', { silent = true })
-nmap('<leader>gf', ':GF?<CR>', { silent = true })
-nmap('<leader>gc', ':Git commit<CR>', { silent = true })
-nmap('<leader>gh', ':0Gclog<CR>', { silent = true })
-nmap('<leader>ge', ':Gedit<CR>', { silent = true })
-nmap('<leader>gdh', ':diffget //2<CR>', { silent = true })
-nmap('<leader>gdl', ':diffget //3<CR>', { silent = true })
+nmap("<leader>gb", ":Git blame<CR>", { silent = true })
+nmap("<leader>gd<CR>", ":Gvdiffsplit<CR>", { silent = true })
+nmap("<leader>gs", ":Git<CR>", { silent = true })
+nmap("<leader>gf", ":GF?<CR>", { silent = true })
+nmap("<leader>gc", ":Git commit<CR>", { silent = true })
+nmap("<leader>gh", ":0Gclog<CR>", { silent = true })
+nmap("<leader>ge", ":Gedit<CR>", { silent = true })
+nmap("<leader>gm", ":Gdiffsplit!<CR>", { silent = true })
+nmap("<leader>gdh", ":diffget //2<CR>", { silent = true })
+nmap("<leader>gdl", ":diffget //3<CR>", { silent = true })
 
 -- Easyclip: we are remapping to 'gs' from 's' because of a mapping clash with
 -- lightspeed

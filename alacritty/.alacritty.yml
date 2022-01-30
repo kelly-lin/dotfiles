@@ -1,11 +1,18 @@
 # Font
+window:
+  decorations: none
+  opacity: 0.97
+  startup_mode: Maximized
+
 font:
+  family: monospace
   normal:
-    family: JetBrainsMono Nerd Font Mono
-  size: 11.5
+    family: JetBrainsMonoNL Nerd Font
+  size: 16
 
 # Colors (One Dark - custom)
 colors:
+  transparent_background_colors: true
   # Default colors
   primary:
     background: '#1f2329'
