@@ -1,4 +1,4 @@
-require("toggleterm").setup {
-  size = 25,
-  open_mapping = [[``]],
-}
+require("toggleterm").setup({
+	size = 25,
+	open_mapping = [[``]],
+})

@@ -1,82 +1,92 @@
-local fn = vim.fn    -- to call Vim functions e.g. fn.bufnr()
-local cmd = vim.cmd  -- to execute Vim commands e.g. cmd('pwd')
+local fn = vim.fn -- to call Vim functions e.g. fn.bufnr()
+local cmd = vim.cmd -- to execute Vim commands e.g. cmd('pwd')
 
 -- Auto install packer.nvim if not exists
-local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+local install_path = fn.stdpath("data") .. "/site/pack/packer/opt/packer.nvim"
 local should_bootsrap = false
 if fn.empty(fn.glob(install_path)) > 0 then
-  should_bootsrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+	should_bootsrap = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
 end
 
-cmd 'packadd packer.nvim'
-cmd 'autocmd BufWritePost plugins.lua PackerCompile' -- Auto compile when there are changes in plugins.lua
+cmd("packadd packer.nvim")
+cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
 
-return require('packer').startup(function(use)
-  use { 'wbthomason/packer.nvim', opt = true }
+return require("packer").startup(function(use)
+	use({ "wbthomason/packer.nvim", opt = true })
 
-  -- Fuzzy finder
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/popup.nvim'}, { 'nvim-lua/plenary.nvim' } }
-  }
-  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use { 'junegunn/fzf' }
-  use { 'junegunn/fzf.vim' }
+	-- Fuzzy finder
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
+	})
+	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
+	use({ "junegunn/fzf" })
+	use({ "junegunn/fzf.vim" })
 
-  -- LSP
-  use { 'neovim/nvim-lspconfig' }
-  use { 'nvim-lua/completion-nvim' }
-  use { 'williamboman/nvim-lsp-installer' }
+	-- LSP
+	use({ "neovim/nvim-lspconfig" })
+	use({ "nvim-lua/completion-nvim" })
+	use({ "williamboman/nvim-lsp-installer" })
 
-  -- Completion
-  use { 'saadparwaiz1/cmp_luasnip' }
-  use { 'L3MON4D3/LuaSnip' }
-  use { 'rafamadriz/friendly-snippets' }
-  use { 'hrsh7th/cmp-nvim-lsp' }
-  use { 'hrsh7th/cmp-buffer' }
-  use { 'hrsh7th/cmp-path' }
-  use { 'hrsh7th/cmp-cmdline' }
-  use { 'hrsh7th/nvim-cmp' }
+	-- Completion
+	use({ "saadparwaiz1/cmp_luasnip" })
+	use({ "L3MON4D3/LuaSnip" })
+	use({ "rafamadriz/friendly-snippets" })
+	use({ "hrsh7th/cmp-nvim-lsp" })
+	use({ "hrsh7th/cmp-buffer" })
+	use({ "hrsh7th/cmp-path" })
+	use({ "hrsh7th/cmp-cmdline" })
+	use({ "hrsh7th/nvim-cmp" })
 
-  -- File explorer
-  use { 'kyazdani42/nvim-web-devicons' }
-  use { 'kyazdani42/nvim-tree.lua' }
+	-- File explorer
+	use({ "kyazdani42/nvim-web-devicons" })
+	use({ "kyazdani42/nvim-tree.lua" })
 
-  -- Dashboard
-  use { 'glepnir/dashboard-nvim' }
+	-- Dashboard
+	use({ "glepnir/dashboard-nvim" })
 
-  -- Utility
-  use { 'airblade/vim-gitgutter' }
-  use { 'nvim-lua/plenary.nvim' }
-  use { 'ThePrimeagen/harpoon' }
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-  use { 'christoomey/vim-tmux-navigator' }
-  use { 'mbbill/undotree' }
-  use { 'prettier/vim-prettier', run = 'yarn install --frozen-lockfile --production' }
-  use { 'svermeulen/vim-easyclip' }
-  use { 'tpope/vim-unimpaired' }
-  use { 'tpope/vim-commentary' }
-  use { 'tpope/vim-fugitive' }
-  use { 'tpope/vim-repeat' }
-  use { 'tpope/vim-surround' }
-  use { 'wellle/targets.vim' } -- we have to source this AFTER surround, otherwise we wont be able to subsititute inside objects
-  use { 'machakann/vim-highlightedyank' }
-  use { 'nvim-lualine/lualine.nvim' }
-  use { 'windwp/nvim-autopairs' }
-  use { 'vim-test/vim-test' }
-  use { 'simrat39/symbols-outline.nvim' }
-  use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install' }
-  use { 'ggandor/lightspeed.nvim' }
-  use { 'akinsho/toggleterm.nvim' }
-  use { 'sbdchd/neoformat' }
+	-- Utility
+	use({ "airblade/vim-gitgutter" })
+	use({ "nvim-lua/plenary.nvim" })
+	use({ "ThePrimeagen/harpoon" })
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
+	use({ "christoomey/vim-tmux-navigator" })
+	use({ "mbbill/undotree" })
+	use({ "prettier/vim-prettier", run = "yarn install --frozen-lockfile --production" })
+	use({ "svermeulen/vim-easyclip" })
+	use({ "tpope/vim-unimpaired" })
+	use({ "tpope/vim-commentary" })
+	use({ "tpope/vim-fugitive" })
+	use({ "tpope/vim-repeat" })
+	use({ "tpope/vim-surround" })
+	use({ "wellle/targets.vim" }) -- we have to source this AFTER surround, otherwise we wont be able to subsititute inside objects
+	use({ "machakann/vim-highlightedyank" })
+	use({ "nvim-lualine/lualine.nvim" })
+	use({ "windwp/nvim-autopairs" })
+	use({ "vim-test/vim-test" })
+	use({ "simrat39/symbols-outline.nvim" })
+	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
+	use({ "ggandor/lightspeed.nvim" })
+	use({ "akinsho/toggleterm.nvim" })
 
-  -- Themes
-  use { 'navarasu/onedark.nvim' }
-  use { 'morhetz/gruvbox' }
+	-- Formatters
+	use({ "sbdchd/neoformat" })
+	use({ "ckipp01/stylua-nvim" })
 
-  if should_bootsrap then
-    require('packer').sync()
-  end
+	-- Themes
+	use({ "navarasu/onedark.nvim" })
+	use({ "morhetz/gruvbox" })
 
-  cmd 'PackerInstall'
+	if should_bootsrap then
+		require("packer").sync()
+	end
+
+	cmd("PackerInstall")
 end)

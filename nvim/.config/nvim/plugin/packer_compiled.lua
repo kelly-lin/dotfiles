@@ -210,6 +210,11 @@ _G.packer_plugins = {
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["stylua-nvim"] = {
+    loaded = true,
+    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/stylua-nvim",
+    url = "https://github.com/ckipp01/stylua-nvim"
+  },
   ["symbols-outline.nvim"] = {
     loaded = true,
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/symbols-outline.nvim",
@@ -249,11 +254,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/vim-easyclip",
     url = "https://github.com/svermeulen/vim-easyclip"
-  },
-  ["vim-floaterm"] = {
-    loaded = true,
-    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/vim-floaterm",
-    url = "https://github.com/voldikss/vim-floaterm"
   },
   ["vim-fugitive"] = {
     loaded = true,
