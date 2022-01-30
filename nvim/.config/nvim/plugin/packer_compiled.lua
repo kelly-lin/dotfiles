@@ -149,6 +149,11 @@ _G.packer_plugins = {
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
+  neoformat = {
+    loaded = true,
+    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/neoformat",
+    url = "https://github.com/sbdchd/neoformat"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -224,6 +229,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
   },
   undotree = {
     loaded = true,
