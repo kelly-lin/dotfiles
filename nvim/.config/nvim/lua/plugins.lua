@@ -53,7 +53,7 @@ return require("packer").startup(function(use)
 	use({ "glepnir/dashboard-nvim" })
 
 	-- Utility
-	use({ "airblade/vim-gitgutter" })
+	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "ThePrimeagen/harpoon" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -79,6 +79,10 @@ return require("packer").startup(function(use)
 	-- Formatters
 	use({ "sbdchd/neoformat" })
 	use({ "ckipp01/stylua-nvim" })
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
 	-- Themes
 	use({ "navarasu/onedark.nvim" })

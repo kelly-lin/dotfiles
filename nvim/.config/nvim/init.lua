@@ -16,6 +16,8 @@ require("config.telescope")
 require("config.lualine")
 require("config.luasnip")
 require("config.toggleterm")
+require("config.null-ls")
+require("config.gitsigns")
 
 require("theme")
 
