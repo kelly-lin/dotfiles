@@ -4,21 +4,6 @@ local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options-- Map leader to space
 
 require("plugins")
-
-require("config.completion")
-require("config.lsp")
-require("config.tree-sitter")
-require("config.auto-pairs")
-require("config.harpoon")
-require("config.nvim-tree")
-require("config.symbols-outline")
-require("config.telescope")
-require("config.lualine")
-require("config.luasnip")
-require("config.toggleterm")
-require("config.null-ls")
-require("config.gitsigns")
-
 require("theme")
 
 -- Globals

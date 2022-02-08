@@ -18,7 +18,7 @@ end
 cmd("packadd packer.nvim")
 cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
 
-return require("packer").startup(function(use)
+require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim", opt = true })
 
 	-- Fuzzy finder
@@ -94,3 +94,17 @@ return require("packer").startup(function(use)
 
 	cmd("PackerInstall")
 end)
+
+require("config.completion")
+require("config.lsp")
+require("config.tree-sitter")
+require("config.auto-pairs")
+require("config.harpoon")
+require("config.nvim-tree")
+require("config.symbols-outline")
+require("config.telescope")
+require("config.lualine")
+require("config.luasnip")
+require("config.toggleterm")
+require("config.null-ls")
+require("config.gitsigns")
