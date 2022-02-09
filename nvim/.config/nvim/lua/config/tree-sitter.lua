@@ -3,7 +3,7 @@ if not treesitter_loaded then
   return
 end
 
-treesitter.configs.setup({
+treesitter.setup({
 	ensure_installed = "maintained",
 	sync_install = false,
 	highlight = {
