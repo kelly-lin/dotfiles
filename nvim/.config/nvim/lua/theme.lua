@@ -1,4 +1,9 @@
-require("onedark").setup({
+local onedark_loaded, onedark = pcall(require, "onedark")
+if not onedark_loaded then
+	return
+end
+
+onedark.setup({
 	-- Main options --
 	style = "darker", -- Default theme style. Choose between 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer' and 'light'
 	transparent = false, -- Show/hide background

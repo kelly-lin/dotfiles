@@ -1,5 +1,12 @@
-local luasnip = require("luasnip")
-local cmp = require("cmp")
+local luasnip_loaded, luasnip = pcall(require, "luasnip")
+if not luasnip_loaded then
+  return
+end
+
+local cmp_loaded, cmp = pcall(require, "cmp")
+if not cmp_loaded then
+  return
+end
 
 local t = function(str)
 	return vim.api.nvim_replace_termcodes(str, true, true, true)

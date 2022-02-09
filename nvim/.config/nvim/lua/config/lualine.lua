@@ -1,4 +1,9 @@
-require("lualine").setup({
+local lualine_loaded, lualine = pcall(require, "lualine")
+if not lualine_loaded then
+  return
+end
+
+lualine.setup({
 	options = {
 		theme = "onedark",
 		disabled_filetypes = { "NvimTree", "Outline", "dashboard" },

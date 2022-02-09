@@ -1,4 +1,9 @@
-require("null-ls").setup({
+local null_ls_loaded, null_ls = pcall(require, "null-ls")
+if not null_ls_loaded then
+  return
+end
+
+null_ls.setup({
   sources = {
     require("null-ls").builtins.formatting.stylua,
     require("null-ls").builtins.formatting.prettier,

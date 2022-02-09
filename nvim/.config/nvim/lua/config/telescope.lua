@@ -1,6 +1,11 @@
+local telescope_loaded, telescope = pcall(require, "telescope")
+if not telescope_loaded then
+  return
+end
+
 local actions = require("telescope.actions")
 
-require("telescope").setup({
+telescope.setup({
 	defaults = {
 		mappings = {
 			i = {
@@ -23,4 +28,4 @@ require("telescope").setup({
 	},
 })
 
-require("telescope").load_extension("fzf")
+telescope.load_extension("fzf")

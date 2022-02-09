@@ -1,3 +1,8 @@
+local nvim_lsp_loaded, nvim_lsp = pcall(require, "lspconfig")
+if not nvim_lsp_loaded then
+	return
+end
+
 local bmap = require("utils").bmap
 
 local function on_attach(client, bufnr)
@@ -7,7 +12,7 @@ local function on_attach(client, bufnr)
 	bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
 	bmap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { silent = true })
 	bmap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", { silent = true })
-	bmap(bufnr, "n", "f<CR>", "<cmd>vim.lsp.buf.formatting()<CR>", { silent = true })
+	bmap(bufnr, "n", "f<CR>", "<cmd>lua vim.lsp.buf.formatting()<CR>", { silent = true })
 	-- bmap(bufnr, 'n', '<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { silent = true })
 	-- bmap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', { silent = true })
 	-- bmap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', { silent = true })
@@ -17,15 +22,14 @@ local function on_attach(client, bufnr)
 	bmap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { silent = true })
 	bmap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { silent = true })
 
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
+	client.resolved_capabilities.document_formatting = false
+	client.resolved_capabilities.document_range_formatting = false
 end
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-local nvim_lsp = require("lspconfig")
 local servers = { "sumneko_lua", "pyright", "tsserver", "jsonls", "vimls", "yamlls", "solargraph" }
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 for _, lsp in ipairs(servers) do

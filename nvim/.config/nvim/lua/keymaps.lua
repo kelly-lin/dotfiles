@@ -105,10 +105,6 @@ xmap("gs", "<plug>XEasyClipPaste", { noremap = false })
 -- Search for highlighted text
 vmap("//", [[y/V<C-R>=escape(@",'/')<CR><CR>]])
 
--- Format buffer (this is very hacky, we should look into getting the lsp to do
--- this for us)
-nmap("<leader>f<CR>", ":lua require('kl.format').format()<CR>", { silent = true })
-
 -- Dashboard
 nmap("<leader>ss", ":<C-u>SessionSave<CR>")
 nmap("<leader>sl", ":<C-u>SessionLoad<CR>")
