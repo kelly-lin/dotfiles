@@ -270,11 +270,6 @@ _G.packer_plugins = {
     path = "/Users/kelly.lin/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
-  ["vim-highlightedyank"] = {
-    loaded = true,
-    path = "/Users/kelly.lin/.local/share/nvim/site/pack/packer/start/vim-highlightedyank",
-    url = "https://github.com/machakann/vim-highlightedyank"
-  },
   ["vim-prettier"] = {
     loaded = true,
     path = "/Users/kelly.lin/.local/share/nvim/site/pack/packer/start/vim-prettier",

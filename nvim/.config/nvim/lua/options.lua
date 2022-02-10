@@ -43,6 +43,8 @@ opt.colorcolumn = "80"
 cmd("autocmd FileType gitcommit set colorcolumn+=51")
 cmd("autocmd FileType gitcommit set colorcolumn=73")
 
+cmd("autocmd TextYankPost * silent! lua vim.highlight.on_yank { timeout = 500 }")
+
 -- Keybindings
 -- Leader key
 g.mapleader = " "
