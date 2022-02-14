@@ -7,6 +7,10 @@ fi
 alias ll='ls -alh'
 alias la='ls -ah'
 
+# diff tools
+alias diff='colordiff'
+alias wdiff="wdiff -n -w $'\033[30;41m' -x $'\033[0m' -y $'\033[30;42m' -z $'\033[0m'"
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
