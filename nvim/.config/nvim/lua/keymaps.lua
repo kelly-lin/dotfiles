@@ -20,7 +20,6 @@ cmd([[nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k']])
 cmd([[nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j']])
 
 -- Edit and source vimrc
-nmap("<leader>ev", ":vsplit $MYVIMRC<CR>", { silent = true })
 nmap("<leader>sv", ":source $MYVIMRC<CR>")
 
 -- Need to remap set marker binding as a workaround for vim-unimpaired
@@ -81,12 +80,18 @@ nmap("<leader>fbc", "<cmd>Telescope git_bcommits<CR>")
 nmap("<leader>fr", "<cmd>Telescope lsp_references<CR>")
 nmap("<leader>fkm", "<cmd>Telescope keymaps<CR>")
 
+nmap(
+	"<leader>fv",
+	":lua require('telescope.builtin').find_files( { cwd = vim.fn.stdpath('config') })<CR>",
+	{ silent = true }
+)
+
 -- Undotree
 nmap("<leader>z", ":UndotreeToggle<CR>", { silent = true })
 
 -- Git fugitive
 nmap("<leader>gb", ":Git blame<CR>", { silent = true })
-nmap("<leader>gd<CR>", ":Gvdiffsplit<CR>", { silent = true })
+nmap("<leader>gds", ":Gvdiffsplit<CR>", { silent = true })
 nmap("<leader>gs", ":Git<CR>", { silent = true })
 nmap("<leader>gf", ":GF?<CR>", { silent = true })
 nmap("<leader>gc", ":Git commit<CR>", { silent = true })
