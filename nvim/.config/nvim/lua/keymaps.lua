@@ -58,7 +58,7 @@ nmap([[<leader>']], [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]])
 nmap("<leader>gdw <C-w>v:lua", "vim.lsp.buf.definition()<CR>", { silent = true })
 
 -- nvim-tree
-nmap("<leader>t", ":NvimTreeToggle<CR>", { silent = true })
+nmap("<leader>ef", ":NvimTreeToggle<CR>", { silent = true })
 
 nmap("<leader>ag", ":Ag<space>")
 
