@@ -19,6 +19,9 @@ cmd([[cnoremap <expr> <C-k> ("\<C-p>")]])
 cmd([[nnoremap <expr> k (v:count > 1 ? "m'" . v:count : '') . 'k']])
 cmd([[nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j']])
 
+-- Reload all buffers
+nmap("<leader>rbs", ":bufdo e")
+
 -- Edit and source vimrc
 nmap("<leader>sv", ":source $MYVIMRC<CR>")
 
