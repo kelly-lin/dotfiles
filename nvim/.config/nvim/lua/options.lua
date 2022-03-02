@@ -43,7 +43,6 @@ opt.colorcolumn = "80"
 cmd("autocmd FileType gitcommit set colorcolumn+=51")
 cmd("autocmd FileType gitcommit set colorcolumn=73")
 cmd("autocmd TextYankPost * silent! lua vim.highlight.on_yank { timeout = 500 }")
-
 cmd("autocmd! BufEnter * if &ft ==# 'help' | wincmd L | endif") -- Open help in a vertical split
 
 -- Keybindings
