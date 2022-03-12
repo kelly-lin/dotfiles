@@ -29,6 +29,7 @@ alias evim='$EDITOR ~/.config/nvim/init.vim'
 alias ezsh='$EDITOR ~/.zshrc'
 alias szsh='source ~/.zshrc'
 
+alias grp="cd ~/ghq"
 alias rp="cd ~/Repos"
 alias prp="cd ~/Repos/personal"
 
