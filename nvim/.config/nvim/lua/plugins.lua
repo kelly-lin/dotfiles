@@ -72,7 +72,7 @@ require("packer").startup(function(use)
 	use({ "vim-test/vim-test" })
 	use({ "simrat39/symbols-outline.nvim" })
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
-	use({ "ggandor/lightspeed.nvim" })
+	use({ "ggandor/lightspeed.nvim", commit = "0b655" })
 	use({ "akinsho/toggleterm.nvim" })
 
 	-- Formatters
