@@ -7,8 +7,8 @@ window:
 font:
   family: monospace
   normal:
-    family: JetBrainsMonoNL Nerd Font
-  size: 16
+    family: JetBrainsMonoNL Nerd Font Mono
+  size: 11.5
 
 # Colors (One Dark - custom)
 colors:
