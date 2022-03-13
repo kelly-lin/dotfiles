@@ -93,7 +93,7 @@
   bindkey -M vicmd v edit-command-line
   
 # Aliases
-  source ~/.config/zsh/alias.zsh
+  [[ -f $HOME/.config/zsh/alias.zsh ]] && source $HOME/.config/zsh/alias.zsh
 
 # Zinit
   ## Start of Zinit's installer chunk
@@ -131,9 +131,7 @@
   zinit light zsh-users/zsh-autosuggestions
   zinit light zsh-users/zsh-syntax-highlighting # must be loaded last in plugins
 
-# Source local environment scripts
-  if [[ -f $HOME/.config/zsh/local-env.zsh ]]; then
-    source ~/.config/zsh/local-env.zsh
-  fi
+# Source local configs
+[[ -f $HOME/.local/zsh/.zshrc ]] && source $HOME/.local/zsh/.zshrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

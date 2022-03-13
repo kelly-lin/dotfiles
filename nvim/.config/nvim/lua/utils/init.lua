@@ -43,4 +43,12 @@ function M.tmap(lhs, rhs, opts)
   vim.api.nvim_set_keymap('t', lhs, rhs, options)
 end
 
+function M.require_guard(module)
+  local ok, result = pcall(require, module)
+  if not ok then
+    return
+  end
+  return result
+end
+
 return M

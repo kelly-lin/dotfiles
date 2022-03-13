@@ -1,4 +1,8 @@
-local cmp = require("cmp")
+local cmp_loaded, cmp = pcall(require, "cmp")
+if not cmp_loaded then
+	return
+end
+
 cmp.setup({
 	snippet = {
 		expand = function(args)

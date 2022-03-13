@@ -18,7 +18,7 @@ end
 cmd("packadd packer.nvim")
 cmd("autocmd BufWritePost plugins.lua PackerCompile") -- Auto compile when there are changes in plugins.lua
 
-return require("packer").startup(function(use)
+require("packer").startup(function(use)
 	use({ "wbthomason/packer.nvim", opt = true })
 
 	-- Fuzzy finder
@@ -53,7 +53,7 @@ return require("packer").startup(function(use)
 	use({ "glepnir/dashboard-nvim" })
 
 	-- Utility
-	use({ "airblade/vim-gitgutter" })
+	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "ThePrimeagen/harpoon" })
 	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -67,18 +67,21 @@ return require("packer").startup(function(use)
 	use({ "tpope/vim-repeat" })
 	use({ "tpope/vim-surround" })
 	use({ "wellle/targets.vim" }) -- we have to source this AFTER surround, otherwise we wont be able to subsititute inside objects
-	use({ "machakann/vim-highlightedyank" })
 	use({ "nvim-lualine/lualine.nvim" })
 	use({ "windwp/nvim-autopairs" })
 	use({ "vim-test/vim-test" })
 	use({ "simrat39/symbols-outline.nvim" })
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
-	use({ "ggandor/lightspeed.nvim" })
+	use({ "ggandor/lightspeed.nvim", commit = "0b655" })
 	use({ "akinsho/toggleterm.nvim" })
 
 	-- Formatters
 	use({ "sbdchd/neoformat" })
 	use({ "ckipp01/stylua-nvim" })
+	use({
+		"jose-elias-alvarez/null-ls.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
 
 	-- Themes
 	use({ "navarasu/onedark.nvim" })
@@ -90,3 +93,21 @@ return require("packer").startup(function(use)
 
 	cmd("PackerInstall")
 end)
+
+require("config.completion")
+require("config.lsp")
+require("config.tree-sitter")
+require("config.auto-pairs")
+require("config.harpoon")
+require("config.nvim-tree")
+require("config.symbols-outline")
+require("config.telescope")
+require("config.lualine")
+require("config.luasnip")
+require("config.toggleterm")
+require("config.null-ls")
+require("config.gitsigns")
+require("config.dashboard")
+require("config.easyclip")
+require("config.undotree")
+require("config.prettier")

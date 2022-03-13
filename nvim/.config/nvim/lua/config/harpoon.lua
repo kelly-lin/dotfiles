@@ -1,4 +1,9 @@
-require("harpoon").setup({
+local harpoon_loaded, harpoon = pcall(require, "harpoon")
+if not harpoon_loaded then
+	return
+end
+
+harpoon.setup({
 	-- sets the marks upon calling `toggle` on the ui, instead of require `:w`.
 	save_on_toggle = false,
 	-- saves the harpoon file upon every change. disabling is unrecommended.

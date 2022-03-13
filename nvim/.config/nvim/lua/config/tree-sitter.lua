@@ -1,4 +1,9 @@
-require("nvim-treesitter.configs").setup({
+local treesitter_loaded, treesitter = pcall(require, "nvim-treesitter.configs")
+if not treesitter_loaded then
+  return
+end
+
+treesitter.setup({
 	ensure_installed = "maintained",
 	sync_install = false,
 	highlight = {
