@@ -15,9 +15,23 @@ stow --target=$HOME zsh
 echo "Installing nvim config"
 stow --target=$HOME nvim
 
+if [[ $OSTYPE == "darwin" ]]; then
+  echo "Installing alacritty config"
+  cd ./alacritty
+  stow --target=$HOME mac-osx
+  cd -
+
+  echo "Installing fonts"
+  cd ./fonts
+  stow --target=$HOME mac-osx
+  cd -
+fi
+
 if [[ $OSTYPE == linux* ]]; then
   echo "Installing alacritty config"
-  stow --target=$HOME alacritty
+  cd ./alacritty
+  stow --target=$HOME linux
+  cd -
 
   echo "Installing dunst config"
   stow --target=$HOME dunst
@@ -36,6 +50,11 @@ if [[ $OSTYPE == linux* ]]; then
 
   echo "Installing xfiles"
   stow --target=$HOME xfiles
+
+  echo "Installing fonts"
+  cd ./fonts
+  stow --target=$HOME linux
+  cd -
 fi
 
 echo "Install complete"
