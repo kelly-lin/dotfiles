@@ -5,10 +5,19 @@ window:
   startup_mode: Maximized
 
 font:
-  family: monospace
+  size: 12
+
   normal:
     family: JetBrainsMonoNL Nerd Font Mono
-  size: 11.5
+    style: Regular
+
+  bold:
+    family: JetBrainsMonoNL Nerd Font Mono
+    style: Bold
+
+  italic:
+    family: JetBrainsMonoNL Nerd Font Mono
+    style: Italic
 
 # Colors (One Dark - custom)
 colors:
