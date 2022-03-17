@@ -5,7 +5,6 @@ end
 
 lualine.setup({
 	options = {
-		theme = "onedark",
 		disabled_filetypes = { "NvimTree", "Outline", "dashboard" },
 	},
 	sections = {
