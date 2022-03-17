@@ -23,7 +23,7 @@ cmd([[nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j']])
 nmap("<leader>rbs", ":bufdo e")
 
 -- Edit and source vimrc
-nmap("<leader>ev", [[:lua require('telescope.builtin').find_files({ cwd = "~/.config/nvim/"})<CR>]])
+nmap("<leader>ev", [[:lua require('telescope.builtin').find_files({ cwd = "~/.config/nvim/"})<CR>]], { silent = true })
 nmap("<leader>sv", ":source $MYVIMRC<CR>")
 
 -- Need to remap set marker binding as a workaround for vim-unimpaired
