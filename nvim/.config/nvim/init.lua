@@ -5,6 +5,8 @@ local sources = {
 	"keymaps",
 }
 
+vim.cmd([[command! -nargs=1 Ag lua require('telescope.ag').ag(<q-args>)]])
+
 for _, source in ipairs(sources) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
