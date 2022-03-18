@@ -3,6 +3,7 @@ local finders = require("telescope.finders")
 local conf = require("telescope.config").values
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
+local utils = require("telescope.utils")
 
 local M = {}
 
@@ -12,9 +13,21 @@ function M.ag(text_to_find)
 			local split = vim.split(entry, ":")
 			local filepath = vim.fn.getcwd() .. "/" .. split[1]
 			local line_num = tonumber(split[2])
+			local display = function(entry)
+				local hl_group
+				local display = utils.transform_path({}, entry.value)
+
+				display, hl_group = utils.transform_devicons(entry.path, display, false)
+
+				if hl_group then
+					return display, { { { 1, 3 }, hl_group } }
+				else
+					return display
+				end
+			end
 			return {
 				value = entry,
-				display = entry,
+				display = display,
 				ordinal = filepath,
 				path = filepath,
 				lnum = line_num,
