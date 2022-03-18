@@ -53,6 +53,8 @@ function M.ag(text_to_find)
 	}):find()
 end
 
-M.ag()
-
-return M
+return require("telescope").register_extension({
+	exports = {
+		search = M.ag,
+	},
+})
