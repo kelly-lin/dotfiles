@@ -3,7 +3,7 @@ if not nvim_lsp_loaded then
 	return
 end
 
-local bmap = require("utils").bmap
+local bmap = require("utils.keymaps").bmap
 
 local function on_attach(client, bufnr)
 	-- Mappings.

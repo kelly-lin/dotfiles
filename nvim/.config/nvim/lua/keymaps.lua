@@ -1,9 +1,9 @@
 local cmd = vim.cmd
-local nmap = require("utils").nmap
-local imap = require("utils").imap
-local xmap = require("utils").xmap
-local vmap = require("utils").vmap
-local tmap = require("utils").tmap
+local nmap = require("utils.keymaps").nmap
+local imap = require("utils.keymaps").imap
+local xmap = require("utils.keymaps").xmap
+local vmap = require("utils.keymaps").vmap
+local tmap = require("utils.keymaps").tmap
 
 imap("jk", "<ESC>") -- exit insert mode
 
