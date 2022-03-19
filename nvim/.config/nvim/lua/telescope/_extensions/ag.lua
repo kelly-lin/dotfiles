@@ -11,25 +11,25 @@ function M.ag(text_to_find)
 	local default_opts = {
 		entry_maker = function(entry)
 			local split = vim.split(entry, ":")
-			local filepath = vim.fn.getcwd() .. "/" .. split[1]
+			local rel_filepath = split[1]
+			local abs_filepath = vim.fn.getcwd() .. "/" .. rel_filepath
 			local line_num = tonumber(split[2])
-			local display = function(entry)
-				local hl_group
-				local display = utils.transform_path({}, entry.value)
-
-				display, hl_group = utils.transform_devicons(entry.path, display, false)
-
-				if hl_group then
-					return display, { { { 1, 3 }, hl_group } }
-				else
-					return display
-				end
-			end
 			return {
 				value = entry,
-				display = display,
-				ordinal = filepath,
-				path = filepath,
+				display = function(display_entry)
+					local hl_group
+					local display = utils.transform_path({}, display_entry.value)
+
+					display, hl_group = utils.transform_devicons(display_entry.path, display, false)
+
+					if hl_group then
+						return display, { { { 1, 3 }, hl_group } }
+					else
+						return display
+					end
+				end,
+				ordinal = rel_filepath,
+				path = abs_filepath,
 				lnum = line_num,
 			}
 		end,
