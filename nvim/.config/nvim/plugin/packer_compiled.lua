@@ -205,6 +205,11 @@ _G.packer_plugins = {
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["popup.nvim"] = {
+    loaded = true,
+    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    url = "https://github.com/nvim-lua/popup.nvim"
+  },
   ["stylua-nvim"] = {
     loaded = true,
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/stylua-nvim",
@@ -219,6 +224,21 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kelly/.local/share/nvim/site/pack/packer/start/targets.vim",
     url = "https://github.com/wellle/targets.vim"
+  },
+  ["telescope-ag"] = {
+    loaded = true,
+    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/telescope-ag",
+    url = "https://github.com/kelly-lin/telescope-ag"
+  },
+  ["telescope-fzf-native.nvim"] = {
+    loaded = true,
+    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/kelly/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["toggleterm.nvim"] = {
     loaded = true,

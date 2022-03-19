@@ -27,7 +27,7 @@ require("packer").startup(function(use)
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({ "kelly-lin/telescope-ag" })
+	use({ "kelly-lin/telescope-ag", requires = { { "nvim-telescope/telescope.nvim" } } })
 
 	-- LSP
 	use({ "neovim/nvim-lspconfig" })
