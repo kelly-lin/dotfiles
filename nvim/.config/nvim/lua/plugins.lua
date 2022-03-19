@@ -27,8 +27,8 @@ require("packer").startup(function(use)
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({ "junegunn/fzf" })
-	use({ "junegunn/fzf.vim" })
+	-- use({ "junegunn/fzf" })
+	-- use({ "junegunn/fzf.vim" })
 
 	-- LSP
 	use({ "neovim/nvim-lspconfig" })
@@ -103,7 +103,6 @@ require("config.nvim-tree")
 require("config.symbols-outline")
 require("config.telescope")
 require("config.lualine")
-require("config.luasnip")
 require("config.toggleterm")
 require("config.null-ls")
 require("config.gitsigns")

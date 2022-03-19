@@ -1,9 +1,9 @@
 local cmd = vim.cmd
-local nmap = require("utils").nmap
-local imap = require("utils").imap
-local xmap = require("utils").xmap
-local vmap = require("utils").vmap
-local tmap = require("utils").tmap
+local nmap = require("utils.keymaps").nmap
+local imap = require("utils.keymaps").imap
+local xmap = require("utils.keymaps").xmap
+local vmap = require("utils.keymaps").vmap
+local tmap = require("utils.keymaps").tmap
 
 imap("jk", "<ESC>") -- exit insert mode
 
@@ -23,7 +23,7 @@ cmd([[nnoremap <expr> j (v:count > 1 ? "m'" . v:count : '') . 'j']])
 nmap("<leader>rbs", ":bufdo e")
 
 -- Edit and source vimrc
-nmap("<leader>ev", [[:lua require('telescope.builtin').find_files({ cwd = "~/.config/nvim/"})<CR>]])
+nmap("<leader>ev", [[:lua require('telescope.builtin').find_files({ cwd = "~/.config/nvim/"})<CR>]], { silent = true })
 nmap("<leader>sv", ":source $MYVIMRC<CR>")
 
 -- Need to remap set marker binding as a workaround for vim-unimpaired

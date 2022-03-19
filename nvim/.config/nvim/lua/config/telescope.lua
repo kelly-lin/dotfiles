@@ -1,6 +1,6 @@
 local telescope_loaded, telescope = pcall(require, "telescope")
 if not telescope_loaded then
-  return
+	return
 end
 
 local actions = require("telescope.actions")
@@ -25,3 +25,4 @@ telescope.setup({
 })
 
 telescope.load_extension("fzf")
+telescope.load_extension("ag")

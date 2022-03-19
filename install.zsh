@@ -15,15 +15,15 @@ stow --target=$HOME zsh
 echo "Installing nvim config"
 stow --target=$HOME nvim
 
-if [[ $OSTYPE == "darwin" ]]; then
+if [[ $OSTYPE == darwin* ]]; then
   echo "Installing alacritty config"
   cd ./alacritty
-  stow --target=$HOME mac-osx
+  stow --target=$HOME mac
   cd -
 
   echo "Installing fonts"
   cd ./fonts
-  stow --target=$HOME mac-osx
+  stow --target=$HOME mac
   cd -
 fi
 
