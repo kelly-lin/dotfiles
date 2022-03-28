@@ -104,7 +104,7 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # control workspace bindings
-bindsym $mod+Shift+n workspace prev
+bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
 bindsym $mod+Tab workspace back_and_forth
 
