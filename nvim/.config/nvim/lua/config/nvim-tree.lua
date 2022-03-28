@@ -19,7 +19,6 @@ nvim_tree.setup({
 		"startify",
 		"alpha",
 	},
-	auto_close = true,
 	open_on_tab = false,
 	quit_on_open = false,
 	hijack_cursor = true,
