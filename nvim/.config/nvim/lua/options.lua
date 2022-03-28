@@ -15,8 +15,6 @@ opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
 
-opt.smartindent = true
-opt.autoindent = true
 opt.incsearch = true
 opt.showcmd = true
 opt.number = true

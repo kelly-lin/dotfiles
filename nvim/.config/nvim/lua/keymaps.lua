@@ -55,7 +55,7 @@ nmap("<leader>co", ":copen<CR>")
 
 -- Harpoon
 nmap("<leader>ha", [[:lua require("harpoon.mark").add_file()<CR>:echo 'Added harpoon mark'<CR>]])
-nmap([[<leader>']], [[:lua require("harpoon.ui").toggle_quick_menu()<CR>]])
+nmap([[<leader>']], [[:Telescope harpoon marks<CR>]])
 
 -- Go to defintion in new vertical split
 nmap("<leader>gdw <C-w>v:lua", "vim.lsp.buf.definition()<CR>", { silent = true })
