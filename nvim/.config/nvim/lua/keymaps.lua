@@ -56,9 +56,6 @@ nmap("<leader>co", ":copen<CR>")
 -- Go to defintion in new vertical split
 nmap("<leader>gdw <C-w>v:lua", "vim.lsp.buf.definition()<CR>", { silent = true })
 
--- Undotree
-nmap("<leader>z", ":UndotreeToggle<CR>", { silent = true })
-
 -- Git fugitive
 nmap("<leader>gb", ":Git blame<CR>", { silent = true })
 nmap("<leader>gds", ":Gvdiffsplit<CR>", { silent = true })
