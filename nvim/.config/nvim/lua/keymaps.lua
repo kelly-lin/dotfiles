@@ -80,9 +80,5 @@ xmap("gs", "<plug>XEasyClipPaste", { noremap = false })
 -- Search for highlighted text
 vmap("//", [[y/V<C-R>=escape(@",'/')<CR><CR>]])
 
--- Dashboard
-nmap("<leader>ss", ":<C-u>SessionSave<CR>")
-nmap("<leader>sl", ":<C-u>SessionLoad<CR>")
-
 -- Symbols outline
 nmap("<leader>o", ":SymbolsOutline<CR>", { silent = true })
