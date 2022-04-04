@@ -52,3 +52,4 @@ nmap(
 	{ silent = true }
 )
 
+nmap("<leader>ag", ":Ag<space>")

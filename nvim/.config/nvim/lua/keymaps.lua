@@ -59,8 +59,6 @@ nmap("<leader>gdw <C-w>v:lua", "vim.lsp.buf.definition()<CR>", { silent = true }
 -- nvim-tree
 nmap("<leader>ef", ":NvimTreeToggle<CR>", { silent = true })
 
-nmap("<leader>ag", ":Ag<space>")
-
 -- Undotree
 nmap("<leader>z", ":UndotreeToggle<CR>", { silent = true })
 
