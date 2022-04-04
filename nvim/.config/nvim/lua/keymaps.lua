@@ -3,7 +3,6 @@ local nmap = require("utils.keymaps").nmap
 local imap = require("utils.keymaps").imap
 local xmap = require("utils.keymaps").xmap
 local vmap = require("utils.keymaps").vmap
-local tmap = require("utils.keymaps").tmap
 
 imap("jk", "<ESC>") -- exit insert mode
 
@@ -76,6 +75,3 @@ xmap("gs", "<plug>XEasyClipPaste", { noremap = false })
 
 -- Search for highlighted text
 vmap("//", [[y/V<C-R>=escape(@",'/')<CR><CR>]])
-
--- Symbols outline
-nmap("<leader>o", ":SymbolsOutline<CR>", { silent = true })
