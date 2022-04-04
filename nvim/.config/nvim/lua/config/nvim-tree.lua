@@ -61,3 +61,6 @@ nvim_tree.setup({
 		tree_width = 30,
 	},
 })
+
+local nmap = require("utils.keymaps").nmap
+nmap("<leader>ef", ":NvimTreeToggle<CR>", { silent = true })
