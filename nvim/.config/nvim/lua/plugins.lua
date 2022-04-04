@@ -70,6 +70,7 @@ require("packer").startup(function(use)
 		run = ":TSUpdate",
 		config = require("config.tree-sitter"),
 	})
+	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
 	use({ "christoomey/vim-tmux-navigator" })
 	use({ "mbbill/undotree", config = require("config.undotree") })
 	use({
@@ -83,7 +84,7 @@ require("packer").startup(function(use)
 	use({ "tpope/vim-fugitive" })
 	use({ "tpope/vim-repeat" })
 	use({ "tpope/vim-surround" })
-	use({ "wellle/targets.vim", after = "tpope/vim-surround" })
+	use({ "wellle/targets.vim", requires = "tpope/vim-surround" })
 	use({ "nvim-lualine/lualine.nvim", config = require("config.lualine") })
 	use({ "windwp/nvim-autopairs", config = require("config.auto-pairs") })
 	use({ "vim-test/vim-test" })
