@@ -1,7 +1,6 @@
 local cmd = vim.cmd
 local nmap = require("utils.keymaps").nmap
 local imap = require("utils.keymaps").imap
-local xmap = require("utils.keymaps").xmap
 local vmap = require("utils.keymaps").vmap
 
 imap("jk", "<ESC>") -- exit insert mode
@@ -66,12 +65,6 @@ nmap("<leader>ge", ":Gedit<CR>", { silent = true })
 nmap("<leader>gm", ":Gdiffsplit!<CR>", { silent = true })
 nmap("<leader>gdh", ":diffget //2<CR>", { silent = true })
 nmap("<leader>gdl", ":diffget //3<CR>", { silent = true })
-
--- Easyclip: we are remapping to 'gs' from 's' because of a mapping clash with
--- lightspeed
-nmap("gs", "<plug>SubstituteOverMotionMap", { silent = true, noremap = false })
-nmap("gss", "<plug>SubstituteLine", { noremap = false })
-xmap("gs", "<plug>XEasyClipPaste", { noremap = false })
 
 -- Search for highlighted text
 vmap("//", [[y/V<C-R>=escape(@",'/')<CR><CR>]])
