@@ -15,3 +15,7 @@ harpoon.setup({
 	-- filetypes that you want to prevent from adding to the harpoon list menu.
 	excluded_filetypes = { "harpoon" },
 })
+
+local nmap = require("utils.keymaps").nmap
+nmap("<leader>ha", [[:lua require("harpoon.mark").add_file()<CR>:echo 'Added harpoon mark'<CR>]])
+nmap([[<leader>']], [[:Telescope harpoon marks<CR>]])
