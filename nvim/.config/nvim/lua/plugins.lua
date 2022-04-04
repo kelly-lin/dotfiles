@@ -83,7 +83,7 @@ require("packer").startup(function(use)
 	use({ "tpope/vim-fugitive" })
 	use({ "tpope/vim-repeat" })
 	use({ "tpope/vim-surround" })
-	use({ "wellle/targets.vim" }) -- we have to source this AFTER surround, otherwise we wont be able to subsititute inside objects
+	use({ "wellle/targets.vim", after = "tpope/vim-surround" })
 	use({ "nvim-lualine/lualine.nvim", config = require("config.lualine") })
 	use({ "windwp/nvim-autopairs", config = require("config.auto-pairs") })
 	use({ "vim-test/vim-test" })
