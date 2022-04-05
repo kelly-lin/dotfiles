@@ -1,47 +1,51 @@
-local nvim_lsp_loaded, nvim_lsp = pcall(require, "lspconfig")
-if not nvim_lsp_loaded then
+local lsp_installer_loaded, lsp_installer = pcall(require, "nvim-lsp-installer")
+if not lsp_installer_loaded then
 	return
 end
 
-local bmap = require("utils.keymaps").bmap
+local servers = {
+  "bashls",
+  "pyright",
+  "yamlls",
+  "tsserver",
+  "vimls",
+  "sumneko_lua"
+}
+
+for _, name in pairs(servers) do
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found and not server:is_installed() then
+    print("Installing " .. name)
+    server:install()
+  end
+end
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-local servers = {
-	{
-		"sumneko_lua",
-		settings = {
+local enhance_server_opts = {
+  ["sumneko_lua"] = function (opts)
+    opts.settings = {
 			Lua = {
 				runtime = {
-					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
 					version = "LuaJIT",
-					-- Setup your lua path
 					path = runtime_path,
 				},
 				diagnostics = {
-					-- Get the language server to recognize the `vim` global
 					globals = { "vim" },
 				},
 				workspace = {
-					-- Make the server aware of Neovim runtime files
 					library = vim.api.nvim_get_runtime_file("", true),
 				},
-				-- Do not send telemetry data containing a randomized but unique identifier
 				telemetry = {
 					enable = false,
 				},
 			},
-		},
-	},
-	"pyright",
-	"tsserver",
-	"jsonls",
-	"vimls",
-	{
-		"yamlls",
-		settings = {
+    }
+  end,
+  ["yamlls"] = function(opts)
+    opts.settings = {
 			yaml = {
 				schemas = {
 					["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
@@ -49,30 +53,14 @@ local servers = {
 					["/path/from/root/of/project"] = "/.github/workflows/*",
 				},
 			},
-		},
-	},
-	"solargraph",
+    }
+  end,
 }
 
+local bmap = require("utils.keymaps").bmap
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-local function getServerConfig(server)
-	local server_name = ""
-	local settings = {}
-	if type(server) == "table" then
-		server_name = server[1]
-		settings = server.settings
-	elseif type(server) == "string" then
-		server_name = server
-	else
-		error("the specified server must be either a string or table")
-	end
-	return server_name, settings
-end
-
-for _, server in ipairs(servers) do
-	local server_name, settings = getServerConfig(server)
-	nvim_lsp[server_name].setup({
+lsp_installer.on_server_ready(function(server)
+  local opts = {
 		on_attach = function(client, bufnr)
 			bmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true })
 			bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
@@ -87,10 +75,15 @@ for _, server in ipairs(servers) do
 			client.resolved_capabilities.document_formatting = false
 			client.resolved_capabilities.document_range_formatting = false
 		end,
-		capabilities = capabilities,
+    capabilities = capabilities,
 		flags = {
 			debounce_text_changes = 150,
 		},
-		settings = settings,
-	})
-end
+  }
+
+  if enhance_server_opts[server.name] then
+    enhance_server_opts[server.name](opts)
+  end
+
+  server:setup(opts)
+end)
