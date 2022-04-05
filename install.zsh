@@ -42,6 +42,9 @@ if [[ $OSTYPE == linux* ]]; then
   echo "Installing i3 config"
   stow --target=$HOME i3
 
+  echo "Installing awesome config"
+  stow --target=$HOME awesome
+
   echo "Installing polybar config"
   stow --target=$HOME polybar
 
