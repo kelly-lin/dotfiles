@@ -33,7 +33,7 @@ local enhance_server_opts = {
 					path = runtime_path,
 				},
 				diagnostics = {
-					globals = { "vim" },
+					globals = { "vim", "awesome" },
 				},
 				workspace = {
 					library = vim.api.nvim_get_runtime_file("", true),
