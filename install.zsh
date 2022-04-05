@@ -15,6 +15,9 @@ stow --target=$HOME zsh
 echo "Installing nvim config"
 stow --target=$HOME nvim
 
+echo "Installing prettier config"
+stow --target=$HOME prettier
+
 if [[ $OSTYPE == darwin* ]]; then
   echo "Installing alacritty config"
   cd ./alacritty

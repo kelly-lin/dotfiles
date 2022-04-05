@@ -14,3 +14,7 @@ vim.g.dashboard_custom_section = {
 	c = { description = { "   Find Word                 SPC f t" }, command = "Telescope live_grep" },
 	e = { description = { "   Last Session              SPC s l" }, command = "SessionLoad" },
 }
+
+local nmap = require("utils.keymaps").nmap
+nmap("<leader>ss", ":<C-u>SessionSave<CR>")
+nmap("<leader>sl", ":<C-u>SessionLoad<CR>")

@@ -50,3 +50,6 @@ vim.g.symbols_outline = {
 		TypeParameter = { icon = "𝙏", hl = "TSParameter" },
 	},
 }
+
+local nmap = require("utils.keymaps").nmap
+nmap("<leader>o", ":SymbolsOutline<CR>", { silent = true })

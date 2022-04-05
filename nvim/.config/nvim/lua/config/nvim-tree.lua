@@ -19,7 +19,6 @@ nvim_tree.setup({
 		"startify",
 		"alpha",
 	},
-	auto_close = true,
 	open_on_tab = false,
 	quit_on_open = false,
 	hijack_cursor = true,
@@ -62,3 +61,6 @@ nvim_tree.setup({
 		tree_width = 30,
 	},
 })
+
+local nmap = require("utils.keymaps").nmap
+nmap("<leader>ef", ":NvimTreeToggle<CR>", { silent = true })

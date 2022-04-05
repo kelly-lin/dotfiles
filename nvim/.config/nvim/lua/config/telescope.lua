@@ -4,7 +4,6 @@ if not telescope_loaded then
 end
 
 local actions = require("telescope.actions")
-
 telescope.setup({
 	defaults = {
 		mappings = {
@@ -27,3 +26,30 @@ telescope.setup({
 telescope.load_extension('harpoon')
 telescope.load_extension("fzf")
 telescope.load_extension("ag")
+
+local nmap = require("utils.keymaps").nmap
+nmap("<leader>ff", "<cmd>Telescope find_files<CR>")
+nmap("<leader>ft", "<cmd>Telescope live_grep<CR>")
+nmap("<leader>fbs", "<cmd>Telescope buffers<CR>")
+nmap("<leader>fh", "<cmd>Telescope help_tags<CR>")
+nmap("<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>")
+nmap("<leader>fws", "<cmd>Telescope lsp_workspace_symbols<CR>")
+nmap("<leader>f:", "<cmd>Telescope command_history<CR>")
+nmap("<leader>fib", "<cmd>Telescope current_buffer_fuzzy_find<CR>")
+
+nmap("<leader>fbr", "<cmd>Telescope git_branches<CR>")
+nmap("<leader>fgs", "<cmd>Telescope git_status<CR>")
+nmap("<leader>fpc", "<cmd>Telescope git_commits<CR>")
+nmap("<leader>fbc", "<cmd>Telescope git_bcommits<CR>")
+
+-- nmap('<leader>fts', '<cmd>Telescope treesitter<CR>')
+nmap("<leader>fr", "<cmd>Telescope lsp_references<CR>")
+nmap("<leader>fkm", "<cmd>Telescope keymaps<CR>")
+
+nmap(
+	"<leader>fv",
+	":lua require('telescope.builtin').find_files( { cwd = vim.fn.stdpath('config') })<CR>",
+	{ silent = true }
+)
+
+nmap("<leader>ag", ":Ag<space>")
