@@ -27,6 +27,7 @@ export PATH=$PATH:./node_modules/.bin
 export PATH=$PATH:$HOME/Applications/nvim/bin
 export PATH=$PATH:$HOME/go/bin
 export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.cargo/bin
 
 # Android Studio Tooling
 export ANDROID_HOME=$HOME/Library/Android/sdk
