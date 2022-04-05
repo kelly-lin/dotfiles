@@ -30,9 +30,11 @@ require("packer").startup(function(use)
 	use({ "kelly-lin/telescope-ag", requires = { { "nvim-telescope/telescope.nvim" } } })
 
 	-- LSP
-	use({ "neovim/nvim-lspconfig" })
+	use({ 
+    "neovim/nvim-lspconfig", 
+    "williamboman/nvim-lsp-installer" 
+  })
 	use({ "nvim-lua/completion-nvim" })
-	use({ "williamboman/nvim-lsp-installer" })
 
 	-- Completion
 	use({ "saadparwaiz1/cmp_luasnip" })
