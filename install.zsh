@@ -39,6 +39,9 @@ if [[ $OSTYPE == linux* ]]; then
   echo "Installing dunst config"
   stow --target=$HOME dunst
 
+  echo "Installing google chrome config"
+  stow --target=$HOME google-chrome
+
   echo "Installing i3 config"
   stow --target=$HOME i3
 
