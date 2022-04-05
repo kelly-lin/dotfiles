@@ -25,22 +25,14 @@ require("packer").startup(function(use)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
-		config = require("config.telescope"),
 	})
 	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
-	use({
-		"kelly-lin/telescope-ag",
-		requires = {
-			{ "nvim-telescope/telescope.nvim" },
-		},
-	})
+	use({ "kelly-lin/telescope-ag", requires = { { "nvim-telescope/telescope.nvim" } } })
 
 	-- LSP
-	use({ 
-    "neovim/nvim-lspconfig", 
-    "williamboman/nvim-lsp-installer" 
-  })
+	use({ "neovim/nvim-lspconfig" })
 	use({ "nvim-lua/completion-nvim" })
+	use({ "williamboman/nvim-lsp-installer" })
 
 	-- Completion
 	use({ "saadparwaiz1/cmp_luasnip" })
@@ -54,46 +46,30 @@ require("packer").startup(function(use)
 
 	-- File explorer
 	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "kyazdani42/nvim-tree.lua", config = require("config.nvim-tree") })
+	use({ "kyazdani42/nvim-tree.lua" })
 
 	-- Dashboard
-	use({ "glepnir/dashboard-nvim", config = require("config.dashboard") })
+	use({ "glepnir/dashboard-nvim" })
 
 	-- Utility
-	use({
-		"lewis6991/gitsigns.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-		config = require("config.gitsigns"),
-	})
+	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-lua/plenary.nvim" })
-	use({ "ThePrimeagen/harpoon", config = require("config.harpoon") })
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-		config = require("config.tree-sitter"),
-	})
-	use({ "nvim-treesitter/nvim-treesitter-textobjects" })
+	use({ "ThePrimeagen/harpoon" })
+	use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
 	use({ "christoomey/vim-tmux-navigator" })
-	use({ "mbbill/undotree", config = require("config.undotree") })
-	use({
-		"prettier/vim-prettier",
-		run = "yarn install --frozen-lockfile --production",
-		config = require("config.prettier"),
-	})
-	use({ "svermeulen/vim-easyclip", config = require("config.easyclip") })
+	use({ "mbbill/undotree" })
+	use({ "prettier/vim-prettier", run = "yarn install --frozen-lockfile --production" })
+	use({ "svermeulen/vim-easyclip" })
 	use({ "tpope/vim-unimpaired" })
 	use({ "tpope/vim-commentary" })
 	use({ "tpope/vim-fugitive" })
 	use({ "tpope/vim-repeat" })
 	use({ "tpope/vim-surround" })
-	use({ "wellle/targets.vim", requires = "tpope/vim-surround" })
-	use({ "nvim-lualine/lualine.nvim", config = require("config.lualine") })
-	use({ "windwp/nvim-autopairs", config = require("config.auto-pairs") })
+	use({ "wellle/targets.vim" }) -- we have to source this AFTER surround, otherwise we wont be able to subsititute inside objects
+	use({ "nvim-lualine/lualine.nvim" })
+	use({ "windwp/nvim-autopairs" })
 	use({ "vim-test/vim-test" })
-	use({
-		"simrat39/symbols-outline.nvim",
-		config = require("config.symbols-outline"),
-	})
+	use({ "simrat39/symbols-outline.nvim" })
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 	use({ "ggandor/lightspeed.nvim", commit = "0b655" })
 
@@ -103,7 +79,6 @@ require("packer").startup(function(use)
 	use({
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
-		config = require("config.null-ls"),
 	})
 
 	-- Themes
@@ -116,3 +91,19 @@ require("packer").startup(function(use)
 
 	cmd("PackerInstall")
 end)
+
+require("config.completion")
+require("config.lsp")
+require("config.tree-sitter")
+require("config.auto-pairs")
+require("config.harpoon")
+require("config.nvim-tree")
+require("config.symbols-outline")
+require("config.telescope")
+require("config.lualine")
+require("config.null-ls")
+require("config.gitsigns")
+require("config.dashboard")
+require("config.easyclip")
+require("config.undotree")
+require("config.prettier")
