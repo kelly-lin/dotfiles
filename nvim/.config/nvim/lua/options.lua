@@ -50,9 +50,9 @@ g.mapleader = " "
 -- nvim-cmp
 opt.completeopt = { "menu", "menuone", "noselect" }
 
-if fn.has("macunix") then
+if fn.has("mac") == 1 then
 	opt.clipboard = "unnamed"
 end
-if fn.has("unix") then
+if fn.has("unix") == 1 then
 	opt.clipboard = "unnamedplus"
 end
