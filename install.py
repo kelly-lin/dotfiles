@@ -91,11 +91,7 @@ def root_dir_guard():
         print("you are not in the root directory, please execute this script inside the root directory")
         sys.exit()
 
-
-if __name__ == "__main__":
-    root_dir_guard()
-
-    print("installing dependencies")
+def bootstrap_stow():
     if not app_exists("stow"):
         if is_linux():
             print("stow could not be found, installing stow")
@@ -108,6 +104,12 @@ if __name__ == "__main__":
         print("stow could not be found, installing stow")
         if is_linux():
             subprocess.run(["sudo", "pacman", "-S", "--noconfirm", "stow"])
+
+if __name__ == "__main__":
+    root_dir_guard()
+    bootstrap_stow()
+
+    print("installing dependencies")
     print("finished installing dependencies")
 
     print("stowing dotfiles")
@@ -125,3 +127,6 @@ if __name__ == "__main__":
                  Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
     for stowable in stowables:
         stowable.stow()
+    print("finished stowing dotfiles")
+
+    print("install complete!")
