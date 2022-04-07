@@ -14,17 +14,19 @@ treesitter.setup({
 		enable = true,
 	},
 	textobjects = {
-		enable = true,
-		lookahead = true,
-		keymaps = {
-			-- You can use the capture groups defined in textobjects.scm
-			["af"] = "@function.outer",
-			["if"] = "@function.inner",
-			["ac"] = "@class.outer",
-			["ic"] = "@class.inner",
-			["aa"] = "@parameter.inner",
-			["ia"] = "@parameter.outer",
-			["as"] = "@statement.outer",
+		select = {
+			enable = true,
+			lookahead = true,
+			keymaps = {
+				-- You can use the capture groups defined in textobjects.scm
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["ac"] = "@class.outer",
+				["ic"] = "@class.inner",
+				["aa"] = "@parameter.inner",
+				["ia"] = "@parameter.outer",
+				["as"] = "@statement.outer",
+			},
 		},
 	},
 })
