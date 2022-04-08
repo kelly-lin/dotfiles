@@ -24,9 +24,9 @@ alias etmux='$EDITOR ~/.tmux.conf'
 
 alias ei3='$EDITOR ~/.config/i3/config'
 
-alias evim='$EDITOR ~/.config/nvim/init.vim'
+which tmuxinator &> /dev/null
+[[ $? -eq 0 ]] && alias mux='tmuxinator'
 
-alias ezsh='$EDITOR ~/.zshrc'
 alias szsh='source ~/.zshrc'
 
 alias grp="cd ~/ghq"
