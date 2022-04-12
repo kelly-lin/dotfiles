@@ -16,8 +16,11 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias ip='ip --color=auto'
 
-alias vim='nvim'
-alias vi='nvim'
+which nvim &> /dev/null
+if [[ $? -eq 0 ]]; then
+  alias vim='nvim'
+  alias vi='nvim'
+fi
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 alias etmux='$EDITOR ~/.tmux.conf'
