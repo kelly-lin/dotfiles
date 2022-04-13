@@ -40,7 +40,7 @@ alias cb='git checkout $(git branch | fzf)'
 
 alias nvconfig='cd $HOME/.config/nvim'
 
-ch_repo() {
+function ch_repo {
   dir=$(ls ~/Repos/ | grep -v 'personal' | fzf | sed 's/.*/Repos\/&/')
 
   if [[ -n $dir ]]; then
@@ -51,7 +51,7 @@ ch_repo() {
 alias crp=ch_repo
 alias erp="ch_repo && $EDITOR"
 
-ch_prepo() {
+function ch_prepo {
   dir=$(ls ~/Repos/personal | fzf | sed 's/.*/Repos\/personal\/&/')
 
   if [[ -n $dir ]]; then
@@ -60,6 +60,5 @@ ch_prepo() {
 }
 
 alias cprp=ch_prepo
-alias eprp='ch_prepo && $EDITOR'
 
 alias ct='git tag | fzf | xargs git checkout'

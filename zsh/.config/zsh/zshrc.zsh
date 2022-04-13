@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+# Keybindings
+[[ -f $HOME/.config/zsh/keybindings.zsh ]] && source $HOME/.config/zsh/keybindings.zsh
+
+# Set prompt
+[[ -f $HOME/.config/zsh/prompt.zsh ]] && source $HOME/.config/zsh/prompt.zsh
+
+# Set colors for less pager
+[[ -f $HOME/.config/zsh/less.zsh ]] && source $HOME/.config/zsh/less.zsh
+
+# Basic auto/tab complete
+[[ -f $HOME/.config/zsh/completion.zsh ]] && source $HOME/.config/zsh/completion.zsh
+  
+# Options
+[[ -f $HOME/.config/zsh/options.zsh ]] && source $HOME/.config/zsh/options.zsh
+
+# Aliases
+[[ -f $HOME/.config/zsh/alias.zsh ]] && source $HOME/.config/zsh/alias.zsh
+
+# Source local configs
+[[ -f $HOME/.local/zsh/.zshrc ]] && source $HOME/.local/zsh/.zshrc
+
+# Plugins
+[[ -f $HOME/.config/zsh/plugins.zsh ]] && source $HOME/.config/zsh/plugins.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
