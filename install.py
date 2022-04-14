@@ -95,15 +95,15 @@ def bootstrap_stow():
     if not app_exists("stow"):
         if is_linux():
             print("stow could not be found, installing stow")
-            subprocess.run(["sudo", "pacman", "-S", "--noconfirm", "stow"])
+            subprocess.run(["pacman", "-S", "stow"])
 
         if is_mac_os():
             subprocess.run(["brew", "install", "stow"])
 
     if not app_exists("xclip"):
-        print("stow could not be found, installing stow")
+        print("xclip could not be found, installing stow")
         if is_linux():
-            subprocess.run(["sudo", "pacman", "-S", "--noconfirm", "stow"])
+            subprocess.run(["pacman", "-S", "xclip"])
 
 if __name__ == "__main__":
     root_dir_guard()
