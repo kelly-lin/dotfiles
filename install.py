@@ -92,12 +92,17 @@ def ensure_root_dir():
         sys.exit()
 
 class Dependency:
-    def __init__(self, package_name, package_manager):
+    def __init__(self, package_name, platform, shell_name=""):
         self.package_name = package_name
-        self.package_manager = package_manager
+        self.package_manager = platform
+        self.shell_name = shell_name
     
     def install(self):
-        if app_exists(self.package_name):
+        shell_name = self.package_name
+        if self.shell_name != "":
+            shell_name = self.shell_name
+
+        if app_exists(shell_name):
             print("{} already installed, skipping...".format(self.package_name))
             return
 
@@ -116,7 +121,10 @@ class Dependency:
 
 def install_dependencies():
     print("installing dependencies")
-    linux_dependencies = [Dependency("stow", OS.LINUX), Dependency("xclip",OS.LINUX), Dependency("fzf", OS.LINUX), Dependency("nodejs", OS.LINUX), Dependency("npm", OS.LINUX)]
+    linux_dependencies = [Dependency("stow", OS.LINUX),
+            Dependency("xclip",OS.LINUX), Dependency("fzf", OS.LINUX),
+            Dependency("nodejs", OS.LINUX, "node"), Dependency("npm", OS.LINUX),
+            Dependency("picom", OS.LINUX)]
     for dependency in linux_dependencies:
         dependency.install()
     print("finished installing dependencies")
