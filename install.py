@@ -86,33 +86,43 @@ class Stowable:
                 "--target={target}".format(target=target_dir), platform_dir_name])
 
 
-def root_dir_guard():
+def ensure_root_dir():
     if __file__.replace(os.getcwd(), "") != "/./install.py":
         print("you are not in the root directory, please execute this script inside the root directory")
         sys.exit()
 
-def bootstrap_stow():
-    if not app_exists("stow"):
+class Dependency:
+    def __init__(self, package_name, package_manager):
+        self.package_name = package_name
+        self.package_manager = package_manager
+    
+    def install(self):
+        if app_exists(self.package_name):
+            print("{} already installed, skipping...".format(self.package_name))
+            return
+
+        print("installing {}".format(self.package_name))
         if is_linux():
-            print("stow could not be found, installing stow")
-            subprocess.run(["pacman", "-S", "stow"])
+            subprocess.run(["pacman", "-S", self.package_name])
+            return
 
         if is_mac_os():
-            subprocess.run(["brew", "install", "stow"])
+            subprocess.run(["brew", "install", self.package_name])
+            return
 
-    if not app_exists("xclip"):
-        print("xclip could not be found, installing stow")
-        if is_linux():
-            subprocess.run(["pacman", "-S", "xclip"])
+        subprocess.run(["brew", "install", self.package_name])
+        return
 
-if __name__ == "__main__":
-    root_dir_guard()
-    bootstrap_stow()
 
+def install_dependencies():
     print("installing dependencies")
+    linux_dependencies = [Dependency("stow", OS.LINUX), Dependency("xclip",OS.LINUX), Dependency("fzf", OS.LINUX), Dependency("nodejs", OS.LINUX), Dependency("npm", OS.LINUX)]
+    for dependency in linux_dependencies:
+        dependency.install()
     print("finished installing dependencies")
 
-    print("stowing dotfiles")
+def install_dotfiles():
+    print("installing dotfiles")
     stowables = [Stowable("tmux"), Stowable("zsh"), Stowable("nvim"),
                  Stowable("prettier"), Stowable("alacritty",
                                                 is_platform_split=True),
@@ -127,6 +137,11 @@ if __name__ == "__main__":
                  Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
     for stowable in stowables:
         stowable.stow()
-    print("finished stowing dotfiles")
+    print("finished installing dotfiles")
 
+
+if __name__ == "__main__":
+    ensure_root_dir()
+    install_dependencies()
+    install_dotfiles()
     print("install complete!")
