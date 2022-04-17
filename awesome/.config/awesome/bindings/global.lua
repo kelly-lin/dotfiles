@@ -14,14 +14,22 @@ globalkeys = gears.table.join(
 	awful.key({}, "XF86AudioLowerVolume", function()
 		volume.decrease_volume()
 	end, { description = "decrease volume", group = "volume" }),
-
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		volume.increase_volume()
 	end, { description = "increase volume", group = "volume" }),
-
 	awful.key({}, "XF86AudioMute", function()
-    volume.toggle_mute()
+		volume.toggle_mute()
 	end, { description = "toggle mute", group = "volume" }),
+
+	awful.key({ modkey }, "F9", function()
+		awful.util.spawn("playerctl -p spotify play-pause")
+	end, { description = "play/pause", group = "spotify" }),
+	awful.key({ modkey }, "F10", function()
+		awful.util.spawn("playerctl -p spotify previous")
+	end, { description = "previous", group = "spotify" }),
+	awful.key({ modkey }, "F11", function()
+		awful.util.spawn("playerctl -p spotify next")
+	end, { description = "next", group = "spotify" }),
 
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(1)
