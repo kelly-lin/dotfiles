@@ -167,6 +167,8 @@ if __name__ == "__main__":
                           Dependency("python", OS.LINUX),
                           Dependency("fd", OS.LINUX),
                           Dependency("xbindkeys", OS.LINUX),
+                          Dependency("stylua", OS.LINUX),
+                          Dependency("playerctl", OS.LINUX),
                           Dependency("nautilus", OS.LINUX)]
     install_dependencies(linux_dependencies)
 
