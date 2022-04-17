@@ -10,6 +10,18 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "Right", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
+	awful.key({}, "XF86AudioLowerVolume", function()
+		awful.util.spawn("pamixer -d 10")
+	end, { description = "decrease volume", group = "volume" }),
+
+	awful.key({}, "XF86AudioRaiseVolume", function()
+		awful.util.spawn("pamixer -i 10")
+	end, { description = "increase volume", group = "volume" }),
+
+	awful.key({}, "XF86AudioMute", function()
+		awful.util.spawn("pamixer -t")
+	end, { description = "toggle mute", group = "volume" }),
+
 	awful.key({ modkey }, "j", function()
 		awful.client.focus.byidx(1)
 	end, { description = "focus next by index", group = "client" }),
