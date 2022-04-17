@@ -85,18 +85,28 @@ class Stowable:
                 "--dir={package_name}".format(package_name=package_name),
                 "--target={target}".format(target=target_dir), platform_dir_name])
 
+    def unstow(self):
+        print("unstowing {}".format(self.package_name))
+
+        target_dir = get_target_dir(self.target, self.alt_dir)
+        package_name = self.package_name
+
+        subprocess.run(
+            ["stow", "--delete", "--target={target}".format(target=target_dir), package_name])
+
 
 def ensure_root_dir():
     if __file__.replace(os.getcwd(), "") != "/./install.py":
         print("you are not in the root directory, please execute this script inside the root directory")
         sys.exit()
 
+
 class Dependency:
     def __init__(self, package_name, platform, shell_name=""):
         self.package_name = package_name
         self.package_manager = platform
         self.shell_name = shell_name
-    
+
     def install(self):
         shell_name = self.package_name
         if self.shell_name != "":
@@ -119,37 +129,61 @@ class Dependency:
         return
 
 
-def install_dependencies():
+def install_dependencies(linux_dependencies):
     print("installing dependencies")
-    linux_dependencies = [Dependency("stow", OS.LINUX),
-            Dependency("xclip",OS.LINUX), Dependency("fzf", OS.LINUX),
-            Dependency("nodejs", OS.LINUX, "node"), Dependency("npm", OS.LINUX),
-            Dependency("picom", OS.LINUX)]
     for dependency in linux_dependencies:
         dependency.install()
     print("finished installing dependencies")
 
-def install_dotfiles():
+
+def install_dotfiles(stowables):
     print("installing dotfiles")
-    stowables = [Stowable("tmux"), Stowable("zsh"), Stowable("nvim"),
-                 Stowable("prettier"), Stowable("alacritty",
-                                                is_platform_split=True),
-                 Stowable("fonts", is_platform_split=True), Stowable("dunst",
-                                                                     target_platform=OS.LINUX),
-                 Stowable("google-chrome", target_platform=OS.LINUX),
-                 Stowable("i3", target_platform=OS.LINUX), Stowable("awesome",
-                                                                    target_platform=OS.LINUX),
-                 Stowable("polybar", target_platform=OS.LINUX),
-                 Stowable("picom", OS.LINUX), Stowable("xfiles",
-                                                       target_platform=OS.LINUX),
-                 Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
     for stowable in stowables:
         stowable.stow()
     print("finished installing dotfiles")
 
 
+def uninstall_dotfiles(stowables):
+    print("uninstalling dotfiles")
+    for stowable in stowables:
+        stowable.unstow()
+    print("finished uninstalling dotfiles")
+
+
 if __name__ == "__main__":
     ensure_root_dir()
-    install_dependencies()
-    install_dotfiles()
+
+    linux_dependencies = [Dependency("stow", OS.LINUX),
+                          Dependency("xclip", OS.LINUX),
+                          Dependency("fzf", OS.LINUX),
+                          Dependency("nodejs", OS.LINUX, "node"),
+                          Dependency("npm", OS.LINUX),
+                          Dependency("picom", OS.LINUX),
+                          Dependency("nitrogen", OS.LINUX),
+                          Dependency("pulseaudio", OS.LINUX),
+                          Dependency("pamixer", OS.LINUX),
+                          Dependency("ruby", OS.LINUX),
+                          Dependency("python-pip", OS.LINUX, "pip"),
+                          Dependency("python", OS.LINUX),
+                          Dependency("fd", OS.LINUX),
+                          Dependency("xbindkeys", OS.LINUX),
+                          Dependency("nautilus", OS.LINUX)]
+    install_dependencies(linux_dependencies)
+
+    stowables = [Stowable("tmux"),
+                 Stowable("zsh"),
+                 Stowable("nvim"),
+                 Stowable("prettier"),
+                 Stowable("alacritty", is_platform_split=True),
+                 Stowable("fonts", is_platform_split=True),
+                 Stowable("dunst", target_platform=OS.LINUX),
+                 Stowable("google-chrome", target_platform=OS.LINUX),
+                 Stowable("i3", target_platform=OS.LINUX),
+                 Stowable("awesome", target_platform=OS.LINUX),
+                 Stowable("polybar", target_platform=OS.LINUX),
+                 Stowable("picom", OS.LINUX),
+                 Stowable("tmuxinator", OS.LINUX),
+                 Stowable("xfiles", target_platform=OS.LINUX),
+                 Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
+    install_dotfiles(stowables)
     print("install complete!")
