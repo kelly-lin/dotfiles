@@ -7,10 +7,6 @@ local mytextclock = wibox.widget.textclock()
 local gears = require("gears")
 local config = {
 	user_vars = require("main.user-variables"),
-	-- layouts = require("main.layouts"),
-	-- tags = require("main.tags"),
-	-- menu = require("main.menu"),
-	-- rules = require("main.rules"),
 }
 
 local modkey = config.user_vars.modkey
