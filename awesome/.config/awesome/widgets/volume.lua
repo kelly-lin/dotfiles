@@ -11,6 +11,8 @@ end
 local volume_widget = wibox.widget({
 	text = create_volume_text(),
 	widget = wibox.widget.textbox,
+  align = "center",
+  forced_width = 100
 })
 M.widget = volume_widget
 
