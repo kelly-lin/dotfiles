@@ -39,7 +39,6 @@ function M.increase_volume()
 	end
 
 	os.execute("pamixer -i " .. volume_step)
-  -- volume_widget.update_volume()
 end
 
 function M.decrease_volume()
@@ -49,7 +48,6 @@ function M.decrease_volume()
 	end
 
 	os.execute("pamixer -d " .. volume_step)
-  -- volume_widget.update_volume()
 end
 
 function M.toggle_mute()
