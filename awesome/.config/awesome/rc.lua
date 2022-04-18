@@ -1,16 +1,29 @@
 pcall(require, "luarocks.loader")
 
-pcall(require, "awful.autofocus")
-pcall(require, "awful.hotkeys_popup.keys")
+require("awful.autofocus")
+require("awful.hotkeys_popup.keys")
 
 require("utils").check_report_errors()
 
-pcall(require, "main.theme")
-pcall(require, "main.layouts")
-pcall(require, "main.wibar")
-pcall(require, "main.rules")
-pcall(require, "main.signals")
-pcall(require, "main.startup-apps")
+local config = {
+	user_vars = require("main.user-variables"),
+}
 
-pcall(require, "bindings.global")
-pcall(require, "bindings.client")
+require("main.theme")
+
+local terminal = config.user_vars.terminal
+local menubar = require("menubar")
+menubar.utils.terminal = terminal -- Set the terminal for applications that require it
+
+local editor = os.getenv("EDITOR") or "nvim"
+local editor_cmd = terminal .. " -e " .. editor
+
+require("main.layouts")
+require("main.wibar")
+
+require("bindings.client")
+require("bindings.global")
+
+require("main.rules")
+require("main.signals")
+require("main.startup-apps")
