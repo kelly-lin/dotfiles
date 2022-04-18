@@ -8,16 +8,15 @@ local function create_volume_text()
 	return "VOL: " .. tostring(require("scripts.volume").get_volume()) .. "%"
 end
 
-local volume_widget = wibox.widget({
+M.widget = wibox.widget({
 	text = create_volume_text(),
 	widget = wibox.widget.textbox,
   align = "center",
   forced_width = 100
 })
-M.widget = volume_widget
 
 function M.update_volume()
-	volume_widget.text = create_volume_text()
+	M.widget.text = create_volume_text()
 end
 
 return M
