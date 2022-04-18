@@ -13,15 +13,15 @@ globalkeys = gears.table.join(
 
 	awful.key({}, "XF86AudioLowerVolume", function()
 		volume_widget.decrease_volume()
-    volume_widget.update_volume()
+		volume_widget.update_volume()
 	end, { description = "decrease volume", group = "volume" }),
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		volume_widget.increase_volume()
-    volume_widget.update_volume()
+		volume_widget.update_volume()
 	end, { description = "increase volume", group = "volume" }),
 	awful.key({}, "XF86AudioMute", function()
 		volume_widget.toggle_mute()
-    volume_widget.update_volume()
+		volume_widget.update_volume()
 	end, { description = "toggle mute", group = "volume" }),
 
 	awful.key({ modkey }, "F9", function()
@@ -125,20 +125,31 @@ globalkeys = gears.table.join(
 )
 
 -- {{{ Mouse bindings
-root.buttons(gears.table.join(
-	awful.button({}, 4, awful.tag.viewnext),
-	awful.button({}, 5, awful.tag.viewprev)
-))
+root.buttons(gears.table.join(awful.button({}, 4, awful.tag.viewnext), awful.button({}, 5, awful.tag.viewprev)))
 -- }}}
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
+local function map_tags_to_keybinds(tag_index)
+	local keys = {
+		"u",
+		"i",
+		"o",
+		"p",
+	}
+	if keys[tag_index] then
+		return keys[tag_index]
+	end
+	return "#" .. tag_index + 9
+end
+
 for i = 1, 9 do
+  local key = map_tags_to_keybinds(i)
 	globalkeys = gears.table.join(
 		globalkeys,
 		-- View tag only.
-		awful.key({ modkey }, "#" .. i + 9, function()
+		awful.key({ modkey }, key, function()
 			local screen = awful.screen.focused()
 			local tag = screen.tags[i]
 			if tag then
@@ -146,7 +157,7 @@ for i = 1, 9 do
 			end
 		end, { description = "view tag #" .. i, group = "tag" }),
 		-- Toggle tag display.
-		awful.key({ modkey, "Control" }, "#" .. i + 9, function()
+		awful.key({ modkey, "Control" }, key, function()
 			local screen = awful.screen.focused()
 			local tag = screen.tags[i]
 			if tag then
@@ -154,7 +165,7 @@ for i = 1, 9 do
 			end
 		end, { description = "toggle tag #" .. i, group = "tag" }),
 		-- Move client to tag.
-		awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
+		awful.key({ modkey, "Shift" }, key, function()
 			if client.focus then
 				local tag = client.focus.screen.tags[i]
 				if tag then
@@ -163,7 +174,7 @@ for i = 1, 9 do
 			end
 		end, { description = "move focused client to tag #" .. i, group = "tag" }),
 		-- Toggle tag on focused client.
-		awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
+		awful.key({ modkey, "Control", "Shift" }, key, function()
 			if client.focus then
 				local tag = client.focus.screen.tags[i]
 				if tag then
