@@ -1,1 +1,1 @@
-source ~/.config/zsh/zprofile.zsh
+source $HOME/.config/zsh/zprofile.zsh

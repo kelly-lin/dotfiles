@@ -24,24 +24,6 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
-# Path
-export PATH=$PATH:./node_modules/.bin
-export PATH=$PATH:$HOME/Applications/nvim/bin
-export PATH=$PATH:$HOME/go/bin
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:$HOME/.cargo/bin
-export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
-export PATH="$PATH:$GEM_HOME/bin"
-
-# Android Studio Tooling
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-export PATH=$PATH:$HOME/.rvm/bin
-
 # Source local environment variables - set work environment variables in this
 # file
 [[ -f $HOME/.local/zsh/.zshenv ]] && source $HOME/.local/zsh/.zshenv
