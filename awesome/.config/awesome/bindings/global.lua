@@ -3,7 +3,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local modkey = require("main.user-variables").modkey
 local gears = require("gears")
 local terminal = require("main.user-variables").terminal
-local volume = require("scripts.volume")
+local volume_widget = require("widgets.volume")
 
 globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
@@ -12,16 +12,16 @@ globalkeys = gears.table.join(
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
 	awful.key({}, "XF86AudioLowerVolume", function()
-		volume.decrease_volume()
-    require("widgets.volume").update_volume()
+		volume_widget.decrease_volume()
+    volume_widget.update_volume()
 	end, { description = "decrease volume", group = "volume" }),
 	awful.key({}, "XF86AudioRaiseVolume", function()
-		volume.increase_volume()
-    require("widgets.volume").update_volume()
+		volume_widget.increase_volume()
+    volume_widget.update_volume()
 	end, { description = "increase volume", group = "volume" }),
 	awful.key({}, "XF86AudioMute", function()
-		volume.toggle_mute()
-    require("widgets.volume").update_volume()
+		volume_widget.toggle_mute()
+    volume_widget.update_volume()
 	end, { description = "toggle mute", group = "volume" }),
 
 	awful.key({ modkey }, "F9", function()
