@@ -13,12 +13,15 @@ globalkeys = gears.table.join(
 
 	awful.key({}, "XF86AudioLowerVolume", function()
 		volume.decrease_volume()
+    require("widgets.volume").update_volume()
 	end, { description = "decrease volume", group = "volume" }),
 	awful.key({}, "XF86AudioRaiseVolume", function()
 		volume.increase_volume()
+    require("widgets.volume").update_volume()
 	end, { description = "increase volume", group = "volume" }),
 	awful.key({}, "XF86AudioMute", function()
 		volume.toggle_mute()
+    require("widgets.volume").update_volume()
 	end, { description = "toggle mute", group = "volume" }),
 
 	awful.key({ modkey }, "F9", function()

@@ -16,6 +16,7 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+local volume_widget = require("widgets.volume")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -185,6 +186,7 @@ awful.screen.connect_for_each_screen(function(s)
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
 			-- pulse,
+      volume_widget.widget,
 			wibox.widget.systray(),
 			mytextclock,
 		},
