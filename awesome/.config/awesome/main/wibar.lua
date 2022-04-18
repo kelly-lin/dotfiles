@@ -3,6 +3,7 @@ local volume_widget = require("widgets.volume")
 local beautiful = require("beautiful")
 local awful = require("awful")
 local mytextclock = wibox.widget.textclock()
+mytextclock.format = " %a %b %d %l:%M %p "
 
 local gears = require("gears")
 local config = {
