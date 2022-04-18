@@ -108,7 +108,7 @@ awful.screen.connect_for_each_screen(function(s)
 	-- Create a tasklist widget
 	s.mytasklist = awful.widget.tasklist({
 		screen = s,
-		filter = awful.widget.tasklist.filter.currenttags,
+		-- filter = awful.widget.tasklist.filter.currenttags,
 		buttons = tasklist_buttons,
 	})
 
@@ -126,7 +126,7 @@ awful.screen.connect_for_each_screen(function(s)
 		s.mytasklist, -- Middle widget
 		{ -- Right widgets
 			layout = wibox.layout.fixed.horizontal,
-			-- pulse,
+      align = "right",
       volume_widget.widget,
 			wibox.widget.systray(),
 			mytextclock,
