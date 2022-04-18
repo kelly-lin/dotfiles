@@ -9,7 +9,13 @@ local servers = {
   "yamlls",
   "tsserver",
   "vimls",
-  "sumneko_lua"
+  "sumneko_lua",
+  "gopls",
+  "jsonls",
+  "solargraph",
+  "cmake",
+  "kotlin_language_server",
+  "sourcekit"
 }
 
 for _, name in pairs(servers) do
