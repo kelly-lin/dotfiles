@@ -169,7 +169,9 @@ if __name__ == "__main__":
                           Dependency("xbindkeys", OS.LINUX),
                           Dependency("stylua", OS.LINUX),
                           Dependency("playerctl", OS.LINUX),
-                          Dependency("nautilus", OS.LINUX)]
+                          Dependency("nautilus", OS.LINUX),
+                          Dependency("zathura", OS.LINUX),
+                          Dependency("zathura-pdf-mupdf", OS.LINUX)]
     install_dependencies(linux_dependencies)
 
     stowables = [Stowable("tmux"),
