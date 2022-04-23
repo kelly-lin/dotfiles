@@ -171,6 +171,7 @@ if __name__ == "__main__":
                           Dependency("playerctl", OS.LINUX),
                           Dependency("nautilus", OS.LINUX),
                           Dependency("zathura", OS.LINUX),
+                          Dependency("numlockx", OS.LINUX),
                           Dependency("zathura-pdf-mupdf", OS.LINUX)]
     install_dependencies(linux_dependencies)
 
@@ -185,6 +186,7 @@ if __name__ == "__main__":
                  Stowable("i3", target_platform=OS.LINUX),
                  Stowable("awesome", target_platform=OS.LINUX),
                  Stowable("polybar", target_platform=OS.LINUX),
+                 Stowable("pulse", target_platform=OS.LINUX),
                  Stowable("picom", OS.LINUX),
                  Stowable("tmuxinator", OS.LINUX),
                  Stowable("xfiles", target_platform=OS.LINUX),
