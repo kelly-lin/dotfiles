@@ -188,6 +188,7 @@ local function setMouseBindings(globalkeys)
 	for i = 1, 9 do
 		globalkeys = gears.table.join(
 			globalkeys,
+
 			-- View tag only.
 			awful.key({ modkey }, "#" .. i + 9, function()
 				local screen = awful.screen.focused()
@@ -196,6 +197,7 @@ local function setMouseBindings(globalkeys)
 					tag:view_only()
 				end
 			end, { description = "view tag #" .. i, group = "tag" }),
+
 			-- Toggle tag display.
 			awful.key({ modkey, "Control" }, "#" .. i + 9, function()
 				local screen = awful.screen.focused()
@@ -204,6 +206,7 @@ local function setMouseBindings(globalkeys)
 					awful.tag.viewtoggle(tag)
 				end
 			end, { description = "toggle tag #" .. i, group = "tag" }),
+
 			-- Move client to tag.
 			awful.key({ modkey, "Shift" }, "#" .. i + 9, function()
 				if client.focus then
@@ -213,6 +216,7 @@ local function setMouseBindings(globalkeys)
 					end
 				end
 			end, { description = "move focused client to tag #" .. i, group = "tag" }),
+
 			-- Toggle tag on focused client.
 			awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9, function()
 				if client.focus then
