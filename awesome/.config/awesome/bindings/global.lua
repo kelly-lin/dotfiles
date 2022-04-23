@@ -7,8 +7,8 @@ local volume_widget = require("widgets.volume")
 
 globalkeys = gears.table.join(
 	awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
-	awful.key({ modkey, "Control" }, "j", awful.tag.viewprev, { description = "view previous", group = "tag" }),
-	awful.key({ modkey, "Control" }, "k", awful.tag.viewnext, { description = "view next", group = "tag" }),
+	awful.key({ modkey }, "j", awful.tag.viewprev, { description = "view previous", group = "tag" }),
+	awful.key({ modkey }, "k", awful.tag.viewnext, { description = "view next", group = "tag" }),
 	awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
 	awful.key({}, "XF86AudioLowerVolume", function()
