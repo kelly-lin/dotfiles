@@ -15,7 +15,6 @@ local servers = {
   "solargraph",
   "cmake",
   "kotlin_language_server",
-  "sourcekit"
 }
 
 for _, name in pairs(servers) do
