@@ -26,7 +26,7 @@ function M.is_muted()
 	return true
 end
 
-local max_volume = 60
+local max_volume = 100
 local volume_step = 10
 function M.increase_volume()
 	if M.is_muted() then
