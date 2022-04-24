@@ -17,7 +17,7 @@ function Hover_signal(widget, bg, fg)
 		if bg then
 			old_bg = widget.bg
 			if string.len(bg) == 7 then
-				widget.bg = bg .. "dd"
+				widget.bg = bg
 			else
 				widget.bg = bg
 			end
@@ -128,9 +128,6 @@ return function()
 		},
 		bg = "#1f2329",
 		fg = "#ABB2BF",
-		shape = function(cr, width, height)
-			gears.shape.rounded_rect(cr, width, height, 5)
-		end,
 		widget = wibox.container.background,
 	})
 
@@ -385,7 +382,7 @@ return function()
 	})
 
 	-- Signals
-	Hover_signal(network_widget, "#ABB2BF")
+	Hover_signal(network_widget, "#42A5F5", "#ffffff")
 
 	network_widget:connect_signal("button::press", function()
 		awful.spawn("gnome-control-center wlan")
