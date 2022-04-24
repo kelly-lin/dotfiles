@@ -172,6 +172,7 @@ if __name__ == "__main__":
                           Dependency("nautilus", OS.LINUX),
                           Dependency("zathura", OS.LINUX),
                           Dependency("numlockx", OS.LINUX),
+                          Dependency("noto-fonts-emoji", OS.LINUX),
                           Dependency("zathura-pdf-mupdf", OS.LINUX)]
     install_dependencies(linux_dependencies)
 
@@ -191,6 +192,7 @@ if __name__ == "__main__":
                  Stowable("rofi", OS.LINUX),
                  Stowable("tmuxinator", OS.LINUX),
                  Stowable("xfiles", target_platform=OS.LINUX),
+                 Stowable("bin"),
                  Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
     install_dotfiles(stowables)
     print("install complete!")
