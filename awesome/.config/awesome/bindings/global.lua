@@ -47,8 +47,8 @@ end
 local function setTabNavigationKeys(globalkeys)
 	return gears.table.join(
 		globalkeys,
-		awful.key({ modkey, "Control" }, "j", awful.tag.viewprev, { description = "view previous", group = "tag" }),
-		awful.key({ modkey, "Control" }, "k", awful.tag.viewnext, { description = "view next", group = "tag" })
+		awful.key({ modkey }, "p", awful.tag.viewprev, { description = "view previous", group = "tag" }),
+		awful.key({ modkey }, "n", awful.tag.viewnext, { description = "view next", group = "tag" })
 	)
 end
 
@@ -117,8 +117,8 @@ local function setPromptKeys(globalkeys)
 		globalkeys,
 
 		awful.key({ modkey }, "d", function()
-			awful.spawn("dmenu_run")
-		end, { description = "run dmenu", group = "launcher" }),
+			awful.spawn([[rofi -show combi -combi-modes "window,run,ssh" -modes combi]])
+		end, { description = "run rofi", group = "launcher" }),
 
 		awful.key({ modkey }, "x", function()
 			awful.prompt.run({
@@ -168,15 +168,15 @@ local function setAwesomeControlKeys(globalkeys)
 
 		awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 
-		awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
+		awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" })
 
-		awful.key({ modkey, "Control" }, "n", function()
-			local c = awful.client.restore()
-			-- Focus restored client
-			if c then
-				c:emit_signal("request::activate", "key.unminimize", { raise = true })
-			end
-		end, { description = "restore minimized", group = "client" })
+		-- awful.key({ modkey, "Control" }, "n", function()
+		-- 	local c = awful.client.restore()
+		-- 	-- Focus restored client
+		-- 	if c then
+		-- 		c:emit_signal("request::activate", "key.unminimize", { raise = true })
+		-- 	end
+		-- end, { description = "restore minimized", group = "client" })
 	)
 end
 
@@ -229,7 +229,21 @@ local function setMouseBindings(globalkeys)
 		)
 	end
 
-  return globalkeys
+	return globalkeys
+end
+
+local function setPowerControlBindings(globalkeys)
+	return gears.table.join(
+		globalkeys,
+
+		awful.key({ modkey, "Shift" }, "Print", function ()
+      awful.spawn("systemctl poweroff -i")
+		end, { description = "power off", group = "power" }),
+
+		awful.key({ modkey, "Shift" }, "Scroll_Lock", function ()
+      awful.spawn("systemctl reboot")
+		end, { description = "reboot", group = "power" })
+	)
 end
 
 globalkeys = setVolumeControlKeys(globalkeys)
@@ -242,5 +256,6 @@ globalkeys = setFocusKeys(globalkeys)
 globalkeys = setAppLaunchKeys(globalkeys)
 globalkeys = setAwesomeControlKeys(globalkeys)
 globalkeys = setMouseBindings(globalkeys)
+globalkeys = setPowerControlBindings(globalkeys)
 
 root.keys(globalkeys)
