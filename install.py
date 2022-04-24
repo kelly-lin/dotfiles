@@ -188,6 +188,7 @@ if __name__ == "__main__":
                  Stowable("polybar", target_platform=OS.LINUX),
                  Stowable("pulse", target_platform=OS.LINUX),
                  Stowable("picom", OS.LINUX),
+                 Stowable("rofi", OS.LINUX),
                  Stowable("tmuxinator", OS.LINUX),
                  Stowable("xfiles", target_platform=OS.LINUX),
                  Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
