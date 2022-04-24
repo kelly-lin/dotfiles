@@ -164,7 +164,7 @@ local function setAwesomeControlKeys(globalkeys)
 		globalkeys,
 		awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 
-		awful.key({ modkey }, "Escape", awful.tag.history.restore, { description = "go back", group = "tag" }),
+		awful.key({ modkey }, "Tab", awful.tag.history.restore, { description = "go back", group = "tag" }),
 
 		awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
 
