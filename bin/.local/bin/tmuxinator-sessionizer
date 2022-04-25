@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+if [[ $# -eq 1 ]]; then
+  selected=$1
+else
+  selected=$(find ~/Repos -mindepth 1 -maxdepth 1 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+  exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+escaped_path=$(echo $selected | sed 's/\//\\\//g')
+temp_config_path="$HOME/.config/tmuxinator/$selected_name.yml"
+
+cat $HOME/.config/tmuxinator/.dev.base.yml | \
+  sed "s/name: dev/name: $selected_name/" | \
+  sed "s/root: ~\//root: $escaped_path/" > \
+  $temp_config_path
+
+tmuxinator start $selected_name
+rm $temp_config_path

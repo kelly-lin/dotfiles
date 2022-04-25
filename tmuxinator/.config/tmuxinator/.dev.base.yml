@@ -1,0 +1,12 @@
+name: dev
+root: ~/
+
+windows:
+  - neovim:
+      layout: main-vertical
+      panes:
+        - vim
+  - zsh:
+  - tests:
+  - dev-server:
+  - logs:
