@@ -85,48 +85,114 @@ class Stowable:
                 "--dir={package_name}".format(package_name=package_name),
                 "--target={target}".format(target=target_dir), platform_dir_name])
 
+    def unstow(self):
+        print("unstowing {}".format(self.package_name))
 
-def root_dir_guard():
+        target_dir = get_target_dir(self.target, self.alt_dir)
+        package_name = self.package_name
+
+        subprocess.run(
+            ["stow", "--delete", "--target={target}".format(target=target_dir), package_name])
+
+
+def ensure_root_dir():
     if __file__.replace(os.getcwd(), "") != "/./install.py":
         print("you are not in the root directory, please execute this script inside the root directory")
         sys.exit()
 
-def bootstrap_stow():
-    if not app_exists("stow"):
+
+class Dependency:
+    def __init__(self, package_name, platform, shell_name=""):
+        self.package_name = package_name
+        self.package_manager = platform
+        self.shell_name = shell_name
+
+    def install(self):
+        shell_name = self.package_name
+        if self.shell_name != "":
+            shell_name = self.shell_name
+
+        if app_exists(shell_name):
+            print("{} already installed, skipping...".format(self.package_name))
+            return
+
+        print("installing {}".format(self.package_name))
         if is_linux():
-            print("stow could not be found, installing stow")
-            subprocess.run(["sudo", "pacman", "-S", "--noconfirm", "stow"])
+            subprocess.run(["pacman", "-S", self.package_name])
+            return
 
         if is_mac_os():
-            subprocess.run(["brew", "install", "stow"])
+            subprocess.run(["brew", "install", self.package_name])
+            return
 
-    if not app_exists("xclip"):
-        print("stow could not be found, installing stow")
-        if is_linux():
-            subprocess.run(["sudo", "pacman", "-S", "--noconfirm", "stow"])
+        subprocess.run(["brew", "install", self.package_name])
+        return
 
-if __name__ == "__main__":
-    root_dir_guard()
-    bootstrap_stow()
 
+def install_dependencies(linux_dependencies):
     print("installing dependencies")
+    for dependency in linux_dependencies:
+        dependency.install()
     print("finished installing dependencies")
 
-    print("stowing dotfiles")
-    stowables = [Stowable("tmux"), Stowable("zsh"), Stowable("nvim"),
-                 Stowable("prettier"), Stowable("alacritty",
-                                                is_platform_split=True),
-                 Stowable("fonts", is_platform_split=True), Stowable("dunst",
-                                                                     target_platform=OS.LINUX),
-                 Stowable("google-chrome", target_platform=OS.LINUX),
-                 Stowable("i3", target_platform=OS.LINUX), Stowable("awesome",
-                                                                    target_platform=OS.LINUX),
-                 Stowable("polybar", target_platform=OS.LINUX),
-                 Stowable("picom", OS.LINUX), Stowable("xfiles",
-                                                       target_platform=OS.LINUX),
-                 Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
+
+def install_dotfiles(stowables):
+    print("installing dotfiles")
     for stowable in stowables:
         stowable.stow()
-    print("finished stowing dotfiles")
+    print("finished installing dotfiles")
 
+
+def uninstall_dotfiles(stowables):
+    print("uninstalling dotfiles")
+    for stowable in stowables:
+        stowable.unstow()
+    print("finished uninstalling dotfiles")
+
+
+if __name__ == "__main__":
+    ensure_root_dir()
+
+    linux_dependencies = [Dependency("stow", OS.LINUX),
+                          Dependency("xclip", OS.LINUX),
+                          Dependency("fzf", OS.LINUX),
+                          Dependency("nodejs", OS.LINUX, "node"),
+                          Dependency("npm", OS.LINUX),
+                          Dependency("picom", OS.LINUX),
+                          Dependency("nitrogen", OS.LINUX),
+                          Dependency("pulseaudio", OS.LINUX),
+                          Dependency("pamixer", OS.LINUX),
+                          Dependency("ruby", OS.LINUX),
+                          Dependency("python-pip", OS.LINUX, "pip"),
+                          Dependency("python", OS.LINUX),
+                          Dependency("fd", OS.LINUX),
+                          Dependency("xbindkeys", OS.LINUX),
+                          Dependency("stylua", OS.LINUX),
+                          Dependency("playerctl", OS.LINUX),
+                          Dependency("nautilus", OS.LINUX),
+                          Dependency("zathura", OS.LINUX),
+                          Dependency("numlockx", OS.LINUX),
+                          Dependency("noto-fonts-emoji", OS.LINUX),
+                          Dependency("zathura-pdf-mupdf", OS.LINUX)]
+    install_dependencies(linux_dependencies)
+
+    stowables = [Stowable("tmux"),
+                 Stowable("zsh"),
+                 Stowable("nvim"),
+                 Stowable("prettier"),
+                 Stowable("alacritty", is_platform_split=True),
+                 Stowable("fonts", is_platform_split=True),
+                 Stowable("dunst", target_platform=OS.LINUX),
+                 Stowable("google-chrome", target_platform=OS.LINUX),
+                 Stowable("i3", target_platform=OS.LINUX),
+                 Stowable("awesome", target_platform=OS.LINUX),
+                 Stowable("polybar", target_platform=OS.LINUX),
+                 Stowable("pulse", target_platform=OS.LINUX),
+                 Stowable("picom", OS.LINUX),
+                 Stowable("rofi", OS.LINUX),
+                 Stowable("tmuxinator", OS.LINUX),
+                 Stowable("xfiles", target_platform=OS.LINUX),
+                 Stowable("bin"),
+                 Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
+    install_dotfiles(stowables)
     print("install complete!")

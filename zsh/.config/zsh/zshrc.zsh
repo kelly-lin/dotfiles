@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Path
+[[ -f $HOME/.config/zsh/path.zsh ]] && source $HOME/.config/zsh/path.zsh
+
 # Set prompt
 [[ -f $HOME/.config/zsh/prompt.zsh ]] && source $HOME/.config/zsh/prompt.zsh
 

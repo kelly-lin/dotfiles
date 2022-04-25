@@ -1,6 +1,3 @@
 local beautiful = require("beautiful")
-local gears = require("gears")
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
-beautiful.useless_gap = 10
+local awful = require("awful")
+beautiful.init(awful.util.getdir("config") .. "themes/theme.lua")

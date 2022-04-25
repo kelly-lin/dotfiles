@@ -4,7 +4,6 @@ if not treesitter_loaded then
 end
 
 treesitter.setup({
-	ensure_installed = "maintained",
 	sync_install = false,
 	highlight = {
 		enable = true,
