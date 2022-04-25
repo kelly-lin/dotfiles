@@ -181,7 +181,6 @@ local function setAwesomeControlKeys(globalkeys)
 end
 
 local function setMouseBindings(globalkeys)
-	root.buttons(gears.table.join(awful.button({}, 4, awful.tag.viewnext), awful.button({}, 5, awful.tag.viewprev)))
 	-- Bind all key numbers to tags.
 	-- Be careful: we use keycodes to make it work on any keyboard layout.
 	-- This should map on the top row of your keyboard, usually 1 to 9.
