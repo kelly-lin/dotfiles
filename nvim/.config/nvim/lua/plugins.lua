@@ -52,6 +52,7 @@ require("packer").startup(function(use)
 	use({ "glepnir/dashboard-nvim" })
 
 	-- Utility
+	use({ "mfussenegger/nvim-dap" })
 	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "ThePrimeagen/harpoon" })
