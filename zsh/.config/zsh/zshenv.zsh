@@ -36,7 +36,7 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-# Ruby Version Manager
+# Ruby Version Manager (needs to be at the end of path)
 export PATH=$PATH:$HOME/.rvm/bin
 
 [[ -f $HOME/.local/zsh/.zshenv ]] && source $HOME/.local/zsh/.zshenv

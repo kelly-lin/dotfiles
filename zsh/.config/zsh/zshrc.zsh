@@ -1,8 +1,5 @@
 #!/bin/zsh
 
-# Keybindings
-[[ -f $HOME/.config/zsh/keybindings.zsh ]] && source $HOME/.config/zsh/keybindings.zsh
-
 # Set prompt
 [[ -f $HOME/.config/zsh/prompt.zsh ]] && source $HOME/.config/zsh/prompt.zsh
 
@@ -24,3 +21,6 @@
 # Plugins
 [[ -f $HOME/.config/zsh/plugins.zsh ]] && source $HOME/.config/zsh/plugins.zsh
 [[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+
+# Keybindings
+[[ -f $HOME/.config/zsh/keybindings.zsh ]] && source $HOME/.config/zsh/keybindings.zsh
