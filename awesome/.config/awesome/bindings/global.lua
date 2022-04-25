@@ -235,13 +235,18 @@ local function setPowerControlBindings(globalkeys)
 	return gears.table.join(
 		globalkeys,
 
-		awful.key({ modkey, "Shift" }, "Print", function ()
-      awful.spawn("systemctl poweroff -i")
+		awful.key({ modkey, "Shift" }, "Print", function()
+			awful.spawn("systemctl poweroff -i")
 		end, { description = "power off", group = "power" }),
 
-		awful.key({ modkey, "Shift" }, "Scroll_Lock", function ()
-      awful.spawn("systemctl reboot")
-		end, { description = "reboot", group = "power" })
+		awful.key({ modkey, "Shift" }, "Scroll_Lock", function()
+			awful.spawn("systemctl reboot")
+		end, { description = "reboot", group = "power" }),
+
+		awful.key({ modkey }, "Pause", function()
+			awful.spawn("playerctl -p spotify pause")
+			awful.spawn("xset dpms force off")
+		end, { description = "away", group = "power" })
 	)
 end
 
