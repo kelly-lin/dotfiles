@@ -184,6 +184,7 @@ if __name__ == "__main__":
                  Stowable("fonts", is_platform_split=True),
                  Stowable("dunst", target_platform=OS.LINUX),
                  Stowable("google-chrome", target_platform=OS.LINUX),
+                 Stowable("nvidia-settings", target_platform=OS.LINUX),
                  Stowable("i3", target_platform=OS.LINUX),
                  Stowable("awesome", target_platform=OS.LINUX),
                  Stowable("polybar", target_platform=OS.LINUX),
