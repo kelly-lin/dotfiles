@@ -1,5 +1,5 @@
 name: dev
-root: ~/
+root: <%= @settings["workspace"] %>
 
 windows:
   - neovim:

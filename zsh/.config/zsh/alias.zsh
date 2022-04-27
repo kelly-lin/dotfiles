@@ -30,6 +30,9 @@ alias ei3='$EDITOR ~/.config/i3/config'
 which tmuxinator &> /dev/null
 [[ $? -eq 0 ]] && alias mux='tmuxinator'
 
+which tmuxinator-sessionizer &> /dev/null
+[[ $? -eq 0 ]] && alias mx='tmuxinator-sessionizer'
+
 alias szsh='source ~/.zshrc'
 
 alias grp="cd ~/ghq"
