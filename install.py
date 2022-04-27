@@ -192,7 +192,6 @@ if __name__ == "__main__":
                  Stowable("rofi", OS.LINUX),
                  Stowable("tmuxinator", OS.LINUX),
                  Stowable("xfiles", target_platform=OS.LINUX),
-                 Stowable("bin"),
                  Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
     install_dotfiles(stowables)
     print("install complete!")
