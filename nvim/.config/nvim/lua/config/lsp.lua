@@ -16,6 +16,7 @@ local servers = {
 	"cmake",
 	"kotlin_language_server",
 	"cssls",
+	"html",
 }
 
 for _, name in pairs(servers) do
