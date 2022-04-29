@@ -4,25 +4,26 @@ if not lsp_installer_loaded then
 end
 
 local servers = {
-  "bashls",
-  "pyright",
-  "yamlls",
-  "tsserver",
-  "vimls",
-  "sumneko_lua",
-  "gopls",
-  "jsonls",
-  "solargraph",
-  "cmake",
-  "kotlin_language_server",
+	"bashls",
+	"pyright",
+	"yamlls",
+	"tsserver",
+	"vimls",
+	"sumneko_lua",
+	"gopls",
+	"jsonls",
+	"solargraph",
+	"cmake",
+	"kotlin_language_server",
+	"cssls",
 }
 
 for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found and not server:is_installed() then
-    print("Installing " .. name)
-    server:install()
-  end
+	local server_is_found, server = lsp_installer.get_server(name)
+	if server_is_found and not server:is_installed() then
+		print("Installing " .. name)
+		server:install()
+	end
 end
 
 local runtime_path = vim.split(package.path, ";")
@@ -30,8 +31,8 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 local enhance_server_opts = {
-  ["sumneko_lua"] = function (opts)
-    opts.settings = {
+	["sumneko_lua"] = function(opts)
+		opts.settings = {
 			Lua = {
 				runtime = {
 					version = "LuaJIT",
@@ -47,10 +48,10 @@ local enhance_server_opts = {
 					enable = false,
 				},
 			},
-    }
-  end,
-  ["yamlls"] = function(opts)
-    opts.settings = {
+		}
+	end,
+	["yamlls"] = function(opts)
+		opts.settings = {
 			yaml = {
 				schemas = {
 					["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
@@ -58,14 +59,14 @@ local enhance_server_opts = {
 					["/path/from/root/of/project"] = "/.github/workflows/*",
 				},
 			},
-    }
-  end,
+		}
+	end,
 }
 
 local bmap = require("utils.keymaps").bmap
 local capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 lsp_installer.on_server_ready(function(server)
-  local opts = {
+	local opts = {
 		on_attach = function(client, bufnr)
 			bmap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { silent = true })
 			bmap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { silent = true })
@@ -80,15 +81,15 @@ lsp_installer.on_server_ready(function(server)
 			client.resolved_capabilities.document_formatting = false
 			client.resolved_capabilities.document_range_formatting = false
 		end,
-    capabilities = capabilities,
+		capabilities = capabilities,
 		flags = {
 			debounce_text_changes = 150,
 		},
-  }
+	}
 
-  if enhance_server_opts[server.name] then
-    enhance_server_opts[server.name](opts)
-  end
+	if enhance_server_opts[server.name] then
+		enhance_server_opts[server.name](opts)
+	end
 
-  server:setup(opts)
+	server:setup(opts)
 end)
