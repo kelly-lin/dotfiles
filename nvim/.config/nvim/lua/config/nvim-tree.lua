@@ -20,9 +20,9 @@ nvim_tree.setup({
 		"alpha",
 	},
 	open_on_tab = false,
-	quit_on_open = false,
+	-- quit_on_open = false,
 	hijack_cursor = true,
-	hide_root_folder = true,
+	-- hide_root_folder = true,
 	update_cwd = true,
 	update_focused_file = {
 		enable = true,
@@ -41,8 +41,8 @@ nvim_tree.setup({
 		width = 40,
 		height = 30,
 		side = "left",
-		allow_resize = true,
-		hide_root_folder = false,
+		-- allow_resize = true,
+		-- hide_root_folder = false,
 		number = false,
 		relativenumber = false,
 		signcolumn = "yes",
@@ -52,13 +52,13 @@ nvim_tree.setup({
 		ignore = false,
 		timeout = 500,
 	},
-	show_icons = {
-		git = 1,
-		folders = 1,
-		files = 1,
-		folder_arrows = 0,
-		tree_width = 30,
-	},
+	-- show_icons = {
+	-- 	git = 1,
+	-- 	folders = 1,
+	-- 	files = 1,
+	-- 	folder_arrows = 0,
+	-- 	tree_width = 30,
+	-- },
 })
 
 local nmap = require("utils.keymaps").nmap
