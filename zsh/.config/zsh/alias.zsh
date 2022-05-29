@@ -1,4 +1,4 @@
-if [[ `uname` == "Darwin" ]]; then
+if [[ `uname` == 'Darwin' ]]; then
   alias ls='ls -G'
 elif ; then
   alias ls='ls --color=auto'
@@ -37,7 +37,7 @@ alias szsh='source ~/.zshrc'
 
 alias grp='cd $(find ~/ghq -mindepth 3 -maxdepth 3 -type d | fzf)'
 alias rp="cd ~/Repos"
-alias prp="cd ~/Repos/personal"
+alias prp='cd ~/Repos/personal'
 
 alias cb='git checkout $(git branch | fzf)'
 
