@@ -1,4 +1,2 @@
 # ignore plugins folder
-config/nvim/plugged
-
-config/nvim/autoload/plug.vim
+nvim/.config/nvim/plugin/packer_compiled.lua
