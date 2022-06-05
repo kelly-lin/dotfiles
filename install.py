@@ -147,6 +147,13 @@ def stow(stowables):
     print("finished stowing stowables")
 
 
+def unstow(stowables):
+    print("unstowing stowables")
+    for stowable in stowables:
+        stowable.unstow()
+    print("finished unstowing stowables")
+
+
 def uninstall_dotfiles(stowables):
     print("uninstalling dotfiles")
     for stowable in stowables:
@@ -154,54 +161,57 @@ def uninstall_dotfiles(stowables):
     print("finished uninstalling dotfiles")
 
 
+packages = [Package("stow", OS.LINUX),
+            Package("xclip", OS.LINUX),
+            Package("fzf", OS.LINUX),
+            Package("nodejs", OS.LINUX, "node"),
+            Package("npm", OS.LINUX),
+            Package("picom", OS.LINUX),
+            Package("nitrogen", OS.LINUX),
+            Package("pulseaudio", OS.LINUX),
+            Package("pamixer", OS.LINUX),
+            Package("ruby", OS.LINUX),
+            Package("python-pip", OS.LINUX, "pip"),
+            Package("python", OS.LINUX),
+            Package("fd", OS.LINUX),
+            Package("xbindkeys", OS.LINUX),
+            Package("stylua", OS.LINUX),
+            Package("playerctl", OS.LINUX),
+            Package("nautilus", OS.LINUX),
+            Package("zathura", OS.LINUX),
+            Package("numlockx", OS.LINUX),
+            Package("noto-fonts-emoji", OS.LINUX),
+            Package("zathura-pdf-mupdf", OS.LINUX)]
+
+stowables = [Stowable("tmux"),
+             Stowable("zsh"),
+             Stowable("nvim"),
+             Stowable("prettier"),
+             Stowable("alacritty", is_platform_split=True),
+             Stowable("fonts", is_platform_split=True),
+             Stowable("dunst", target_platform=OS.LINUX),
+             Stowable("google-chrome", target_platform=OS.LINUX),
+             Stowable("nvidia-settings", target_platform=OS.LINUX),
+             Stowable("i3", target_platform=OS.LINUX),
+             Stowable("awesome", target_platform=OS.LINUX),
+             Stowable("polybar", target_platform=OS.LINUX),
+             Stowable("pulse", target_platform=OS.LINUX),
+             Stowable("picom", OS.LINUX),
+             Stowable("rofi", OS.LINUX),
+             Stowable("tmuxinator", OS.LINUX),
+             Stowable("xfiles", target_platform=OS.LINUX),
+             Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
+
 if __name__ == "__main__":
     ensure_root_dir()
     command = sys.argv[1]
     option = sys.argv[2] if len(sys.argv) == 3 else ''
 
     if command == 'install' and option == 'packages':
-        packages = [Package("stow", OS.LINUX),
-                    Package("xclip", OS.LINUX),
-                    Package("fzf", OS.LINUX),
-                    Package("nodejs", OS.LINUX, "node"),
-                    Package("npm", OS.LINUX),
-                    Package("picom", OS.LINUX),
-                    Package("nitrogen", OS.LINUX),
-                    Package("pulseaudio", OS.LINUX),
-                    Package("pamixer", OS.LINUX),
-                    Package("ruby", OS.LINUX),
-                    Package("python-pip", OS.LINUX, "pip"),
-                    Package("python", OS.LINUX),
-                    Package("fd", OS.LINUX),
-                    Package("xbindkeys", OS.LINUX),
-                    Package("stylua", OS.LINUX),
-                    Package("playerctl", OS.LINUX),
-                    Package("nautilus", OS.LINUX),
-                    Package("zathura", OS.LINUX),
-                    Package("numlockx", OS.LINUX),
-                    Package("noto-fonts-emoji", OS.LINUX),
-                    Package("zathura-pdf-mupdf", OS.LINUX)]
         install_packages(packages)
 
     if command == 'stow':
-        stowables = [Stowable("tmux"),
-                     Stowable("zsh"),
-                     Stowable("nvim"),
-                     Stowable("prettier"),
-                     Stowable("alacritty", is_platform_split=True),
-                     Stowable("fonts", is_platform_split=True),
-                     Stowable("dunst", target_platform=OS.LINUX),
-                     Stowable("google-chrome", target_platform=OS.LINUX),
-                     Stowable("nvidia-settings", target_platform=OS.LINUX),
-                     Stowable("i3", target_platform=OS.LINUX),
-                     Stowable("awesome", target_platform=OS.LINUX),
-                     Stowable("polybar", target_platform=OS.LINUX),
-                     Stowable("pulse", target_platform=OS.LINUX),
-                     Stowable("picom", OS.LINUX),
-                     Stowable("rofi", OS.LINUX),
-                     Stowable("tmuxinator", OS.LINUX),
-                     Stowable("xfiles", target_platform=OS.LINUX),
-                     Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
         stow(stowables)
 
-    print("install complete!")
+    if command == 'unstow':
+        unstow(stowables)
