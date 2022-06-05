@@ -44,7 +44,7 @@ alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | f
 
 function add_worktree {
   git worktree add $1
-  [[ $1 -eq 0 ]] && cd $1
+  [[ $? -eq 0 ]] && cd $1
 }
 alias awt='add_worktree'
 alias rwt='git worktree remove'
