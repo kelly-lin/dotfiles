@@ -65,3 +65,4 @@ function ch_prepo {
 alias cprp=ch_prepo
 
 alias ct='git tag | fzf | xargs git checkout'
+alias gpo='gp -u origin'
