@@ -1,8 +1,5 @@
-if [[ `uname` == 'Darwin' ]]; then
-  alias ls='ls -G'
-elif ; then
-  alias ls='ls --color=auto'
-fi
+alias ls='ls --color=auto'
+[[ `uname` == 'Darwin' ]] && alias ls='ls -G'
 
 alias ll='ls -alh'
 alias la='ls -ah'
@@ -21,47 +18,34 @@ if [[ $? -eq 0 ]]; then
   alias vim='nvim'
   alias vi='nvim'
 fi
+
 alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
-alias etmux='$EDITOR ~/.tmux.conf'
+# config shortcuts
+alias nvc='cd $HOME/.config/nvim'
+alias szsh='source ~/.zshrc'
 
-alias ei3='$EDITOR ~/.config/i3/config'
-
+# tmux
 which tmuxinator &> /dev/null
 [[ $? -eq 0 ]] && alias mux='tmuxinator'
 
 which tmuxinator-sessionizer &> /dev/null
 [[ $? -eq 0 ]] && alias mx='tmuxinator-sessionizer'
 
-alias szsh='source ~/.zshrc'
+# repo navigation
+alias crp='cd $(find ~/Repos -mindepth 1 -maxdepth 1 -type d | fzf)'
+alias cgrp='cd $(find ~/ghq -mindepth 3 -maxdepth 3 -type d | fzf)'
+alias cprp='cd $(find ~/Repos/personal -mindepth 1 -maxdepth 1 -type d | fzf)'
 
-alias grp='cd $(find ~/ghq -mindepth 3 -maxdepth 3 -type d | fzf)'
-alias rp="cd ~/Repos"
-alias prp='cd ~/Repos/personal'
-
+# git
 alias cb='git checkout $(git branch | fzf)'
-
-alias nvconfig='cd $HOME/.config/nvim'
-
-function ch_repo {
-  dir=$(ls ~/Repos/ | grep -v 'personal' | fzf | sed 's/.*/Repos\/&/')
-
-  if [[ -n $dir ]]; then
-    cd $HOME/$dir
-  fi
-}
-
-alias crp=ch_repo
-alias erp="ch_repo && $EDITOR"
-
-function ch_prepo {
-  dir=$(ls ~/Repos/personal | fzf | sed 's/.*/Repos\/personal\/&/')
-
-  if [[ -n $dir ]]; then
-    cd $HOME/$dir
-  fi
-}
-
-alias cprp=ch_prepo
-
 alias ct='git tag | fzf | xargs git checkout'
+alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf)"
+
+function add_worktree {
+  git worktree add $1
+  [[ $1 -eq 0 ]] && cd $1
+}
+alias awt='add_worktree'
+alias rwt='git worktree remove'
+
