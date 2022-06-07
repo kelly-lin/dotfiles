@@ -41,7 +41,6 @@ alias cprp='cd $(find ~/Repos/personal -mindepth 1 -maxdepth 1 -type d | fzf)'
 alias cb='git checkout $(git branch | fzf)'
 alias ct='git tag | fzf | xargs git checkout'
 alias gpo='gp -u origin'
-alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf)"
 
 function add_worktree {
   git worktree add $1
@@ -49,4 +48,5 @@ function add_worktree {
 }
 alias awt='add_worktree'
 alias rwt='git worktree remove'
-
+alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf)"
+alias gbco='~/zsh/scripts/worktree-cline-bare.zsh'
