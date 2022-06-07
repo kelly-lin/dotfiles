@@ -34,9 +34,9 @@ which tmuxinator-sessionizer &> /dev/null
 
 # repo navigation
 alias rp='cd ~/Repos'
-alias crp='cd $(find ~/Repos -mindepth 1 -maxdepth 1 -type d | fzf)'
-alias cgrp='cd $(find ~/ghq -mindepth 3 -maxdepth 3 -type d | fzf)'
-alias cprp='cd $(find ~/Repos/personal -mindepth 1 -maxdepth 1 -type d | fzf)'
+alias crp='cd $(find ~/Repos -mindepth 1 -maxdepth 1 -type d | fzf || echo $PWD)'
+alias cgrp='cd $(find ~/ghq -mindepth 3 -maxdepth 3 -type d | fzf || echo $PWD)'
+alias cprp='cd $(find ~/Repos/personal -mindepth 1 -maxdepth 1 -type d | fzf || echo $PWD)'
 
 # git
 alias cb='git checkout $(git branch | fzf)'
