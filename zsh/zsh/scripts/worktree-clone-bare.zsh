@@ -3,10 +3,11 @@
 set -e
 
 url=$1
+[[ -z $url ]] && echo 'please provide a git repo url' && exit 1
+
 basename=${url##*/}
 name=${2:-${basename%.*}}
-
-[[ -z $url ]] && echo 'please provide a git repo url' && exit 1
+[[ ! -z $2 ]] && name=$2
 
 mkdir $name
 cd "$name"

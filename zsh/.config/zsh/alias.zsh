@@ -33,6 +33,7 @@ which tmuxinator-sessionizer &> /dev/null
 [[ $? -eq 0 ]] && alias mx='tmuxinator-sessionizer'
 
 # repo navigation
+alias rp='cd ~/Repos'
 alias crp='cd $(find ~/Repos -mindepth 1 -maxdepth 1 -type d | fzf)'
 alias cgrp='cd $(find ~/ghq -mindepth 3 -maxdepth 3 -type d | fzf)'
 alias cprp='cd $(find ~/Repos/personal -mindepth 1 -maxdepth 1 -type d | fzf)'
@@ -43,10 +44,13 @@ alias ct='git tag | fzf | xargs git checkout'
 alias gpo='gp -u origin'
 
 function add_worktree {
-  git worktree add $1
+  dir_name=$1
+  branch_name=$2
+  git branch $2
+  git worktree add $1 $2
   [[ $? -eq 0 ]] && cd $1
 }
 alias awt='add_worktree'
 alias rwt='git worktree remove'
 alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf)"
-alias gbco='~/zsh/scripts/worktree-cline-bare.zsh'
+alias gbco='~/zsh/scripts/worktree-clone-bare.zsh'
