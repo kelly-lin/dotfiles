@@ -52,5 +52,5 @@ function add_worktree {
 }
 alias awt='add_worktree'
 alias rwt='git worktree remove'
-alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf)"
+alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf || echo $PWD)"
 alias gbco='~/zsh/scripts/worktree-clone-bare.zsh'
