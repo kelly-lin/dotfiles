@@ -41,14 +41,22 @@ alias cprp='cd $(find ~/Repos/personal -mindepth 1 -maxdepth 1 -type d | fzf || 
 # git
 alias cb='git checkout $(git branch | fzf)'
 alias ct='git tag | fzf | xargs git checkout'
-alias gpo='gp -u origin'
+alias gpo='gp -u origin $(git rev-parse --abbrev-ref HEAD)'
 
 function add_worktree {
   dir_name=$1
+  [[ -z $dir_name ]] && \
+    echo 'please provide a directory name for the worktree' && \
+    return
+
   branch_name=$2
-  git branch $2
-  git worktree add $1 $2
-  [[ $? -eq 0 ]] && cd $1
+  [[ -z $branch_name ]] && \
+    echo 'please provide a branch name for the worktree' && \
+    return
+
+  git branch $branch_name
+  git worktree add $dir_name $branch_name
+  [[ $? -eq 0 ]] && cd $dir_name
 }
 alias awt='add_worktree'
 alias rwt='git worktree remove'
