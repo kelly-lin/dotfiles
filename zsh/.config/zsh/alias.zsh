@@ -54,6 +54,9 @@ function add_worktree {
     echo 'please provide a branch name for the worktree' && \
     return
 
+  root_dir=$(git rev-parse --git-dir | sed 's/\.bare.*//')
+  cd $root_dir
+
   git branch $branch_name
   git worktree add $dir_name $branch_name
   [[ $? -eq 0 ]] && cd $dir_name
