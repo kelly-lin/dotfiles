@@ -31,9 +31,6 @@ treesitter.setup({
 	incremental_selection = {
 		enable = true,
 	},
-	indent = {
-		enable = true,
-	},
 	textobjects = {
 		select = {
 			enable = true,
