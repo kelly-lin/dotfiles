@@ -74,6 +74,7 @@ require("packer").startup(function(use)
 	use({ "simrat39/symbols-outline.nvim" })
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 	use({ "ggandor/lightspeed.nvim", commit = "0b655" })
+	use({ "ThePrimeagen/git-worktree.nvim" })
 
 	-- Formatters
 	use({ "sbdchd/neoformat" })
@@ -85,7 +86,6 @@ require("packer").startup(function(use)
 
 	-- Themes
 	use({ "navarasu/onedark.nvim" })
-	use({ "morhetz/gruvbox" })
 
 	if should_bootsrap then
 		require("packer").sync()
