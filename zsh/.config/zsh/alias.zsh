@@ -57,11 +57,14 @@ function add_worktree {
   root_dir=$(git rev-parse --git-dir | sed 's/\.bare.*//')
   cd $root_dir
 
-  git branch $branch_name
+  git show-branch $branch_name &> /dev/null
+  [[ $? -ne 0 ]] && git branch $branch_name
+
   git worktree add $dir_name $branch_name
   [[ $? -eq 0 ]] && cd $dir_name
 }
 alias awt='add_worktree'
 alias rwt='git worktree remove'
+alias lwt='git worktree list'
 alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf || echo \$PWD)"
 alias gbco='~/zsh/scripts/worktree-clone-bare.zsh'
