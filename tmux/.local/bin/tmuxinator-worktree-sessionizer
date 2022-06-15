@@ -4,6 +4,14 @@ selected_worktree=$(git worktree list | awk '{ print $1 }' | sed '/.*\.bare/d' |
 [[ -z $selected_worktree ]] && exit 1
 
 worktree_name=$(basename $selected_worktree | tr . _)
-repo_name=$(git rev-parse --git-dir | awk '{n=split($0,p,"/"); print p[n-1]}' | tr . _)
+
+git rev-parse --show-toplevel &> /dev/null
+if [[ $? -eq 0 ]]; then
+  repo_name=$(git rev-parse --show-toplevel | awk '{n=split($0,p,"/"); print p[n-1]}' | tr . _)
+else
+  repo_name=$(git rev-parse --git-dir | awk '{n=split($0,p,"/"); print p[n-1]}' | tr . _)
+fi
+
 session_name="($repo_name) $worktree_name"
+
 tmuxinator start -n $session_name -p $HOME/.config/tmuxinator/dev.yaml workspace=$selected_worktree
