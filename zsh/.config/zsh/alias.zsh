@@ -19,7 +19,7 @@ if [[ $? -eq 0 ]]; then
   alias vi='nvim'
 fi
 
-alias ranger='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
+alias nd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 # config shortcuts
 alias nvc='cd $HOME/.config/nvim'
