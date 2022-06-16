@@ -42,6 +42,7 @@ alias cprp='cd $(find ~/Repos/personal -mindepth 1 -maxdepth 1 -type d | fzf || 
 alias cb='git checkout $(git branch | fzf)'
 alias ct='git tag | fzf | xargs git checkout'
 alias gpo='gp -u origin $(git rev-parse --abbrev-ref HEAD)'
+alias gcms='git commit -m'
 
 alias awt="$CUSTOM_ZSH_SCRIPTS_PATH/worktree-add.zsh"
 alias rwt='git worktree remove'
