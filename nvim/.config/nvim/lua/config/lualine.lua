@@ -5,7 +5,7 @@ end
 
 lualine.setup({
 	options = {
-		disabled_filetypes = { "NvimTree", "Outline", "dashboard" },
+		disabled_filetypes = { "NvimTree", "Outline", "dashboard", "fugitive" },
 	},
 	sections = {
 		lualine_c = {
