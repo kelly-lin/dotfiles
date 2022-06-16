@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import os
 import sys
@@ -81,9 +81,7 @@ class Stowable:
             return
 
         subprocess.run(
-            ["stow",
-                "--dir={package_name}".format(package_name=package_name),
-                "--target={target}".format(target=target_dir), platform_dir_name])
+            ["stow", "--target={target}".format(target=target_dir), platform_dir_name])
 
     def unstow(self):
         print("unstowing {}".format(self.package_name))
@@ -184,22 +182,22 @@ packages = [Package("stow", OS.LINUX),
             Package("zathura-pdf-mupdf", OS.LINUX)]
 
 stowables = [Stowable("tmux"),
-             Stowable("zsh"),
-             Stowable("nvim"),
-             Stowable("prettier"),
-             Stowable("alacritty", is_platform_split=True),
-             Stowable("fonts", is_platform_split=True),
-             Stowable("dunst", target_platform=OS.LINUX),
-             Stowable("google-chrome", target_platform=OS.LINUX),
-             Stowable("nvidia-settings", target_platform=OS.LINUX),
-             Stowable("i3", target_platform=OS.LINUX),
-             Stowable("awesome", target_platform=OS.LINUX),
-             Stowable("polybar", target_platform=OS.LINUX),
-             Stowable("pulse", target_platform=OS.LINUX),
-             Stowable("picom", OS.LINUX),
-             Stowable("rofi", OS.LINUX),
-             Stowable("tmuxinator", OS.LINUX),
-             Stowable("xfiles", target_platform=OS.LINUX),
+             # Stowable("zsh"),
+             # Stowable("nvim"),
+             # Stowable("prettier"),
+             # Stowable("alacritty", is_platform_split=True),
+             # Stowable("fonts", is_platform_split=True),
+             # Stowable("dunst", target_platform=OS.LINUX),
+             # Stowable("google-chrome", target_platform=OS.LINUX),
+             # Stowable("nvidia-settings", target_platform=OS.LINUX),
+             # Stowable("i3", target_platform=OS.LINUX),
+             # Stowable("awesome", target_platform=OS.LINUX),
+             # Stowable("polybar", target_platform=OS.LINUX),
+             # Stowable("pulse", target_platform=OS.LINUX),
+             # Stowable("picom", OS.LINUX),
+             # Stowable("rofi", OS.LINUX),
+             # Stowable("tmuxinator", OS.LINUX),
+             # Stowable("xfiles", target_platform=OS.LINUX),
              Stowable("logid", target=Target.OTHER, alt_dir="/etc", target_platform=OS.LINUX)]
 
 if __name__ == "__main__":
