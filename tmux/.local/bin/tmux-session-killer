@@ -1,19 +1,12 @@
 #!/bin/zsh
 
-# session_names=$(\
-#   tmux list-sessions | \
-#   sed -E 's/:.*$//' | \
-#   grep -v "^$(tmux display-message -p '#S')" | \
-#   fzf --reverse -m\
-# )
-
 arr=(${(f)"$(tmux list-sessions | \
   sed -E 's/:.*$//' | \
   grep -v "^$(tmux display-message -p '#S')" | \
   fzf --reverse -m
 )"})
+
 for session_name in $arr; do
-  echo "session name is: $session_name"
+  tmux kill-session -t "$session"
 done
 
-  # tmux kill-session -t "$session"
