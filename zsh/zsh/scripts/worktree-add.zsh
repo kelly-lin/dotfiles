@@ -1,4 +1,8 @@
 #!/bin/zsh
+# This script is only necessary because git will create a new worktree within
+# the current worktree resulting in a recursive tree structure. This script
+# ensures that the worktrees are created in the root git directory in order to
+# achieve a flat worktree structure.
 
 dir_name=$1
 if [[ -z $dir_name ]]; then
