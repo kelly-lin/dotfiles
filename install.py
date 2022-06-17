@@ -2,15 +2,9 @@
 
 import os
 import sys
-import shutil
 import platform
 import subprocess
 from enum import Enum, auto
-
-
-def is_package_installed(name):
-    result = shutil.which(name)
-    return result is not None
 
 
 def is_linux():
@@ -99,44 +93,6 @@ def ensure_root_dir():
         sys.exit()
 
 
-class Package:
-    # the shell name refers to the command you would type to invoke the
-    # installed package on the command line. For example, the nodejs package
-    # would have a shell name of "node" and not "nodejs"
-    def __init__(self, package_name, platform, shell_name=""):
-        self.package_name = package_name
-        self.package_manager = platform
-        self.shell_name = shell_name
-
-    def install(self):
-        shell_name = self.package_name
-        if self.shell_name != "":
-            shell_name = self.shell_name
-
-        if is_package_installed(shell_name):
-            print("{} already installed, skipping...".format(self.package_name))
-            return
-
-        print("installing {}".format(self.package_name))
-        if is_linux():
-            subprocess.run(["pacman", "-S", self.package_name])
-            return
-
-        if is_mac_os():
-            subprocess.run(["brew", "install", self.package_name])
-            return
-
-        subprocess.run(["brew", "install", self.package_name])
-        return
-
-
-def install_packages(packages):
-    print("installing dependencies")
-    for package in packages:
-        package.install()
-    print("finished installing dependencies")
-
-
 def stow(stowables):
     print("stowing stowables")
     for stowable in stowables:
@@ -158,28 +114,6 @@ def uninstall_dotfiles(stowables):
         stowable.unstow()
     print("finished uninstalling dotfiles")
 
-
-packages = [Package("stow", OS.LINUX),
-            Package("xclip", OS.LINUX),
-            Package("fzf", OS.LINUX),
-            Package("nodejs", OS.LINUX, "node"),
-            Package("npm", OS.LINUX),
-            Package("picom", OS.LINUX),
-            Package("nitrogen", OS.LINUX),
-            Package("pulseaudio", OS.LINUX),
-            Package("pamixer", OS.LINUX),
-            Package("ruby", OS.LINUX),
-            Package("python-pip", OS.LINUX, "pip"),
-            Package("python", OS.LINUX),
-            Package("fd", OS.LINUX),
-            Package("xbindkeys", OS.LINUX),
-            Package("stylua", OS.LINUX),
-            Package("playerctl", OS.LINUX),
-            Package("nautilus", OS.LINUX),
-            Package("zathura", OS.LINUX),
-            Package("numlockx", OS.LINUX),
-            Package("noto-fonts-emoji", OS.LINUX),
-            Package("zathura-pdf-mupdf", OS.LINUX)]
 
 stowables = [Stowable("tmux"),
              Stowable("zsh"),
@@ -204,9 +138,6 @@ if __name__ == "__main__":
     ensure_root_dir()
     command = sys.argv[1]
     option = sys.argv[2] if len(sys.argv) == 3 else ''
-
-    if command == 'install' and option == 'packages':
-        install_packages(packages)
 
     if command == 'stow':
         stow(stowables)
