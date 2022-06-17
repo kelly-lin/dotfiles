@@ -14,4 +14,7 @@ fi
 
 session_name="$repo_name ($worktree_name)"
 
+# Switch to the session if it already exists and exit
+tmux switch-client -t "$session_name" && exit 0
+
 tmuxinator start -n $session_name -p $HOME/.config/tmuxinator/dev.yaml workspace=$selected_worktree
