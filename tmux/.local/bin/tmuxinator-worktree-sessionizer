@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 selected_worktree=$(git worktree list | awk '{ print $1 }' | sed '/.*\.bare/d' | fzf --reverse --header='git worktrees')
-[[ -z $selected_worktree ]] && exit 1
+[[ -z $selected_worktree ]] && exit 0
 
 worktree_name=$(basename $selected_worktree | tr . _)
 
