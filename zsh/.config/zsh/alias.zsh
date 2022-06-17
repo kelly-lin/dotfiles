@@ -45,7 +45,7 @@ alias gpo='gp -u origin $(git rev-parse --abbrev-ref HEAD)'
 alias gcms='git commit -m'
 
 alias awt="$CUSTOM_ZSH_SCRIPTS_PATH/worktree-add.zsh"
-alias rwt='git worktree remove'
+alias rwt='worktree-cleaner'
 alias lwt='git worktree list'
 alias cwt="cd \$(git worktree list | awk '{ print \$1 }' | sed '/.*\.bare/d' | fzf || echo \$PWD)"
 alias gbco="$CUSTOM_ZSH_SCRIPTS_PATH/worktree-clone-bare.zsh"
