@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+selected_worktrees=(${(f)"$(git worktree list | awk '{ print $1 }' | sed '/.*\.bare/d' | fzf -m --reverse --header='git worktrees')"})
+for worktree in $selected_worktrees; do
+  tmux new-session -n "worktree-cleaner" -d git worktree remove $(basename $worktree) --force
+done
