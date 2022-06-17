@@ -7,6 +7,6 @@ arr=(${(f)"$(tmux list-sessions | \
 )"})
 
 for session_name in $arr; do
-  tmux kill-session -t "$session"
+  tmux kill-session -t "$session_name"
 done
 
