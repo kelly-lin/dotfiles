@@ -1,1 +1,7 @@
-require("nvim-autopairs").setup({})
+local M = {}
+
+function M.setup()
+	require("nvim-autopairs").setup({})
+end
+
+return M

@@ -51,8 +51,11 @@ require("packer").startup(function(use)
 	-- Dashboard
 	use({ "glepnir/dashboard-nvim" })
 
-	-- Utility
+	-- Debugger
 	use({ "mfussenegger/nvim-dap" })
+	use({ "mfussenegger/nvim-dap-python" })
+
+	-- Utility
 	use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
 	use({ "nvim-lua/plenary.nvim" })
 	use({ "ThePrimeagen/harpoon" })
@@ -74,7 +77,6 @@ require("packer").startup(function(use)
 	use({ "simrat39/symbols-outline.nvim" })
 	use({ "iamcco/markdown-preview.nvim", run = "cd app && yarn install" })
 	use({ "ggandor/lightspeed.nvim", commit = "0b655" })
-	use({ "ThePrimeagen/git-worktree.nvim" })
 
 	-- Formatters
 	use({ "sbdchd/neoformat" })
@@ -94,18 +96,26 @@ require("packer").startup(function(use)
 	cmd("PackerInstall")
 end)
 
-require("config.completion")
-require("config.lsp")
-require("config.tree-sitter")
-require("config.auto-pairs")
-require("config.harpoon")
-require("config.nvim-tree")
-require("config.symbols-outline")
-require("config.telescope")
-require("config.lualine")
-require("config.null-ls")
-require("config.gitsigns")
-require("config.dashboard")
-require("config.easyclip")
-require("config.undotree")
-require("config.prettier")
+local function setup_plugin_configs(config_files)
+	for _, config_file in pairs(config_files) do
+		require(config_file).setup()
+	end
+end
+
+setup_plugin_configs({
+	"config.completion",
+	"config.lsp",
+	"config.tree-sitter",
+	"config.auto-pairs",
+	"config.harpoon",
+	"config.nvim-tree",
+	"config.symbols-outline",
+	"config.telescope",
+	"config.lualine",
+	"config.null-ls",
+	"config.gitsigns",
+	"config.dashboard",
+	"config.easyclip",
+	"config.undotree",
+	"config.prettier",
+})
