@@ -1,11 +1,11 @@
 local lualine_loaded, lualine = pcall(require, "lualine")
 if not lualine_loaded then
-  return
+	return
 end
 
 lualine.setup({
 	options = {
-		disabled_filetypes = { "NvimTree", "Outline", "dashboard", "fugitive" },
+		disabled_filetypes = { "NvimTree", "Outline", "dashboard", "fugitive", "gitcommit" },
 	},
 	sections = {
 		lualine_c = {
