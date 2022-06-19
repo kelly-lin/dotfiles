@@ -1,2 +1,4 @@
 nvim/.config/nvim/spell
 packer_compiled.lua
+
+zsh/.config/zsh/.local/
