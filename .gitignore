@@ -1,4 +1,5 @@
 nvim/.config/nvim/spell
 packer_compiled.lua
+**/__pycache__
 
 zsh/.config/zsh/.local/
