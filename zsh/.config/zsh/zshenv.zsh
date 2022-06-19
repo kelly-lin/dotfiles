@@ -46,6 +46,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 # Ruby Version Manager (needs to be at the end of path)
 export PATH=$PATH:$HOME/.rvm/bin
 
-# Source local environment variables - set work environment variables in this
-# file
-[[ -f $HOME/.local/zsh/.zshenv ]] && source $HOME/.local/zsh/.zshenv
+# Source local environment variables - this is where work environment variables 
+# or ones which vary depending on the machine.
+[[ -f $HOME/.config/zsh/.local/.zshenv ]] && source $HOME/.config/zsh/.local/.zshenv
