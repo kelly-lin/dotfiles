@@ -105,6 +105,7 @@ end
 
 setup_plugin_configs({
   "config.dap",
+  "config.dapui",
   "config.completion",
   "config.lsp",
   "config.tree-sitter",
