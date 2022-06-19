@@ -9,6 +9,18 @@ end
 
 local M = {}
 
+function M.show_scopes()
+  local widgets = require('dap.ui.widgets')
+  local my_sidebar = widgets.sidebar(widgets.scopes)
+  my_sidebar.toggle()
+end
+
+function M.show_frames()
+  local widgets = require('dap.ui.widgets')
+  local my_sidebar = widgets.sidebar(widgets.frames)
+  my_sidebar.toggle()
+end
+
 function M.setup()
   dap.adapters.python = {
     type = "executable",
