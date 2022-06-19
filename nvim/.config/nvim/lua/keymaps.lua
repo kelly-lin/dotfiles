@@ -70,7 +70,7 @@ nmap("<leader>gdl", ":diffget //3<CR>", { silent = true })
 vmap("//", [[y/V<C-R>=escape(@",'/')<CR><CR>]])
 
 -- Debugging
-nmap("<leader>dp", ":lua require'dap'.toggle_breakpoint()", { silent = true })
-nmap("<leader>dn", ":lua require'dap'.continue()", { silent = true })
-nmap("<leader>do", ":lua require'dap'.step_over()", { silent = true })
-nmap("<leader>di", ":lua require'dap'.step_into()", { silent = true })
+nmap("<leader>dp", ":lua require'dap'.toggle_breakpoint()<CR>", { silent = true })
+nmap("<leader>dn", ":lua require'dap'.continue()<CR>", { silent = true })
+nmap("<leader>do", ":lua require'dap'.step_over()<CR>", { silent = true })
+nmap("<leader>di", ":lua require'dap'.step_into()<CR>", { silent = true })
