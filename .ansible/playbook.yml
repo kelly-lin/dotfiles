@@ -1,0 +1,17 @@
+
+- hosts: all
+  vars:
+    debug_server_dir_name: .test-ansible
+    debug_server_dir_path: $HOME/{{ debug_server_dir_name }}
+
+  tasks:
+
+    - name: Create debug server directory
+      shell: mkdir {{ debug_server_dir_name }}
+      args:
+        chdir: $HOME
+    
+    - name: Install debugpy
+      shell: mkdir .virtualenvs && cd .virtualenvs && python -m venv debugpy
+      args:
+        chdir: "{{ debug_server_dir_path }}"
