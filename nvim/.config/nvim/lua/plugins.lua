@@ -103,6 +103,7 @@ local function setup_plugin_configs(config_files)
 end
 
 setup_plugin_configs({
+  "config.dap",
 	"config.completion",
 	"config.lsp",
 	"config.tree-sitter",
