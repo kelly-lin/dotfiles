@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+[[ -z $1 ]] && echo 'please provide dotfile directory as the first argument' && exit 1
+dotfiles_dir=$1
+
+dotfile=$(fd -t f -H -E .git . $dotfiles_dir | sed "s|$dotfiles_dir/||" | fzf --reverse --header=dotfiles)
+[[ -z $dotfile ]] && exit 0
+
+dotfile_dir=$(dirname $dotfile)
+tmux new-window -c $dotfile_dir $EDITOR $dotfiles_dir/$dotfile
