@@ -6,4 +6,5 @@ session_name=$(\
   grep -v "^$(tmux display-message -p '#S')\$" | \
   fzf --reverse --header='tmux sessions'\
 )
+[[ -z $session_name ]] && exit 1
 tmux switch-client -t "$session_name"

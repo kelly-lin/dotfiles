@@ -1,0 +1,4 @@
+#!/bin/zsh
+
+current_session_name=$(tmux display-message -p '#S')
+tmux-session-switcher && tmux kill-session -t "$current_session_name"
