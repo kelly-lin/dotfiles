@@ -68,7 +68,7 @@ function M.setup()
 				i = cmp.mapping.abort(),
 				c = cmp.mapping.close(),
 			}),
-			["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+			["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 			["<C-n>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
