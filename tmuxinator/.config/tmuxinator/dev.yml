@@ -1,6 +1,8 @@
 name: dev
 root: ~/<%= @settings["workspace"] %>
 
+prewindow: nvm use 16
+
 windows:
   - neovim:
       layout: main-vertical
