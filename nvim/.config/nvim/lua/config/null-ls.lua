@@ -14,8 +14,8 @@ function M.setup()
 			require("null-ls").builtins.formatting.prettier,
 			require("null-ls").builtins.diagnostics.eslint,
 			require("null-ls").builtins.completion.spell,
-			require("null-ls").builtins.completion.markdownlint,
-			require("null-ls").builtins.completion.proselint,
+			-- require("null-ls").builtins.completion.markdownlint,
+			-- require("null-ls").builtins.completion.proselint,
 		},
 	})
 end
