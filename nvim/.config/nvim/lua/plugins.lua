@@ -58,6 +58,7 @@ require("packer").startup(function(use)
 
   -- Utility
   use({ "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } })
+  use({ "kdheepak/lazygit.nvim" })
   use({ "nvim-lua/plenary.nvim" })
   use({ "ThePrimeagen/harpoon" })
   use({ "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" })
@@ -119,6 +120,7 @@ setup_plugin_configs({
   "config.gitsigns",
   "config.dashboard",
   "config.easyclip",
+  "config.undotree",
   "config.undotree",
   "config.prettier",
 })
