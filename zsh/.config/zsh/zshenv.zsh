@@ -11,7 +11,7 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 
 # Misc
 export KEYTIMEOUT=10 # Reduces the delay between when you can start typing after switching vi modes
-export CUSTOM_ZSH_SCRIPTS_PATH=$HOME/zsh/scripts
+export CUSTOM_ZSH_SCRIPTS_PATH=$HOME/.local/share/zsh/scripts
 
 # Setup Cargo env
 [[ -f $HOME/.cargo/env ]] && source $HOME/.cargo/env
