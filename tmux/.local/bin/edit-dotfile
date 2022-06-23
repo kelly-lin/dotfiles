@@ -7,4 +7,4 @@ dotfile=$(fd -t f -H -E .git . $dotfiles_dir | sed "s|$dotfiles_dir/||" | fzf --
 [[ -z $dotfile ]] && exit 0
 
 dotfile_dir=$(dirname $dotfile)
-tmux new-window -c $dotfile_dir $EDITOR $dotfiles_dir/$dotfile
+tmux new-window "cd $dotfiles_dir && $EDITOR $dotfiles_dir/$dotfile"
