@@ -1,25 +1,23 @@
 # dotfiles
 
-This repository contains my config dot files for applications such has Neovim, zsh and tmux. 
+This repository contains my config dot files for applications such has Neovim,
+zsh and tmux. 
+
+You can pick and choose what you want from the config files or you can simply
+install them all by following the install instructions. 
 
 Use and share as you please.
-
-You can pick and choose what you want from the config files or you can simply install them all by following the install instructions. 
 
 ## Dependencies
 
 - stow
+- Ansible
 
 ## Installing
 
-Install stow
+### dotfiles
+Run `./install.py stow` in the root directory.
 
-### macOS
+### Packages
 
-brew install stow
-
-### Linux
-
-sudo apt install stow
-
-Run 'install.sh' from the root of the repository. 
+`ansible-playbook -i ./.ansible/hosts ./.ansible/playbook.yml --ask-become-pass`
