@@ -13,20 +13,23 @@
           - jq
         state: present
       become: true
-      become_user: root
       become_method: sudo
 
     - name: Create debug server directory
-      shell: mkdir {{ debug_server_dir_path }}
-      args:
-        chdir: $HOME
-    
+      ansible.builtin.file:
+        path: "{{ debug_server_dir_path }}"
+        state: directory
+        mode: '0755'    
+
+    - name: Create debug py directories
+      ansible.builtin.file:
+        path: debugpy/.virtualenvs
+        state: directory
+        mode: '0755'
+
     - name: Install debugpy
       shell: >
-        mkdir debugpy &&
-        cd debugpy &&
-        mkdir .virtualenvs && 
-        cd .virtualenvs && 
+        cd ./debugpy/.virtualenvs && 
         python -m venv debugpy
       args:
         chdir: "{{ debug_server_dir_path }}"
@@ -49,3 +52,6 @@
       args:
         chdir: "{{ debug_server_dir_path }}"
 
+    - name: Install rust
+      shell: >
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
