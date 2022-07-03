@@ -1,10 +1,17 @@
-
 - hosts: all
   vars:
-    debug_server_dir_name: .test-ansible
-    debug_server_dir_path: $HOME/{{ debug_server_dir_name }}
+    debug_server_dir_name: debug-servers
+    debug_server_dir_path: $HOME/.local/{{ debug_server_dir_name }}
 
   tasks:
+    - name: Install packages
+      ansible.builtin.package:
+        name:
+          - fd
+          - tmux
+          - fzf
+          - jq
+        state: present
 
     - name: Create debug server directory
       shell: mkdir {{ debug_server_dir_name }}
@@ -12,6 +19,30 @@
         chdir: $HOME
     
     - name: Install debugpy
-      shell: mkdir .virtualenvs && cd .virtualenvs && python -m venv debugpy
+      shell: >
+        mkdir debugpy &&
+        cd debugpy &&
+        mkdir .virtualenvs && 
+        cd .virtualenvs && 
+        python -m venv debugpy
       args:
         chdir: "{{ debug_server_dir_path }}"
+
+    - name: Install node-debug2
+      shell: > 
+        git clone https://github.com/microsoft/vscode-node-debug2.git && 
+        cd vscode-node-debug2 && 
+        npm install && 
+        NODE_OPTIONS=--no-experimental-fetch npm run build
+      args:
+        chdir: "{{ debug_server_dir_path }}"
+
+    - name: Install vscode-chrome-debug
+      shell: >
+        git clone https://github.com/Microsoft/vscode-chrome-debug &&
+        cd ./vscode-chrome-debug &&
+        npm install &&
+        npm run build
+      args:
+        chdir: "{{ debug_server_dir_path }}"
+
