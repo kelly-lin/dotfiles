@@ -11,6 +11,7 @@
           - tmux
           - fzf
           - jq
+          - jre-openjdk
         state: present
       become: true
       become_method: sudo
