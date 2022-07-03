@@ -12,9 +12,12 @@
           - fzf
           - jq
         state: present
+      become: true
+      become_user: root
+      become_method: sudo
 
     - name: Create debug server directory
-      shell: mkdir {{ debug_server_dir_name }}
+      shell: mkdir {{ debug_server_dir_path }}
       args:
         chdir: $HOME
     
