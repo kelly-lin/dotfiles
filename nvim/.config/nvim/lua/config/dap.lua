@@ -4,19 +4,19 @@ if not dap_loaded then
 end
 
 local function get_debug_server_dir()
-  return os.getenv("HOME") .. "/.debug-servers"
+  return os.getenv("HOME") .. "/.local/debug-servers"
 end
 
 local M = {}
 
 function M.show_scopes()
-  local widgets = require('dap.ui.widgets')
+  local widgets = require("dap.ui.widgets")
   local my_sidebar = widgets.sidebar(widgets.scopes)
   my_sidebar.toggle()
 end
 
 function M.show_frames()
-  local widgets = require('dap.ui.widgets')
+  local widgets = require("dap.ui.widgets")
   local my_sidebar = widgets.sidebar(widgets.frames)
   my_sidebar.toggle()
 end
@@ -24,7 +24,7 @@ end
 function M.setup()
   dap.adapters.python = {
     type = "executable",
-    command = get_debug_server_dir() .. "/.virtualenvs/debugpy/bin/python",
+    command = get_debug_server_dir() .. "/debugpy/.virtualenvs/debugpy/bin/python",
     args = { "-m", "debugpy.adapter" },
   }
 
