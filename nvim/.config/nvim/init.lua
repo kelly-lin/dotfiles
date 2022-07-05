@@ -3,6 +3,7 @@ local sources = {
 	"plugins",
 	"theme",
 	"keymaps",
+  "globals"
 }
 
 for _, source in ipairs(sources) do
