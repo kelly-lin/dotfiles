@@ -12,6 +12,7 @@
           - fzf
           - jq
           - jre-openjdk
+          - tree
         state: present
       become: true
       become_method: sudo
