@@ -95,8 +95,9 @@ function M.setup()
       { name = "treesitter" },
       { name = "luasnip" },
       { name = "nvim_lua" },
-      { name = "path" },
+    }, {
       { name = "buffer", keyword_length = 3 },
+      { name = "path" },
     }),
   })
 
