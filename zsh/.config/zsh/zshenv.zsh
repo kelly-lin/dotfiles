@@ -48,4 +48,4 @@ export PATH=$PATH:$HOME/.rvm/bin
 
 # Source local environment variables - this is where work environment variables 
 # or ones which vary depending on the machine.
-[[ -f $HOME/.config/zsh/.local/.zshenv ]] && source $HOME/.config/zsh/.local/.zshenv
+[[ -f $HOME/.config/.local/zsh/.zshenv ]] && source $HOME/.config/.local/zsh/.zshenv

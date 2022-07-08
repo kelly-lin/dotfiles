@@ -19,7 +19,7 @@
 [[ -f $HOME/.config/zsh/alias.zsh ]] && source $HOME/.config/zsh/alias.zsh
 
 # Source local configs
-[[ -f $HOME/.config/zsh/.local/.zshrc ]] && source $HOME/.config/zsh/.local/.zshrc
+[[ -f $HOME/.config/.local/zsh/.zshrc ]] && source $HOME/.config/.local/zsh/.zshrc
 
 # Plugins
 [[ -f $HOME/.config/zsh/plugins.zsh ]] && source $HOME/.config/zsh/plugins.zsh
