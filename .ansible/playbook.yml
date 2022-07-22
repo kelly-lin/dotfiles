@@ -13,6 +13,7 @@
           - jq
           - jre-openjdk
           - tree
+          - imwheel
         state: present
       become: true
       become_method: sudo
