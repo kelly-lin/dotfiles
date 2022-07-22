@@ -1,5 +1,4 @@
 #!/bin/zsh
 
-# Add key binding for Ranager
-bindkey -s '^p' 'ranger\n'
+bindkey -s '^f' 'fdv\n'
 bindkey '^ ' autosuggest-accept

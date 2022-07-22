@@ -13,7 +13,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias ip='ip --color=auto'
 
-alias fdvi='fd -H -t f . | fzf | xargs nvim'
+alias fdv="$CUSTOM_ZSH_SCRIPTS_PATH/fzf-vi.zsh"
 which nvim &> /dev/null
 if [[ $? -eq 0 ]]; then
   alias vim='nvim'
