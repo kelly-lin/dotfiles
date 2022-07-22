@@ -6,15 +6,19 @@ prompt=$prompt_ins
 ZSH_DISABLE_COMPFIX="true" # This is to ignore insecure directories
 
 preexec() {
-  timer=$(date +%s%3N)
+  timer=$(($(date +%s)))
+}
+
+prt() {
+  echo $_exec_time
 }
 
 precmd() {
   if [ $timer ]; then
-    now=$(date +%s%3N)
+    now=$(($(date +%s)))
     elapsed=$(($now-$timer))
 
-    export RPROMPT="%F{243}${elapsed}ms %{$reset_color%}"
+    _exec_time="${elapsed} seconds"
     unset timer
   fi
 
