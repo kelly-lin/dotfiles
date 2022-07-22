@@ -2,7 +2,7 @@
 # /home/kelly/.nvidia-settings-rc
 #
 # Configuration file for nvidia-settings - the NVIDIA Settings utility
-# Generated on Wed Apr 27 22:48:19 2022
+# Generated on Fri Jul 15 22:20:35 2022
 #
 
 # ConfigProperties:
@@ -11,11 +11,10 @@ RcFileLocale = C
 DisplayStatusBar = Yes
 SliderTextEntries = Yes
 IncludeDisplayNameInConfigFile = No
-ShowQuitDialog = Yes
 UpdateRulesOnProfileNameChange = Yes
-Timer = Memory_Used_(GPU_0),Yes,3000
-Timer = Thermal_Monitor_(GPU_0),Yes,1000
 Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = Memory_Used_(GPU_0),Yes,3000
 
 # Attributes:
 
@@ -36,15 +35,15 @@ Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
 [DPY:DVI-D-0]/ColorSpace=0
 [DPY:DVI-D-0]/ColorRange=0
 [DPY:DVI-D-0]/SynchronousPaletteUpdates=0
-[DPY:HDMI-0]/RedBrightness=-0.200000
-[DPY:HDMI-0]/GreenBrightness=-0.200000
-[DPY:HDMI-0]/BlueBrightness=-0.200000
-[DPY:HDMI-0]/RedContrast=-0.200000
-[DPY:HDMI-0]/GreenContrast=-0.200000
-[DPY:HDMI-0]/BlueContrast=-0.200000
-[DPY:HDMI-0]/RedGamma=0.999827
-[DPY:HDMI-0]/GreenGamma=0.999827
-[DPY:HDMI-0]/BlueGamma=0.999827
+[DPY:HDMI-0]/RedBrightness=0.000000
+[DPY:HDMI-0]/GreenBrightness=0.000000
+[DPY:HDMI-0]/BlueBrightness=0.000000
+[DPY:HDMI-0]/RedContrast=0.000000
+[DPY:HDMI-0]/GreenContrast=0.000000
+[DPY:HDMI-0]/BlueContrast=0.000000
+[DPY:HDMI-0]/RedGamma=1.000000
+[DPY:HDMI-0]/GreenGamma=1.000000
+[DPY:HDMI-0]/BlueGamma=1.000000
 [DPY:HDMI-0]/Dithering=0
 [DPY:HDMI-0]/DitheringMode=0
 [DPY:HDMI-0]/DitheringDepth=0
