@@ -1,19 +1,38 @@
 #!/bin/zsh
 
-if [[ $# -eq 1 ]]; then
-  selected=$1
-else
-  selected=$(find ~/Repos -mindepth 1 -maxdepth 1 -type d | fzf --reverse --header='repos')
-fi
+function get_selected_name() {
+  selected_name=$(basename "$selected" | tr . _)
+}
 
-if [[ -z $selected ]]; then
+function initialize() {
+  num_of_worktrees=$(cd $selected && git worktree list &> /dev/null | wc -l)
+  if [[ $num_of_worktrees -gt 1 ]]; then
+    cd $selected && tmuxinator-worktree-sessionizer
+  else
+    tmuxinator start -n $selected_name -p $HOME/.config/tmuxinator/dev.yaml workspace=$selected
+  fi
+}
+
+selected_name=''
+num_of_worktrees=0
+
+if [[ $# -eq 1 && $1 == '.' ]]; then
+  selected=$PWD
+  get_selected_name
+  initialize
   exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
-num_of_worktrees=$(cd $selected && git worktree list &> /dev/null | wc -l)
-if [[ $num_of_worktrees -gt 1 ]]; then
-  cd $selected && tmuxinator-worktree-sessionizer
-else
-  tmuxinator start -n $selected_name -p $HOME/.config/tmuxinator/dev.yaml workspace=$selected
+if [[ $# -eq 1 ]]; then
+  [[ ! -d $1 ]] && echo 'target is not a directory' && exit 1
+
+  selected=$1
+  get_selected_name
+  initialize
+  exit 0
 fi
+
+selected=$(find ~/Repos -mindepth 1 -maxdepth 1 -type d | fzf --reverse --header='repos')
+[[ -z $selected ]] && exit 0
+get_selected_name
+initialize

@@ -13,7 +13,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias ip='ip --color=auto'
 
-alias fdvi='fd -H -t f . | fzf | xargs nvim'
+alias fdv="$CUSTOM_ZSH_SCRIPTS_PATH/fzf-vi.zsh"
 which nvim &> /dev/null
 if [[ $? -eq 0 ]]; then
   alias vim='nvim'
@@ -22,7 +22,7 @@ fi
 
 # directory navigation
 alias nd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias sd="$CUSTOM_ZSH_SCRIPTS_PATH/fzf-chdir.zsh"
+alias sd="source $CUSTOM_ZSH_SCRIPTS_PATH/fzf-chdir.zsh"
 
 # config shortcuts
 alias nvc='cd $HOME/.config/nvim'

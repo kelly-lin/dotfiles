@@ -96,7 +96,7 @@ function M.setup()
       { name = "luasnip" },
       { name = "nvim_lua" },
     }, {
-      { name = "buffer", keyword_length = 3 },
+      { name = "buffer", keyword_length = 8 },
       { name = "path" },
     }),
   })

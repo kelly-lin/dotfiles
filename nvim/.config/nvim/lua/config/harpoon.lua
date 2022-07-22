@@ -22,7 +22,7 @@ function M.setup()
 	local nmap = require("utils.keymaps").nmap
 
 	nmap("<leader>ha", [[:lua require("harpoon.mark").add_file()<CR>:echo 'Added harpoon mark'<CR>]])
-	nmap([[<leader>']], [[:Telescope harpoon marks<CR>]])
+	nmap([[<leader>hg]], [[:Telescope harpoon marks<CR>]])
 end
 
 return M
