@@ -3,6 +3,8 @@ local fn = vim.fn -- a table to access global variables
 local g = vim.g -- a table to access global variables
 local opt = vim.opt -- to set options-- Map leader to space
 
+opt.termguicolors = true -- enable true color
+
 opt.cursorline = true
 opt.signcolumn = "yes"
 opt.encoding = "utf-8"
