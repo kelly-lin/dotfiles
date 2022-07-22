@@ -4,6 +4,6 @@
 # result from fzf into a variable, we need to save and restore the variable 
 # incase something was already stored in it.
 prev=$dir
-dir=$(fd -H -t d . | fzf)
+dir=$(fd -H -t d . | grep -v '^\./\.git' | fzf)
 [[ ! -z $dir ]] && cd $dir
 dir=$prev
