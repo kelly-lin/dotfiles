@@ -22,7 +22,7 @@ fi
 
 # directory navigation
 alias nd='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-alias sd="$CUSTOM_ZSH_SCRIPTS_PATH/fzf-chdir.zsh"
+alias sd="source $CUSTOM_ZSH_SCRIPTS_PATH/fzf-chdir.zsh"
 
 # config shortcuts
 alias nvc='cd $HOME/.config/nvim'
