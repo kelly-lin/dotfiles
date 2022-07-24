@@ -23,7 +23,7 @@ local function setup_custom_highlights()
   vim.api.nvim_set_hl(0, "TelescopePreviewBorder", { fg = "#61afef" })
   vim.api.nvim_set_hl(0, "TelescopePromptBorder", { fg = "#61afef" })
   vim.api.nvim_set_hl(0, "TelescopeResultsBorder", { fg = "#61afef" })
-  vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#abb2bf" })
+  vim.api.nvim_set_hl(0, "TelescopeTitle", { fg = "#56b6c2" })
 end
 
 setup_custom_highlights()
