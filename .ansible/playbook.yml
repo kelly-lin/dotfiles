@@ -18,6 +18,17 @@
       become: true
       become_method: sudo
 
+    - name: Install fonts
+      ansible.builtin.package:
+        name:
+          - noto-fonts 
+          - noto-fonts-cjk 
+          - noto-fonts-emoji 
+          - noto-fonts-extra
+        state: present
+      become: true
+      become_method: sudo
+
     - name: Create debug server directory
       ansible.builtin.file:
         path: "{{ debug_server_dir_path }}"
